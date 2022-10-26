@@ -1,0 +1,32 @@
+.remade-navigation {}
+
+.remade-ul {
+    display: none;
+}
+
+.remade-ul-active {
+    display: block;
+}
+
+.remade-ul-active-animation {
+    display: block;
+    animation: s 200ms;
+}
+
+.navigation-text-properties {
+    user-select: none;
+}
+
+.remade-toc {
+    color: #aaa873 !important;
+}
+
+@keyframes s {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}

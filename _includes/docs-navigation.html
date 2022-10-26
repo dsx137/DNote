@@ -1,0 +1,137 @@
+<div class="book-summary">
+    <nav role="navigation">
+        <div id="book-search-input" role="search">
+            <input type="text" placeholder="Type to search" />
+        </div>
+        <div id="book-search-input-link" role="search">
+            <a href="{{site.baseurl}}/assets/search.html">Click to Search</a>
+        </div>
+        <ul class="summary" id="summary">
+            {% if page.url == "/index.html" or page.url == "/" %}
+            <li class="chapter active" data-level="1.1" data-path="{{site.baseurl}}">
+            {% else %}
+            <li class="chapter" data-level="1.1" data-path="{{site.baseurl}}">
+            {% endif %}
+                <a href="{{site.baseurl}}/">
+                    {{ site.title | escape }}
+                </a>
+                <hr></hr>
+            </li>
+
+            <li class="divider"></li>
+            
+            <script>
+                function toggleNav(){
+                    var ulElements = (Array)(this.parentNode.getElementsByTagName("ul"));
+                    for(var i in ulElements){
+                        var ul = ulElements[i][0];
+                        if(ul.className.includes("-active") || ul.className.includes("-active-animation")){
+                            ul.className=ul.className.replace("-active-animation","");
+                            ul.className=ul.className.replace("-active","");
+                        }else{
+                            ul.className+=("-active-animation");
+                        }   
+                    }  
+                }
+                {% capture tocString %} {% include toc.html html=content h_min=site.toc.h_min h_max=site.toc.h_max %} {% endcapture %}
+                var pageURL = decodeURIComponent(window.location.href);
+                pageURL = pageURL.substring(pageURL.indexOf("/DNote"),pageURL.length);
+                var summary = document.getElementById("summary");
+                var hrefPrev = "/DNote/notes/DNote_Notes/";
+                var treeRaw = new Array();
+                var tree = new Array();
+                var toc = document.createElement("li");
+                toc.innerHTML = "{{tocString | strip | replace: '"', "'"}}";
+                var tocChildren = toc.getElementsByTagName("a");
+                for(var i in tocChildren){
+                    var a = tocChildren[i];
+                    a.className = "remade-toc";
+                }
+                {% for note in site.notes %}
+                    treeRaw.push("{{note.path}}");
+                {% endfor %}
+                for (var i in treeRaw)
+                {
+                    var fileNodeList = treeRaw[i].split("/"); 
+                    fileNodeList.shift();
+                    fileNodeList.shift();
+                    tree.push(fileNodeList);
+                }
+                
+                for (var i in tree)
+                {
+                    var path = tree[i];
+                    var pathLevel = hrefPrev+"";
+                    for(var j in path)
+                    {
+                        var FolderNode=path[j];
+                        var haveSameParent = false;
+                        var haveSameNode = false;
+                        var parentNode = summary;
+                        var summaryChildren = summary.getElementsByTagName("li");
+                        for(var k in summaryChildren)
+                            if(summaryChildren[k].dataset!=null && summaryChildren[k].dataset.path==pathLevel)
+                            {
+                                haveSameParent = true;
+                                parentNode = summaryChildren[k];
+                                break;
+                            }
+                        pathLevel+=FolderNode+"/";
+                        for(var k in summaryChildren)
+                            if(summaryChildren[k].dataset!=null && summaryChildren[k].dataset.path==pathLevel)
+                            {
+                                haveSameNode=true;
+                                break;
+                            }
+                        var parentChildren = parentNode.children;
+                        for(var i in parentChildren)
+                            if(parentChildren[i].tagName=="UL")
+                                parentNode = parentChildren[i];
+                        if(!haveSameNode)
+                        {
+                            var node = document.createElement("li");
+                            var text = document.createElement("a");
+                            var childList = document.createElement("ul");
+                            
+                            node.className = "remade-navigation";
+                            node.dataset.path=pathLevel;
+                            node.appendChild(text);
+                            if(FolderNode.includes(".md"))
+                            {
+                                FolderNode = FolderNode.substring(0, FolderNode.lastIndexOf("."));
+                                pathLevel = pathLevel.substring(0, pathLevel.lastIndexOf("."));
+                                text.href = pathLevel;
+                                if(pageURL.includes(pathLevel))
+                                    node.appendChild(toc);
+                            }
+                            else{
+                                text.className="iconfont icon-111111111";
+                                node.appendChild(childList);
+                            }
+                            if(pageURL.includes(pathLevel))
+                                childList.className = "remade-ul-active";
+                            else
+                                childList.className = "remade-ul";
+                            text.className+=" navigation-text-properties";
+                            text.innerHTML = FolderNode;
+                            text.onclick = toggleNav;
+                            parentNode.appendChild(node);
+                        }
+                    }
+                }
+            </script>
+
+        </ul>
+    </nav>
+    
+    <footer style="
+        left: 0;
+        background: #141c2e;
+        display: flex;
+        justify-content: center;
+        bottom: 0;
+        width: 100%;
+        color: #ffff;">made by 
+        <a href="https://sighingnow.github.io/jekyll-gitbook" style="color: #41515c;">&ensp;jekyll-gitbook </a>
+    </footer>
+</div>
