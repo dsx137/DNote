@@ -1,7 +1,7 @@
-require(['gitbook', 'jquery'], function(gitbook, $) {
+require(['gitbook', 'jquery'], function (gitbook, $) {
     // Configuration
-    var MAX_SIZE       = 4,
-        MIN_SIZE       = 0,
+    var MAX_SIZE = 4,
+        MIN_SIZE = 0,
         BUTTON_ID;
 
     // Current fontsettings state
@@ -9,16 +9,16 @@ require(['gitbook', 'jquery'], function(gitbook, $) {
 
     // Default themes
     var THEMES = [
-        {
-            config: 'white',
-            text: 'White',
-            id: 0
-        },
-        {
-            config: 'sepia',
-            text: 'Sepia',
-            id: 1
-        },
+        // {
+        //     config: 'white',
+        //     text: 'White',
+        //     id: 0
+        // },
+        // {
+        //     config: 'sepia',
+        //     text: 'Sepia',
+        //     id: 1
+        // },
         {
             config: 'night',
             text: 'Night',
@@ -108,9 +108,9 @@ require(['gitbook', 'jquery'], function(gitbook, $) {
 
         // Remove currently applied color theme
         if (fontState.theme !== 0) {
-            $book.removeClass('color-theme-'+fontState.theme);
+            $book.removeClass('color-theme-' + fontState.theme);
             if ($header.length !== 0) {
-                $header.removeClass('color-theme-'+fontState.theme);
+                $header.removeClass('color-theme-' + fontState.theme);
             }
         }
 
@@ -118,9 +118,9 @@ require(['gitbook', 'jquery'], function(gitbook, $) {
         var themeId = getThemeId(configName);
         fontState.theme = themeId;
         if (fontState.theme !== 0) {
-            $book.addClass('color-theme-'+fontState.theme);
+            $book.addClass('color-theme-' + fontState.theme);
             if ($header.length !== 0) {
-                $header.addClass('color-theme-'+fontState.theme);
+                $header.addClass('color-theme-' + fontState.theme);
             }
         }
 
@@ -131,37 +131,37 @@ require(['gitbook', 'jquery'], function(gitbook, $) {
     // Default to first font-family
     function getFontFamilyId(configName) {
         // Search for plugin configured font family
-        var configFamily = $.grep(FAMILIES, function(family) {
+        var configFamily = $.grep(FAMILIES, function (family) {
             return family.config == configName;
         })[0];
         // Fallback to default font family
-        return (!!configFamily)? configFamily.id : 0;
+        return (!!configFamily) ? configFamily.id : 0;
     }
 
     // Return the correct id for a theme config key
     // Default to first theme
     function getThemeId(configName) {
         // Search for plugin configured theme
-        var configTheme = $.grep(THEMES, function(theme) {
+        var configTheme = $.grep(THEMES, function (theme) {
             return theme.config == configName;
         })[0];
         // Fallback to default theme
-        return (!!configTheme)? configTheme.id : 0;
+        return (!!configTheme) ? configTheme.id : 0;
     }
 
     function update() {
         var $book = gitbook.state.$book;
 
         $('.font-settings .font-family-list li').removeClass('active');
-        $('.font-settings .font-family-list li:nth-child('+(fontState.family+1)+')').addClass('active');
+        $('.font-settings .font-family-list li:nth-child(' + (fontState.family + 1) + ')').addClass('active');
 
         $book[0].className = $book[0].className.replace(/\bfont-\S+/g, '');
-        $book.addClass('font-size-'+fontState.size);
-        $book.addClass('font-family-'+fontState.family);
+        $book.addClass('font-size-' + fontState.size);
+        $book.addClass('font-family-' + fontState.family);
 
-        if(fontState.theme !== 0) {
+        if (fontState.theme !== 0) {
             $book[0].className = $book[0].className.replace(/\bcolor-theme-\S+/g, '');
-            $book.addClass('color-theme-'+fontState.theme);
+            $book.addClass('color-theme-' + fontState.theme);
         }
     }
 
@@ -172,9 +172,9 @@ require(['gitbook', 'jquery'], function(gitbook, $) {
 
         // Instantiate font state object
         fontState = gitbook.storage.get('fontState', {
-            size:   config.size || 2,
+            size: config.size || 2,
             family: configFamily,
-            theme:  configTheme
+            theme: configTheme
         });
 
         update();
@@ -204,15 +204,15 @@ require(['gitbook', 'jquery'], function(gitbook, $) {
                         onClick: enlargeFontSize
                     }
                 ],
-                $.map(FAMILIES, function(family) {
-                    family.onClick = function(e) {
+                $.map(FAMILIES, function (family) {
+                    family.onClick = function (e) {
                         return changeFontFamily(family.config, e);
                     };
 
                     return family;
                 }),
-                $.map(THEMES, function(theme) {
-                    theme.onClick = function(e) {
+                $.map(THEMES, function (theme) {
+                    theme.onClick = function (e) {
                         return changeColorTheme(theme.config, e);
                     };
 
@@ -223,7 +223,7 @@ require(['gitbook', 'jquery'], function(gitbook, $) {
     }
 
     // Init configuration at start
-    gitbook.events.bind('start', function(e, config) {
+    gitbook.events.bind('start', function (e, config) {
         var opts = config.fontsettings;
 
         // Generate buttons at start
@@ -236,13 +236,13 @@ require(['gitbook', 'jquery'], function(gitbook, $) {
     // Expose API
     gitbook.fontsettings = {
         enlargeFontSize: enlargeFontSize,
-        reduceFontSize:  reduceFontSize,
-        setTheme:        changeColorTheme,
-        setFamily:       changeFontFamily,
-        getThemes:       getThemes,
-        setThemes:       setThemes,
-        getFamilies:     getFamilies,
-        setFamilies:     setFamilies
+        reduceFontSize: reduceFontSize,
+        setTheme: changeColorTheme,
+        setFamily: changeFontFamily,
+        getThemes: getThemes,
+        setThemes: setThemes,
+        getFamilies: getFamilies,
+        setFamilies: setFamilies
     };
 });
 
