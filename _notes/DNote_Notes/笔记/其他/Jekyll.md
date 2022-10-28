@@ -20,8 +20,8 @@ collections:
     sort_by: lesson
 ```
 
-`output: true` 表示这个合集下每个文件都会被渲染成独立的 html 文件
-`sort_by: lesson` 表示合集内容会根据 lesson 字段来排序
+`output: true` 表示这个合集下每个文件都会被渲染成独立的 html 文件\
+`sort_by: lesson` 表示合集内容会根据 lesson 字段来排序\
 `permalink` 表示在output文件夹（默认应该都是_site）的相对路径
 
 ### 变量
