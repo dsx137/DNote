@@ -2,7 +2,7 @@
 title:            DNote
 longtitle:        DNote_Notes
 author:           dsx137
-email:            
+email:            1419696375@qq.com
 description: >
   Build Jekyll site with the GitBook style.
 
@@ -10,7 +10,7 @@ version:          1.0
 gitbook_version:  3.2.3
 
 
-url:              'https://sighingnow.github.io'
+url:              'https://dsx137.github.io'
 baseurl:          '/DNote'
 rss:              RSS
 
