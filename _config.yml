@@ -24,7 +24,7 @@ toc:
 #github
 lsi: false
 safe: true
-source: [DNote]
+source: ""
 highlighter: rouge
 gist:
   noscript: false
