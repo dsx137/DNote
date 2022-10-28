@@ -10,7 +10,7 @@ version:          1.0
 gitbook_version:  3.2.3
 
 
-url:              'https://dsx137.github.io'
+url:              'https://sighingnow.github.io'
 baseurl:          '/DNote'
 rss:              RSS
 
@@ -21,14 +21,6 @@ toc:
   enabled: true
   h_min: 1
   h_max: 3
-
-#github
-lsi: false
-safe: true
-source: ""
-highlighter: rouge
-gist:
-  noscript: false
 
 # customize the link favicon in header, will be {{site.baseurl}}/{{site.favicon_path}}
 favicon_path:     /assets/gitbook/images/favicon.ico
