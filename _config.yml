@@ -9,10 +9,9 @@ description: >
 version:          1.0
 gitbook_version:  3.2.3
 
-repository:       dsx137/dsx137.github.io
-github_url:       https://github.com/dsx137
+
 url:              'https://dsx137.github.io'
-baseurl:          ''
+baseurl:          '/DNote'
 rss:              RSS
 
 # bootstrap: use the remote theme for the site itself
