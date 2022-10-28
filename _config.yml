@@ -21,6 +21,14 @@ toc:
   h_min: 1
   h_max: 3
 
+#github
+lsi: false
+safe: true
+source: [DNote]
+highlighter: rouge
+gist:
+  noscript: false
+
 # customize the link favicon in header, will be {{site.baseurl}}/{{site.favicon_path}}
 favicon_path:     /assets/gitbook/images/favicon.ico
 
