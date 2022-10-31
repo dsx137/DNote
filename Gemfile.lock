@@ -23,7 +23,7 @@ GEM
     http_parser.rb (0.8.0)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
-    jekyll (4.3.0)
+    jekyll (4.3.1)
       addressable (~> 2.4)
       colorator (~> 1.0)
       em-websocket (~> 0.5)
@@ -41,6 +41,7 @@ GEM
       webrick (~> 1.7)
     jekyll-feed (0.17.0)
       jekyll (>= 3.7, < 5.0)
+    jekyll-navigation-tree (0.0.3)
     jekyll-readme-index (0.3.0)
       jekyll (>= 3.0, < 5.0)
     jekyll-sass-converter (2.2.0)
@@ -60,7 +61,7 @@ GEM
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
     mercenary (0.4.0)
-    minitest (5.15.0)
+    minitest (5.16.3)
     nokogiri (1.13.9-x64-mingw-ucrt)
       racc (~> 1.4)
     pathutil (0.16.2)
@@ -88,6 +89,7 @@ PLATFORMS
 DEPENDENCIES
   jekyll
   jekyll-feed
+  jekyll-navigation-tree
   jekyll-readme-index
   jemoji
   webrick

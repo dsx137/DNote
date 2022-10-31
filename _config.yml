@@ -57,18 +57,6 @@ collections:
   notes:
     output: true
     permalink: /:collection/:path
-  
-
-page_width: 800px
-
-destination:      ./_site
-incremental:      false
-regenerate:       true
-
-plugins:
-  - jekyll-feed
-  # - jekyll-readme-index
-  - jemoji
 
 defaults:
   - scope:
@@ -79,3 +67,22 @@ defaults:
       path: _notes
     values:
       layout: post
+
+page_width: 800px
+
+destination:      ./_site
+incremental:      false
+regenerate:       true
+
+plugins:
+  - jekyll-feed
+  - jemoji
+
+# site-tree
+site_tree:
+  file: map.md
+  files: []
+  extension: false
+  collapse: false
+  exclude: []
+  substitute: []

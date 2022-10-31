@@ -1,24 +1,8 @@
-<div class="book-summary">
+<div class="rss-summary book-summary">
     <nav role="navigation">
-        <div id="book-search-input" role="search">
-            <input type="text" placeholder="Type to search" />
-        </div>
-        <div id="book-search-input-link" role="search">
-            <a href="{{site.baseurl}}/assets/search.html">Click to Search</a>
-        </div>
+        
         <ul class="summary">
-            {% if page.url == "/index.html" or page.url == "/" %}
-            <li class="chapter active" data-level="1.1" data-path="{{site.baseurl}}">
-            {% else %}
-            <li class="chapter" data-level="1.1" data-path="{{site.baseurl}}">
-            {% endif %}
-                <a href="{{site.baseurl}}/">
-                    {{ site.title | escape }}
-                </a>
-                <hr></hr>
-            </li>
-
-            <li class="divider"></li>
+            
 
             {% for collection in site.collections %}
                 <!-- <p>{{ collection.label }}</p> -->
@@ -35,9 +19,6 @@
                         {% else %}
                         <li class="chapter" data-level="1.1" data-path="{{site.baseurl}}{{post.url}}">
                         {% endif %}
-                            <a href="{{site.baseurl}}{{post.url}}">
-                                {{ post.title | escape }}
-                            </a>
                             {% if site.toc.enabled %}
                                 {% if page.url == post.url %}
                                     {% include toc.html html=content h_min=site.toc.h_min h_max=site.toc.h_max %}
@@ -54,11 +35,4 @@
 
         </ul>
     </nav>
-    <footer style="left: 0;
-        background: #141c2e;
-        display: flex;
-        justify-content: center;
-        color: #ffff;">made by 
-        <a href="https://sighingnow.github.io/jekyll-gitbook" style="color: #41515c;">&ensp;jekyll-gitbook </a>
-    </footer>
 </div>
