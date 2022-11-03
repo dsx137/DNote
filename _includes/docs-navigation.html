@@ -6,7 +6,7 @@
         <div id="book-search-input-link" role="search">
             <a href="{{site.baseurl}}/assets/search.html">Click to Search</a>
         </div>
-        <ul class="summary">
+        <ul class="summary" id="summary">
             {% if page.url == "/index.html" or page.url == "/" %}
             <li class="chapter active" data-level="1.1" data-path="{{site.baseurl}}">
             {% else %}
@@ -21,7 +21,8 @@
             <li class="divider"></li>
             
             <script>
-                var herfPrev = "/DNote/notes/DNote_Notes/";
+                var summary = document.getElementById("summary");
+                var hrefPrev = "/DNote/notes/DNote_Notes/";
                 var treeRaw = new Array();
                 var tree = new Array();
                 {% for note in site.notes %}
@@ -35,41 +36,60 @@
                     tree.push(fileNodeList);
                 }
                 
+                for (var i in tree)
+                {
+                    var path = tree[i];
+                    var pathLevel = hrefPrev+"";
+                    for(var j in path)
+                    {
+                        var FolderNode=path[j];
+                        var haveSameParent = false;
+                        var haveSameNode = false;
+                        var parentNode = summary;
+                        var summaryChildren = summary.getElementsByTagName("li");
+                        for(var k in summaryChildren)
+                            if(summaryChildren[k].dataset!=null && summaryChildren[k].dataset.path==pathLevel)
+                            {
+                                haveSameParent = true;
+                                parentNode = summaryChildren[k];
+                                break;
+                            }
+                        pathLevel+=FolderNode+"/";
+                        for(var k in summaryChildren)
+                            if(summaryChildren[k].dataset!=null && summaryChildren[k].dataset.path==pathLevel)
+                            {
+                                haveSameNode=true;
+                                break;
+                            }
+                        var parentChildren = parentNode.children;
+                        for(var i in parentChildren)
+                            if(parentChildren[i].tagName=="UL")
+                                parentNode = parentChildren[i];
+                        if(!haveSameNode)
+                        {
+                            var node = document.createElement("li");
+                            var text = document.createElement("a");
+                            var childList = document.createElement("ul");
+                            
+                            node.className = "remaked-navigation";
+                            node.dataset.path=pathLevel;
+                            if(FolderNode.includes(".md"))
+                            {
+                                FolderNode = FolderNode.substring(0, FolderNode.lastIndexOf("."));
+                                pathLevel = pathLevel.substring(0, pathLevel.lastIndexOf("."));
+                                text.href = pathLevel;
+                            }
+                            else{
+                                text.className="iconfont icon-111111111";
+                            }
+                            text.innerHTML = FolderNode;
+                            node.appendChild(text);
+                            node.appendChild(childList);
+                            parentNode.appendChild(node);
+                        }
+                    }
+                }
             </script>
-
-            {% for collection in site.collections %}
-                <!-- <p>{{ collection.label }}</p> -->
-                {% if collection.output %}
-                    {% if collection.label == "posts" %}
-                        {% assign reversed_posts = site[collection.label] | reverse %}
-                    {% else %}
-                        {% assign reversed_posts = site[collection.label] %}
-                    {% endif %}
-
-                    {% for post in reversed_posts %}
-                        {% if page.url == post.url %}
-                        <li class="chapter active" data-level="1.2" data-path="{{site.baseurl}}{{post.url}}">
-                        {% else %}
-                        <li class="chapter" data-level="1.1" data-path="{{site.baseurl}}{{post.url}}">
-                        {% endif %}
-                            <a href="{{site.baseurl}}{{post.url}}">
-                                {{ post.title | escape }}
-                            </a>
-
-                            {% if site.toc.enabled %}
-                                {% if page.url == post.url %}
-                                    {% include toc.html html=content h_min=site.toc.h_min h_max=site.toc.h_max %}
-                                {% endif %}
-                            {% endif %}
-
-                        </li>
-                    {% endfor %}
-
-                    {% if reversed_posts.size > 0 %}
-                        <li class="divider"></li>
-                    {% endif %}
-                {% endif %}
-            {% endfor %}
 
         </ul>
     </nav>
