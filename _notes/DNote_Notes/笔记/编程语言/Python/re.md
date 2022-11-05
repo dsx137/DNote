@@ -17,7 +17,8 @@ re是个用来处理字符串的库\
 ### findall
 
 返回string中所有与pattern匹配的全部字符串,返回形式为数组\
-pattern是正则表达式，
+pattern是正则表达式
+
 ```py
 re.findall(pattern, string, flags=0)
 ```
