@@ -61,21 +61,29 @@
     {%- endfor -%}
 {% endif %}
 
-<!-- <script>
+<script>
     MathJax = {
-        tex: {
-            inlineMath: [['$', '$'], ['\\(', '\\)']]
+        "HTML-CSS": {
+          availableFonts: ["TeX"]
+        },
+        tex2jax: {
+            inlineMath: [['$','$'],["\\(","\\)"]]},
+            displayMath: [ ['$$','$$'], ['\[','\]'] ],
+        TeX: {
+            extensions: ["AMSmath.js", "AMSsymbols.js", "color.js"],
+            equationNumbers: {
+                autoNumber: "AMS"
+            }
         },
         svg: {
             fontCache: 'global'
         },
-        tex2jax: {
-            inlineMath: [ ['$','$'] ],
-            displayMath: [ ['$$','$$'] ],
-            processEscapes: true,
-        }
-    };
-</script> -->
+        showProcessingMessages: false,
+        messageStyle: "none",
+        imageFont: null,
+        "AssistiveMML": { disabled: true }
+        };
+</script>
 
 {%- if site.tracker -%}
     <!-- trackers -->
@@ -86,24 +94,3 @@
     {%- endif -%}
 
 {%- endif -%}
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML">
-  MathJax.Hub.Config({
-    "HTML-CSS": {
-      availableFonts: ["TeX"]
-    },
-    tex2jax: {
-      inlineMath: [['$','$'],["\\(","\\)"]]},
-      displayMath: [ ['$$','$$'], ['\[','\]'] ],
-    TeX: {
-      extensions: ["AMSmath.js", "AMSsymbols.js", "color.js"],
-      equationNumbers: {
-        autoNumber: "AMS"
-      }
-    },
-    showProcessingMessages: false,
-    messageStyle: "none",
-    imageFont: null,
-    "AssistiveMML": { disabled: true }
-  });
-</script>
