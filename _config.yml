@@ -30,7 +30,7 @@ markdown:         kramdown
 kramdown:
   auto_ids:               true
   input:                  GFM
-  math_engine:            null
+  math_engine:            mathjax
   smart_quotes:           lsquo,rsquo,ldquo,rdquo
   toc_levels:             1..6
   syntax_highlighter:     rouge
