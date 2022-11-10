@@ -32,11 +32,11 @@
                         <span style="
                         color: #b5d3ca;
                         font-style: italic;
-                        font-family: Georgia, 'Times New Roman', Times, serif;
+                        font-family: KaiTi;
                         top:100px">
                             <hr></hr>
                             <center>
-                                最后编辑时间：{{page.date}}
+                                最后编辑时间：{{page.last_modified_at | date: "%Y年%m月%d日&nbsp&nbsp&nbsp&nbsp%H:%M:%S" }}
                             </center>
                         </span>
                     {% endif %}
