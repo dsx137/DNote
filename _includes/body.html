@@ -27,16 +27,19 @@
                         <h1 id="{{ page.id }}">{{ site.title | escape }}</h1>
                     {% endif %} -->
                     {{ content }}
-                    <span style="
-                    color: #b5d3ca;
-                    font-style: italic;
-                    font-family: Georgia, 'Times New Roman', Times, serif;
-                    top:100px">
-                        <hr></hr>
-                        <center>
-                            最后编辑时间：{{page.date}}
-                        </center>
-                    </span>
+
+                    {% if page.date %}
+                        <span style="
+                        color: #b5d3ca;
+                        font-style: italic;
+                        font-family: Georgia, 'Times New Roman', Times, serif;
+                        top:100px">
+                            <hr></hr>
+                            <center>
+                                最后编辑时间：{{page.date}}
+                            </center>
+                        </span>
+                    {% endif %}
                 </section>
             </div>
             {%- include search.html -%}
