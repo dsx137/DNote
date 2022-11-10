@@ -7,5 +7,6 @@ gem "jekyll"
 gem 'jekyll-feed'
 gem 'jemoji'
 gem 'webrick'
-gem 'jekyll-last-modified-at'
-# gem "rails"
+group :jekyll_plugins do
+  gem "jekyll-last-modified-at"
+end
