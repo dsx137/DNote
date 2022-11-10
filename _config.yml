@@ -77,12 +77,4 @@ regenerate:       true
 plugins:
   - jekyll-feed
   - jemoji
-
-# site-tree
-site_tree:
-  file: map.md
-  files: []
-  extension: false
-  collapse: false
-  exclude: []
-  substitute: []
+  - jekyll-last-modified-at
