@@ -7,6 +7,15 @@
              style="object-fit: cover;"
         />
     {% endif %}
+    
+    {% if page.uselatex%}
+    <script>
+        if (location.href.indexOf("#reloaded") == -1) {
+            location.href = location.href + "#reloaded";
+            location.reload();
+        }
+    </script>
+    {% endif %}
 
     <div class="page-inner">
         <div id="book-search-results">
