@@ -9,7 +9,6 @@ description: >
 version:          1.0
 gitbook_version:  3.2.3
 
-
 url:              'https://dsx137.github.io'
 baseurl:          '/DNote'
 rss:              RSS
@@ -81,3 +80,7 @@ plugins:
 
 last-modified-at:
     date-format: '%d-%b-%y'
+
+git_repo:
+  user: "dsx137"
+  repo: DNote
