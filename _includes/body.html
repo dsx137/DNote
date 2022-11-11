@@ -28,18 +28,7 @@
                     {% endif %} -->
                     {{ content }}
 
-                    {% if page.last_modified_at %}
-                        <span style="
-                        color: #b5d3ca;
-                        font-style: italic;
-                        font-family: YouYuan;
-                        top:100px">
-                            <hr></hr>
-                            <center>
-                                最后编辑时间：{{page.last_modified_at | date: "%Y年%m月%d日&nbsp&nbsp&nbsp&nbsp%H:%M:%S" }}
-                            </center>
-                        </span>
-                    {% endif %}
+                    {% include modified-data-footer.html %}
                     
                 </section>
             </div>
