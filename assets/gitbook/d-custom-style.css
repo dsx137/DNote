@@ -19,6 +19,7 @@
 
 .remade-toc {
     color: #aaa873 !important;
+    user-select: none;
 }
 
 @keyframes s {

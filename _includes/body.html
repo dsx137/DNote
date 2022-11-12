@@ -10,7 +10,7 @@
     
     {% if page.uselatex%}
     <!-- <script>
-        if (location.href.indexOf("#reloaded") == -1) {
+        if (navigator.platform=="Android"&&location.href.indexOf("#reloaded") == -1) {
             location.href = location.href + "#reloaded";
             location.reload();
         }
