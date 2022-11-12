@@ -16,33 +16,10 @@ id="modified-data-footer">
     var pageURL = decodeURIComponent(window.location.href);
     var footer_time = document.getElementById("modified-data-footer");
     pageURL = "_"+pageURL.substring(pageURL.indexOf("notes/"),pageURL.length).replace("#reloaded","")+".md";
-    function getHtmlText(url) {
-        var request = new XMLHttpRequest();
-        request.open('GET', url, false);
-        request.send();
-        return request.responseText;
-    }
-    function getGitFileInfo(){
-        return JSON.parse(getHtmlText(git_url+"contents/"+pageURL));
-    }
-    function getCommit(sha=null){
-        return JSON.parse(getHtmlText(git_url+"commits"+(sha?"/"+sha:"?per_page=1000")));
-    }
     function enableElement(element){
         element.getAttributeNode("style").value=element.getAttributeNode("style").value.replace("display: none","display: block");
     }
-    function getCurrentCommit(){
-        var fileSHA=getGitFileInfo().sha;
-        var commits = getCommit();
-        for(var i in commits){
-            var commit= getCommit(commits[i].sha);
-            for(var k in commit.files)
-                if(commit.files[k].sha==fileSHA)
-                    return commit;
-        }
-    }
-    async function footer_enable_func(){
-        var curCommit=await getCurrentCommit();
+    function footer_enable_func(curCommit){
         var commitDate=curCommit.commit.committer.date;
         var commitAuthor=curCommit.commit.author.name
         if(commitDate)
@@ -54,5 +31,18 @@ id="modified-data-footer">
     // % if page.last_modified_at %
         // enableElement(footer_time);
 
-    // footer_enable_func();
+    // var script = 'console.log("hello world!")';
+    // var workerBlob = new Blob([script], { type: "text/javascript" });
+    // var url=URL.createObjectURL(workerBlob);
+    var data={git_url,pageURL};
+    var worker=new Worker("{{site.baseurl}}/assets/worker.js");
+    window.onload = function () {
+        worker.postMessage(data);
+    }
+    window.onbeforeunload = function() {
+        worker.terminate();
+    }
+    worker.onmessage = function (e) {
+        footer_enable_func(e.data);
+    }
 </script>

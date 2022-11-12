@@ -3,16 +3,17 @@
     // 通过增减classname后缀的方式来添加收缩的效果
     function toggleNav(){
         var ulElements = (Array)(this.parentNode.getElementsByTagName("ul"));
-        if(ulElements)
-            for(var i in ulElements){
-                var ul = ulElements[i][0];
+        for(var i in ulElements){
+            var ul = ulElements[i][0];
+            if(ul){
                 if(ul.className.includes("-active") || ul.className.includes("-active-animation")){
-                    ul.className=ul.className.replace("-active-animation","");
-                    ul.className=ul.className.replace("-active","");
+                ul.className=ul.className.replace("-active-animation","");
+                ul.className=ul.className.replace("-active","");
                 }else{
                     ul.className+=("-active-animation");
-                }   
-            }  
+                }
+            }
+        }
     }
     //用Liquid捕获了gitbook的toc
     {% capture tocString %} {% include toc.html html=content h_min=site.toc.h_min h_max=site.toc.h_max %} {% endcapture %}
