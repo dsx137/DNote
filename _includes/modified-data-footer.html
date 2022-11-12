@@ -20,13 +20,15 @@ id="modified-data-footer">
         element.getAttributeNode("style").value=element.getAttributeNode("style").value.replace("display: none","display: block");
     }
     function footer_enable_func(curCommit){
-        var commitDate=curCommit.commit.committer.date;
-        var commitAuthor=curCommit.commit.author.name
-        if(commitDate)
-            {
-                enableElement(footer_time);
-                footer_time.innerHTML="<hr></hr><center>作者："+commitAuthor+"<br>"+"最后提交时间："+commitDate+"</center>";
-            }
+        if(curCommit){
+            var commitDate=curCommit.commit.committer.date;
+            var commitAuthor=curCommit.commit.author.name
+            if(commitDate)
+                {
+                    enableElement(footer_time);
+                    footer_time.innerHTML="<hr></hr><center>作者："+commitAuthor+"<br>"+"最后提交时间："+commitDate+"</center>";
+                }
+        }
     }
     // % if page.last_modified_at %
         // enableElement(footer_time);
@@ -34,15 +36,27 @@ id="modified-data-footer">
     // var script = 'console.log("hello world!")';
     // var workerBlob = new Blob([script], { type: "text/javascript" });
     // var url=URL.createObjectURL(workerBlob);
-    var data={git_url,pageURL};
+
+    
     var worker=new Worker("{{site.baseurl}}/assets/worker.js");
-    window.onload = function () {
+    var cache = new SharedWorker("{{site.baseurl}}/assets/footer_cache.js");
+    var commits=null;
+    var commitCache=null;
+    var data={git_url,pageURL,commits,commitCache};
+    cache.port.onmessage = function (e) {
+        commits=e.data.commits;
+        commitCache=e.data.commitCache;
+    }
+    window.addEventListener('pageChangeEvent',function(e){
         worker.postMessage(data);
-    }
-    window.onbeforeunload = function() {
-        worker.terminate();
-    }
+        var math = document.getElementsByClassName("hidden_panel");
+        MathJax.Hub.Queue(["Typeset",MathJax.Hub,math]);
+    });
     worker.onmessage = function (e) {
-        footer_enable_func(e.data);
+        commits=e.data.commits;
+        var singleCache=e.data.singleCache;
+        cache.port.postMessage(commits,singleCache);
+        if(e.data.commit&&pageURL==e.data.pageURL)
+            footer_enable_func(e.data.commit);
     }
 </script>
