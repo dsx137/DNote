@@ -7,9 +7,9 @@ top:100px;
 display: none;"
 id="modified-data-footer">
     <hr></hr>
-    <!-- <center>
+    <center>
         最后编辑时间：{{page.last_modified_at | date: "%Y-%m-%dT%H:%M:%SZ" }}
-    </center> -->
+    </center>
 </span>
 
 <script>
@@ -32,9 +32,9 @@ id="modified-data-footer">
         }
     }
 
-    // % if page.last_modified_at %
-        // enableElement(footer_time);
-    
+{% if page.last_modified_at %}
+        enableElement(footer_time);
+{% else %}
     var worker=new Worker("{{site.baseurl}}/assets/worker.js");
     var cache = new SharedWorker("{{site.baseurl}}/assets/footer_cache.js");
     var commitsOverview=null;
@@ -56,4 +56,5 @@ id="modified-data-footer">
         if(e.data.commit&&pageURL==e.data.singleCache.pageURL)
             footer_enable_func(e.data.commit);
     }
+{% endif %}
 </script>
