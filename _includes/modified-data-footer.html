@@ -36,14 +36,16 @@ id="modified-data-footer">
         enableElement(footer_time);
 {% else %}
     var worker=new Worker("{{site.baseurl}}/assets/worker.js");
-    var cache = new SharedWorker("{{site.baseurl}}/assets/footer_cache.js");
+    if(window.SharedWorker)
+        var cache = new SharedWorker("{{site.baseurl}}/assets/footer_cache.js");
     var commitsOverview=null;
     var commitsCache=null;
     var data={git_url,pageURL,commitsOverview,commitsCache};
-    cache.port.onmessage = function (e) {
-        commitsOverview=e.data.commitsOverview;
-        commitsCache=e.data.commitsCache;
-    }
+    if(window.SharedWorker)
+        cache.port.onmessage = function (e) {
+            commitsOverview=e.data.commitsOverview;
+            commitsCache=e.data.commitsCache;
+        }
     window.addEventListener('pageChangeEvent',function(e){
         worker.postMessage(data);
         var math = document.getElementsByClassName("hidden_panel");
@@ -52,7 +54,8 @@ id="modified-data-footer">
     worker.onmessage = function (e) {
         commitsOverview=e.data.commitsOverview;
         var singleCache=e.data.singleCache;
-        cache.port.postMessage(commitsOverview,singleCache);
+        if(window.SharedWorker)
+            cache.port.postMessage(commitsOverview,singleCache);
         if(e.data.commit&&pageURL==e.data.singleCache.pageURL)
             footer_enable_func(e.data.commit);
     }
