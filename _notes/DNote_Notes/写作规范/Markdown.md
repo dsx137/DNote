@@ -1,5 +1,4 @@
 ---
-uselatex: true
 ---
 
 # Markdown
