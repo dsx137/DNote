@@ -34,6 +34,10 @@ id="modified-data-footer">
 
 {% if page.last_modified_at %}
         enableElement(footer_time);
+        window.addEventListener('pageChangeEvent',function(e){
+            var math = document.getElementsByClassName("hidden_panel");
+            MathJax.Hub.Queue(["Typeset",MathJax.Hub,math]);
+        });
 {% else %}
     var worker=new Worker("{{site.baseurl}}/assets/worker.js");
     if(window.SharedWorker)
