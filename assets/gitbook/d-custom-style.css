@@ -22,6 +22,10 @@
     user-select: none;
 }
 
+.search-results-item {
+    color: #626f70 !important;
+}
+
 @keyframes s {
     from {
         transform: translateX(-100%);

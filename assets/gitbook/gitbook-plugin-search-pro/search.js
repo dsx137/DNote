@@ -1,7 +1,7 @@
 require([
     'gitbook',
     'jquery'
-], function(gitbook, $) {
+], function (gitbook, $) {
     var MAX_DESCRIPTION_SIZE = 500;
     var state = gitbook.state;
     var INDEX_DATA = {};
@@ -19,11 +19,11 @@ require([
     function throttle(fn, wait) {
         var timeout;
 
-        return function() {
+        return function () {
             var ctx = this,
                 args = arguments;
             if (!timeout) {
-                timeout = setTimeout(function() {
+                timeout = setTimeout(function () {
                     timeout = null;
                     fn.apply(ctx, args);
                 }, wait);
@@ -51,7 +51,7 @@ require([
         $searchQuery.text(res.query);
 
         // Create an <li> element for each result
-        res.results.forEach(function(item) {
+        res.results.forEach(function (item) {
             var $li = $('<li>', {
                 'class': 'search-results-item'
             });
@@ -130,7 +130,7 @@ require([
         // Asynchronously load the index data
         {
             var url = state.basePath + "/assets/search_plus_index.json";
-            $.getJSON(url).then(function(data) {
+            $.getJSON(url).then(function (data) {
                 INDEX_DATA = data;
                 handleUpdate();
             });
@@ -144,14 +144,29 @@ require([
             var $searchInput = $(target);
             var keyword = $searchInput.val();
 
+            var obj = function () {
+                var url = window.location.href;
+                let urlStr = url.split('?')[1]
+                let obj = {};
+                if (!urlStr) return obj;
+                let paramsArr = urlStr.split('&')
+                for (let i = 0, len = paramsArr.length; i < len; i++) {
+                    let arr = paramsArr[i].split('=')
+                    obj[arr[0]] = arr[1];
+                }
+                return obj;
+            }.apply();
+
             if (keyword === undefined || keyword.length == 0) {
+                closeSearch();
+            } else if (obj.h) {
                 closeSearch();
             } else {
                 launchSearch(keyword);
             }
         }
 
-        $body.on('keyup', target, function(e) {
+        $body.on('keyup', target, function (e) {
             if (e.keyCode === 13) {
                 if (usePushState) {
                     var uri = updateQueryString('q', $(this).val());
@@ -163,10 +178,10 @@ require([
             handleUpdate();
         });
 
-        $body.on('click', target, function(e) {
+        $body.on('click', target, function (e) {
             if (Object.keys(INDEX_DATA).length === 0) {
                 var url = state.basePath + "/assets/search_plus_index.json";
-                $.getJSON(url).then(function(data) {
+                $.getJSON(url).then(function (data) {
                     INDEX_DATA = data;
                     handleUpdate();
                 });
@@ -174,7 +189,7 @@ require([
         });
 
         // Push to history on blur
-        $body.on('blur', target, function(e) {
+        $body.on('blur', target, function (e) {
             // Update history state
             if (usePushState) {
                 var uri = updateQueryString('q', $(this).val());
@@ -185,7 +200,7 @@ require([
         });
     }
 
-    gitbook.events.on('start', function() {
+    gitbook.events.on('start', function () {
         bindSearch('#book-search-input input');
         bindSearch('#book-search-input-inside input');
 
@@ -194,14 +209,14 @@ require([
     });
 
     // 高亮文本
-    var highLightPageInner = function(keyword) {
+    var highLightPageInner = function (keyword) {
         $('.page-inner').mark(keyword, {
             'ignoreJoiners': true,
             'acrossElements': true,
             'separateWordSearch': false
         });
 
-        setTimeout(function() {
+        setTimeout(function () {
             var mark = $('mark[data-markjs="true"]');
             if (mark.length) {
                 mark[0].scrollIntoView();
@@ -239,7 +254,7 @@ require([
     function updateQueryString(key, value) {
         value = encodeURIComponent(value);
 
-        var url = window.location.href.replace(/([?&])(?:q|h)=([^&]+)(&|$)/, function(all, pre, value, end) {
+        var url = window.location.href.replace(/([?&])(?:q|h)=([^&]+)(&|$)/, function (all, pre, value, end) {
             if (end === '&') {
                 return pre;
             }
@@ -270,9 +285,9 @@ require([
                 return url;
         }
     }
-    window.addEventListener('click', function(e) {
+    window.addEventListener('click', function (e) {
         if (e.target.tagName === 'A' && e.target.getAttribute('data-need-reload')) {
-            setTimeout(function() {
+            setTimeout(function () {
                 location.reload();
             }, 100);
         }
