@@ -22,7 +22,7 @@ id="modified-data-footer">
     }
     function footer_enable_func(curCommit){
         if(curCommit){
-            var commitDate=curCommit.commit.committer.date;
+            var commitDate=curCommit.commit.author.date;
             var commitAuthor=curCommit.commit.author.name
             if(commitDate)
                 {
