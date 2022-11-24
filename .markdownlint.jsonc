@@ -1,3 +1,18 @@
-"MD024": {
-    "siblings_only": true // 默认为false，设为true时，不同标题下的子标题内容可以重复
+{
+    "MD052": false,
+    "MD024": {
+        "siblings_only": true // 默认为false，设为true时，不同标题下的子标题内容可以重复
+    },
+    "MD033": {
+        "allowed_elements": [
+            "center",
+            "img",
+            "br",
+            "iframe",
+            "style"
+        ]
+    },
+    "MD013": {
+        "tables": false
+    }
 }
