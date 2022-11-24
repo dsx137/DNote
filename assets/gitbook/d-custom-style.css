@@ -26,6 +26,10 @@
     color: #626f70 !important;
 }
 
+/* .page-inner {
+    max-width: 850px !important;
+} */
+
 @keyframes s {
     from {
         transform: translateX(-100%);

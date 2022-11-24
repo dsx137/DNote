@@ -157,13 +157,14 @@ require([
                 return obj;
             }.apply();
 
-            if (keyword === undefined || keyword.length == 0) {
+            if (!obj.q && ( keyword === undefined || keyword.length == 0 )) {
                 closeSearch();
             } else if (obj.h) {
                 closeSearch();
             } else {
                 launchSearch(keyword);
             }
+            /*changed*/
         }
 
         $body.on('keyup', target, function (e) {
