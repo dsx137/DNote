@@ -26,6 +26,45 @@
     color: #626f70 !important;
 }
 
+.book-summary ul.summary li span {
+    display: inline;
+    padding: 0;
+    text-overflow: unset;
+    overflow: unset;
+}
+
+/* 自定义的details三角 */
+details summary::before {
+    content: '';
+    position: absolute;
+    width: 1em;
+    height: 1em;
+    margin: .3em 0 0 -1.3em;
+    background: url("https://www.zhangxinxu.com/study/201801/arrow-on.svg") no-repeat;
+    background-size: 100% 100%;
+    transition: transform .2s;
+}
+
+details {
+    background-color: #323646;
+}
+
+details summary {
+    margin-left: 1.5em;
+}
+
+details summary {
+    font-family: monospace;
+}
+
+details:not([open]) summary::before {
+    transform: rotate(90deg);
+}
+
+details[open] summary::before {
+    transform: rotate(180deg);
+}
+
 /* .page-inner {
     max-width: 850px !important;
 } */
