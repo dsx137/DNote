@@ -9,7 +9,9 @@
             "img",
             "br",
             "iframe",
-            "style"
+            "style",
+            "details",
+            "summary"
         ]
     },
     "MD013": {
