@@ -14,45 +14,35 @@ Dijkstra /ˈdaɪkstrə/
 
 ## 原理
 
-贪心
+？\
+非常奇妙\
+我现在才想通
+
+首先，它是动态规划\
+它看起来如此诡异，就是因为它对原始的dp做了一点点优化\
+它可以看做是dp广搜的优化版本（每轮取最短进行更新，优化了广搜对节点的重复遍历）\
+也可以看做是递归dp的 *反向/不使用栈* 版本（递归首先从汇点开始，x=该点，遍历x的邻接点，选出最短的那条）
+
+每次选最小是因为：
+
++ 首先不能乱选，因为要按层级来更新，不按层级更新到后面会有后效性（更新一个节点，后面大小关系全变了）
++ 如果选最大，那么在权值为正的情况下，每轮都会选择刚刚更新过的那个节点（最大加完正值还是最大），直接一条路走到黑了，贪了，最后也会有后效性
++ 选最小并不是单纯地逐层级更新，它是在确定最小后可能跳过了之前层级的较大点（因为较大点无论如何，到达下一层级之后的路程都不可能比该值小）
+
+说Dijkstra是贪心，不如说它不得不贪。\
+我更倾向于像上面这样描述Dijkstra\
+就是一般dp的优化版
 
 ## 优化
 
 ### 堆优化（优先队列）
 
+步骤1的实现方式为用堆获取最小值
+
 ## 代码实现
 
 ### 堆优化，邻接多重表
 
-```cpp
-int dijkstra(int ivex, int jvex) {
-        int *pathLength = new int[n];
-        bool *mark = new bool[n];
-        for (int i = 0;i < n;i++) {
-            pathLength[i] = 200000;
-            mark[i] = false;
-            pathCount[i] = 0;
-        }
-        pathLength[ivex] = 0;
-        while (1) {
-            //
-            int minVex = -1;
-            for (int i = 0;i < n;i++)
-            if(minVex == -1)
-                else if (mark[i] && pathLength[i] <pathLength[minVex])
-                    minVex = i;
-            if (minVex == -1) break;
-            //
-            EDGE *p = vertexes[minVex].firstEdge;
-            while (p) {
-                int headVex = minVex == p->ivex ? p->jvex : p->ivex;
-                if (pathLength[minVex] + p->weight < pathLength[headVex]) {
-                    pathLength[headVex] = pathLength[minVex] + p->weight;
-                }
-                p = (minVex == p->ivex ? p->ilink : p->jlink);
-            }
-            mark[minVex] = true;
-        }
-        return pathLength[jvex] == 200000 ? -1 : pathLength[jvex];
-    }
-```
+[洛谷 P1119 灾后重建 - 提交记录](https://www.luogu.com.cn/record/96267527)
+
+本页编辑不完全

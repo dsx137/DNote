@@ -130,7 +130,7 @@
             {% if include.anchor_class %}
                 {% capture anchorAttributes %}{{ anchorAttributes }} class="{{ include.anchor_class | split: '.' | join: ' ' }}"{% endcapture %}
             {% endif %}
-        
+        <!-- 下一行添加了一个>箭头，作为toc的样式，modified -->
             {% capture listItem %}<a{{ anchorAttributes }}>> {{ anchorBody }}</a>{% endcapture %}
         {% elsif skipNoIDs == true %}
             {% continue %}
