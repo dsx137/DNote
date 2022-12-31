@@ -15,6 +15,7 @@
         ]
     },
     "MD013": {
-        "tables": false
+        "tables": false,
+        "line_length": 100
     }
 }

@@ -20,39 +20,10 @@ Dijkstra /ˈdaɪkstrə/
 
 ### 堆优化（优先队列）
 
+步骤1的实现方式为用堆获取最小值
+
 ## 代码实现
 
 ### 堆优化，邻接多重表
 
-```cpp
-int dijkstra(int ivex, int jvex) {
-        int *pathLength = new int[n];
-        bool *mark = new bool[n];
-        for (int i = 0;i < n;i++) {
-            pathLength[i] = 200000;
-            mark[i] = false;
-            pathCount[i] = 0;
-        }
-        pathLength[ivex] = 0;
-        while (1) {
-            //
-            int minVex = -1;
-            for (int i = 0;i < n;i++)
-            if(minVex == -1)
-                else if (mark[i] && pathLength[i] <pathLength[minVex])
-                    minVex = i;
-            if (minVex == -1) break;
-            //
-            EDGE *p = vertexes[minVex].firstEdge;
-            while (p) {
-                int headVex = minVex == p->ivex ? p->jvex : p->ivex;
-                if (pathLength[minVex] + p->weight < pathLength[headVex]) {
-                    pathLength[headVex] = pathLength[minVex] + p->weight;
-                }
-                p = (minVex == p->ivex ? p->ilink : p->jlink);
-            }
-            mark[minVex] = true;
-        }
-        return pathLength[jvex] == 200000 ? -1 : pathLength[jvex];
-    }
-```
+[洛谷 P1119 灾后重建 - 提交记录](https://www.luogu.com.cn/record/96267527)
