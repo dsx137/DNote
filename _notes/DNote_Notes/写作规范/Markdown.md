@@ -5,7 +5,7 @@
 
 Markdown除了posts文件夹以外的文件必须写metadata，不然jekyll读不出来
 
-换行要在行尾加\\\
+换行要在行尾加\\
 
 markdownlint的配置文件是.markdownlint.jsonc，谨慎更改
 
