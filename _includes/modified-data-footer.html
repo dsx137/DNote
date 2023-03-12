@@ -39,9 +39,9 @@ id="modified-data-footer">
             MathJax.Hub.Queue(["Typeset",MathJax.Hub,math]);
         });
 {% else %}
-    var worker=new Worker("{{site.baseurl}}/assets/worker.js");
+    var worker=new Worker("{{site.baseurl}}/assets/modified_files/worker.js");
     if(window.SharedWorker)
-        var cache = new SharedWorker("{{site.baseurl}}/assets/footer_cache.js");
+        var cache = new SharedWorker("{{site.baseurl}}/assets/modified_files/footer_cache.js");
     var commitsOverview=null;
     var commitsCache=null;
     var data={git_url,pageURL,commitsOverview,commitsCache};

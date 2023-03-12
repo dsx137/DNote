@@ -16,19 +16,20 @@
 
     </head>
     <body>
+        <canvas id="canvas" style="position:absolute;z-index: 999;pointer-events: none;" ></canvas>
         <div class="book">
-
+            
             {%- include docs-navigation.html -%}
-
+            
             <div class="book-body">
                 <div class="book-header" role="navigation">
                     <!-- Title -->
                     <h1>
                         <i class="fa fa-circle-o-notch fa-spin"></i>
                         {% if page.title %}
-                            <a href="." >{{ page.title | escape }}</a>
+                            <a href="" >{{ page.title | escape }}</a>
                         {% else %}
-                            <a href="." >{{ site.title | escape }}</a>
+                            <a href="" >{{ site.title | escape }}</a>
                         {% endif %}
                     </h1>
                 </div>
@@ -62,4 +63,5 @@
         {%- include footer.html -%}
 
     </body>
+    
 </html>

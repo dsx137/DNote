@@ -1,3 +1,12 @@
+.tableDiv {
+    width: 100%;
+    overflow: auto;
+}
+
+.book-header {
+    display: flex;
+}
+
 .remade-navigation {}
 
 .remade-ul {
