@@ -3,6 +3,10 @@
     overflow: auto;
 }
 
+body {
+    overflow: hidden;
+}
+
 .book-header {
     display: flex;
 }

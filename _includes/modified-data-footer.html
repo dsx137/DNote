@@ -36,7 +36,7 @@ id="modified-data-footer">
         enableElement(footer_time);
         window.addEventListener('pageChangeEvent',function(e){
             var math = document.getElementsByClassName("hidden_panel");
-            MathJax.Hub.Queue(["Typeset",MathJax.Hub,math]);
+            if(MathJax.Hub) MathJax.Hub.Queue(["Typeset",MathJax.Hub,math]);
         });
 {% else %}
     var worker=new Worker("{{site.baseurl}}/assets/modified_files/worker.js");
@@ -53,7 +53,7 @@ id="modified-data-footer">
     window.addEventListener('pageChangeEvent',function(e){
         worker.postMessage(data);
         var math = document.getElementsByClassName("hidden_panel");
-        MathJax.Hub.Queue(["Typeset",MathJax.Hub,math]);
+        if(MathJax.Hub) MathJax.Hub.Queue(["Typeset",MathJax.Hub,math]);
     });
     worker.onmessage = function (e) {
         commitsOverview=e.data.commitsOverview;
