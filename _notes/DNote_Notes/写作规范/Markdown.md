@@ -14,3 +14,11 @@ markdownlint的配置文件是.markdownlint.jsonc，谨慎更改
   + 如果HTML标记具有markdown ="1"属性,则标记的内容将被解析为span级别元素.
   + 如果HTML标记具有markdown ="block"属性,则会发出警告,因为HTML跨度不能包含块级元素,并且该属性将被忽略.
   + 如果HTML标记具有markdown ="span"属性,则标记的内容将被解析为span级别元素.
+
+使用如下代码来屏蔽掉Jekyll Kramdown对code解析
+
+```html
+<span style='display: none'>{::nomarkdown}</span>
+<!-- your code -->
+<span style='display: none'>{:/nomarkdown}</span>
+```
