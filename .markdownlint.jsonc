@@ -11,7 +11,9 @@
             "iframe",
             "style",
             "details",
-            "summary"
+            "summary",
+            "div",
+            "span"
         ]
     },
     "MD013": {
