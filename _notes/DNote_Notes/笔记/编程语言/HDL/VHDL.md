@@ -5,6 +5,8 @@
 
 >**Very High Speed Integrated Circuit Hardware Description Language**
 
+---
+
 ## 数据
 
 ### 数据对象
@@ -21,7 +23,7 @@
 
 #### 预定义数据类型
 
-+ 在STD的STANDARD包中：
++ 在STD[库](#库)的STANDARD[包](#程序包和程序包体)中：
   + `BOOLEAN`
   + `BIT`
   + `BIT_VECTOR`：位矢量，位数组
@@ -33,7 +35,7 @@
   + `TIME`
   + `STRING`
 
-+ 在IEEE的STD_LOGIC_1164中：
++ 在IEEE库的STD_LOGIC_1164包中：
   + `STD_LOGIC`：标准逻辑位
   + `STD_LOGIC_VECTOR`：标准逻辑矢量
 
@@ -51,11 +53,13 @@
   + `限制性数组`：范围在类型声明时就已经定义
     + `TYPE name IS array(value to value) of TYPE` 
 
+---
+
 ## 结构
 
 ### 实体
 
->Entity
+>Entity\
 >模块的声明
 
 ```vhdl
@@ -71,28 +75,30 @@
   END entiyName;
 ```
 
-|PORT MODE|（被）读|读方向|（被）写|写方向|
-|-|-|-|-|-|
-|IN（输入）|$\checkmark$|内|X|-|
-|OUT（输出）|X|-|$\checkmark$|外|
-|INOUT（双向）|$\checkmark$|内外|$\checkmark$|内外|
-|BUFFER（缓冲）|$\checkmark$|内外|$\checkmark$|内|
-
-+ IN : 输入，只读
-+ OUT: 输出，只写
-+ INOUT: 缓冲，双向
-+ BUFFER: 输入输出，双向，只能由模块内部修改
-
-特例：
-
-+ 首先：
-  + `驱动（Driver）`：是一个实例或过程，试图控制一个信号的值1。一个信号可以有一个或多个驱动，取决于它的类型和连接方式。
-  + `源（Source）`：是一个为信号提供值的过程或端口。一个信号只能有一个源，否则会出现错误。
++ 概念
+  + `源（Source）`：信号的产生者
+  + `驱动（Drive）`：是一个试图控制一个信号的值的实例或过程（赋值行为）。一个信号可以有一个或多个驱动，取决于它的类型和连接方式。
+  + `驱动器（Driver）`：是一个为信号提供值的过程或端口。一个信号只能有一个驱动器，否则会出现错误。
   + `解析函数（Resolution Function）`：是一个用于确定多个驱动情况下信号值的函数。只有可解析的类型，如std_logic或std_logic_vector，才能使用解析函数。
+
+<br>
+
++ PORT MODE的属性
+  + `IN`: 输入，只读
+  + `OUT`: 输出，只写
+  + `INOUT`: 输入输出，双向端口，特别注意多重驱动的问题
+  + `BUFFER`: 缓冲，不与其它实体的OUT、INOUT相连，但是可以被外部BUFFER驱动
+
+|PORT MODE|源方向|输出方向|
+|-|-|-|-|-|
+|IN（输入）|外|内|
+|OUT（输出）|内|外|
+|INOUT（双向）|内外|内外|
+|BUFFER（缓冲）|内（特殊）|内外|
 
 ### 结构体
 
->Architecture
+>Architecture\
 >模块的定义
 
 ### 配置
@@ -101,10 +107,10 @@
 
 ### 程序包和程序包体
 
->Package
+>Package\
 >头文件
 
 ### 库
 
->Library
+>Library\
 >命名空间
