@@ -15,12 +15,50 @@
                 <a href="{{site.baseurl}}/">
                     {{ site.title | escape }}
                 </a>
-                <hr></hr>
             </li>
 
-            <li class="divider"></li>
+            {% if page.url == "/References" %}
+            <li class="chapter active" data-level="1.1" data-path="{{site.baseurl}}/References">
+            {% else %}
+            <li class="chapter" data-level="1.1" data-path="{{site.baseurl}}/References">
+            {% endif %}
+                <a href="{{site.baseurl}}/References">
+                    References
+                </a>
+            </li>
+            
+            <hr></hr>
+            <!-- <li class="divider"></li> -->
             
             {% include nav-tree.html %}
+
+            <script>
+                // var navSelectWorker = new SharedWorker("{{site.baseurl}}/assets/modified_files/navSelectWorker.js");
+                //监听.chapter <a>的点击事件
+                // var chapters = document.querySelectorAll(".chapter");
+                // for (var i = 0; i < chapters.length; i++) 
+                //     chapters[i].addEventListener("click", function (e) {
+                //         if(e.target.innerText== "DNote")
+                //             navSelectWorker.port.postMessage("DNote");
+                //         else if(e.target.innerText == "References")
+                //             navSelectWorker.port.postMessage("References");
+                //     });
+                
+                var pageURL = decodeURIComponent(window.location.href);
+
+                if (pageURL.includes("/DNote/notes/") || pageURL.split("/")[4]=="")
+                    generateNoteNavTree();
+                else if(pageURL.includes("/DNote/references/") || pageURL.split("/")[4]=="References")
+                    generateReferenceNavTree();
+                // else{
+                //     navSelectWorker.port.onmessage = function (e) {
+                //     var nav = e.data;
+                //     if(nav == "DNote")
+                //         generateNoteNavTree();
+                //     else if(nav == "References")
+                //         generateReferenceNavTree();
+                // };
+            </script>
 
         </ul>
     </nav>

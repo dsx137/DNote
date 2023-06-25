@@ -13,6 +13,14 @@ body {
 
 .remade-navigation {}
 
+.my-docs {
+    color: #989dce !important;
+}
+
+.references-docs {
+    color: #98bfce !important
+}
+
 .remade-ul {
     display: none;
 }

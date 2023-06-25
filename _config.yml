@@ -56,6 +56,9 @@ collections:
   notes:
     output: true
     permalink: /:collection/:path
+  references:
+    output: true
+    permalink: /:collection/:path
 
 defaults:
   - scope:
