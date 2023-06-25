@@ -7,7 +7,7 @@
 .iconfont {
   font-family: "iconfont" !important;
   font-style: normal;
-  color: #989dce !important;
+  color: #989dce;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
