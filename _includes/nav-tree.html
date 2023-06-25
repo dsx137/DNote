@@ -1,23 +1,35 @@
 <!-- 这是一个自定义的文件，功能是在gitbook左侧显示一个按文件分类的导航栏 by dsx137 -->
 <script>
+    var iconClassName = " iconfont";
+    var shrinkIconClassName=" icon-shrink-s";
+    var expandIconClassName=" icon-111111111";
+    var summary = document.getElementById("summary");
+    var pageURL = decodeURIComponent(window.location.href);
+
     // 通过增减classname后缀的方式来添加收缩的效果
     function toggleNav(){
         var ulElements = (Array)(this.parentNode.getElementsByTagName("ul"));
         for(var i in ulElements){
             var ul = ulElements[i][0];
             if(ul){
+                var a = ul.parentNode.getElementsByTagName("a")[0];
                 if(ul.className.includes("-active") || ul.className.includes("-active-animation")){
                 ul.className=ul.className.replace("-active-animation","");
                 ul.className=ul.className.replace("-active","");
+                
+                a.className=a.className.replace(expandIconClassName,"");
+                a.className+=(shrinkIconClassName);
                 }else{
                     ul.className+=("-active-animation");
+
+                    a.className=a.className.replace(shrinkIconClassName,"");
+                    a.className+=(expandIconClassName);
                 }
             }
         }
     }
 
     function clearNavTree(){
-        var summary = document.getElementById("summary");
         var summaryChildren = summary.getElementsByTagName("li");
         for(var i in summaryChildren){
             var li = summaryChildren[i];
@@ -28,23 +40,11 @@
     }
 
     function generateNoteNavTree(){
-        //用Liquid捕获了gitbook的toc
-        {% capture tocString %} {% include toc.html html=content h_min=site.toc.h_min h_max=site.toc.h_max %} {% endcapture %}
-        var pageURL = decodeURIComponent(window.location.href);
-        // pageURL = pageURL.substring(pageURL.indexOf("/DNote"),pageURL.length);
-        var summary = document.getElementById("summary");
+       
+        var doctype = "my-docs";
         var hrefPrev = "/DNote/notes/";
         var treeRaw = new Array();
         var tree = new Array();
-        var toc = document.createElement("li");
-        toc.innerHTML = "{{tocString | strip | replace: '"', "'"}}";
-        var tocChildren = toc.getElementsByTagName("a");
-        
-        //给toc添加样式
-        for(var i in tocChildren){
-            var a = tocChildren[i];
-            a.className = "remade-toc";
-        }
 
         //treeraw是一个没处理的文件树信息文件，是一维数组，包含所有文件的路径
         //tree是一个二维数组，按'/'切分文件路径,删掉第一个元素（jekeyll collection的根目录）
@@ -59,129 +59,15 @@
             tree.push(fileNodeList);
         }
         
-        //对文件进行遍历
-        for (var i in tree)
-        {
-            var path = tree[i];
-            //pathLevel用于记录当前遍历到的目录
-            var pathLevel = hrefPrev+"";
-
-            //遍历单文件目录节点
-            for(var j in path)
-            {
-                var FolderNode=path[j];
-                var haveSameParent = false;
-                var haveSameNode = false;
-                var parentNode = summary;
-                var summaryChildren = summary.getElementsByTagName("li");
-
-                //查找有无相同父目录，有的话把新节点添加到此目录下
-                for(var k in summaryChildren)
-                    if(summaryChildren[k].dataset!=null && summaryChildren[k].dataset.path==pathLevel)
-                    {
-                        haveSameParent = true;
-                        parentNode = summaryChildren[k];
-                        break;
-                    }
-                //这个FolderNode后面才加就是为了上面先查父目录
-                pathLevel+=FolderNode+"/";
-
-                //查找有无相同节点（这个是为了防止顶级目录重复）
-                for(var k in summaryChildren)
-                    if(summaryChildren[k].dataset!=null && summaryChildren[k].dataset.path==pathLevel)
-                    {
-                        haveSameNode=true;
-                        break;
-                    }
-                
-                var parentChildren = parentNode.children;
-                
-                if(!haveSameNode)
-                {
-                    //查找父目录li标签下的ul元素（ul元素下才是子目录存储的地方）
-                    for(var i in parentChildren)
-                        if(parentChildren[i].tagName=="UL")
-                        {
-                            parentNode = parentChildren[i];
-                            break;
-                        }
-                    var node = document.createElement("li");
-                    var hyperText = document.createElement("a");
-                    var childList = document.createElement("ul");
-                    
-                    node.className = "remade-navigation";
-                    node.dataset.path=pathLevel;
-                    node.appendChild(hyperText);
-
-                    //如果遍历到最深层（就是遍历到文件），那么在a标签创建超链接跳转，否则创建目录节点
-                    if(FolderNode.includes(".md"))
-                    {
-                        FolderNode = FolderNode.substring(0, FolderNode.lastIndexOf("."));
-                        pathLevel = pathLevel.substring(0, pathLevel.lastIndexOf("."));
-                        hyperText.href = pathLevel;
-                        if(pageURL.includes(pathLevel))
-                            node.appendChild(toc);
-                    }
-                    else{
-                        hyperText.className="my-docs iconfont icon-111111111";
-                        node.appendChild(childList);
-                    }
-
-                    //判断文件是否对应当前URL，是的话展开目录
-                    if(pageURL.includes(pathLevel))
-                        childList.className = "remade-ul-active";
-                    else
-                        childList.className = "remade-ul";
-                    hyperText.className+=" navigation-text-properties";
-                    hyperText.innerHTML = FolderNode;
-                    hyperText.onclick = toggleNav;
-                    parentNode.appendChild(node);
-                }
-            }
-        }
+        buildTree(tree, hrefPrev, doctype);
     }
 
     function generateReferenceNavTree(){
-        //用Liquid捕获了gitbook的toc
-        {% capture tocString %} {% include toc.html html=content h_min=site.toc.h_min h_max=site.toc.h_max %} {% endcapture %}
-        var pageURL = decodeURIComponent(window.location.href);
-        // pageURL = pageURL.substring(pageURL.indexOf("/DNote"),pageURL.length);
-        var summary = document.getElementById("summary");
+        
+        var doctype = "reference-docs";
         var hrefPrev = "/DNote/references/";
         var treeRaw = new Array();
         var tree = new Array();
-        var toc = document.createElement("li");
-        toc.innerHTML = "{{tocString | strip | replace: '"', "'"}}";
-        var tocChildren = toc.getElementsByTagName("a");
-        
-        //References切割
-        var refNode = document.createElement("li");
-        var refNodeHref = document.createElement("a");
-        refNodeHref.href = "{{site.baseurl}}/References";
-        refNodeHref.innerText = "References";
-        refNode.append(refNodeHref);
-        {% if page.url == "/index.html" or page.url == "/" %}
-        refNode.className = "chapter active";
-        refNode.dataset.level = "1.1";
-        refNode.dataset.path = "{{site.baseurl}}/References";
-        {% else %}
-        refNode.className = "chapter";
-        refNode.dataset.level = "1.1";
-        refNode.dataset.path = "{{site.baseurl}}/References";
-        {% endif %}
-
-        // var partHr = document.createElement("hr");
-        // partHr.style.borderColor = "#91ffd6";
-        // var hr = document.createElement("hr");
-        // summary.append(partHr);
-        // summary.append(refNode);
-        // summary.append(hr);
-
-        //给toc添加样式
-        for(var i in tocChildren){
-            var a = tocChildren[i];
-            a.className = "remade-toc";
-        }
 
         //treeraw是一个没处理的文件树信息文件，是一维数组，包含所有文件的路径
         //tree是一个二维数组，按'/'切分文件路径,删掉第一个元素（jekeyll collection的根目录）
@@ -196,6 +82,23 @@
             tree.push(fileNodeList);
         }
         
+        buildTree(tree, hrefPrev, doctype);
+    }
+
+    function buildTree(tree, hrefPrev, doctype){
+        //用Liquid捕获了gitbook的toc
+        {% capture tocString %} {% include toc.html html=content h_min=site.toc.h_min h_max=site.toc.h_max %} {% endcapture %}
+
+        var toc = document.createElement("li");
+        toc.innerHTML = "{{tocString | strip | replace: '"', "'"}}";
+        var tocChildren = toc.getElementsByTagName("a");
+        
+        //给toc添加样式
+        for(var i in tocChildren){
+            var a = tocChildren[i];
+            a.className = "remade-toc";
+        }
+
         //对文件进行遍历
         for (var i in tree)
         {
@@ -260,15 +163,20 @@
                             node.appendChild(toc);
                     }
                     else{
-                        hyperText.className="references-docs iconfont icon-111111111";
+                        hyperText.className = doctype + iconClassName;
+
+                        //判断文件是否对应当前URL，是的话展开目录
+                        if(pageURL.includes(pathLevel)){
+                            hyperText.className += expandIconClassName;
+                            childList.className = "remade-ul-active";
+                        }else{
+                            hyperText.className += shrinkIconClassName;
+                            childList.className = "remade-ul";
+                        }
+                        
                         node.appendChild(childList);
                     }
-
-                    //判断文件是否对应当前URL，是的话展开目录
-                    if(pageURL.includes(pathLevel))
-                        childList.className = "remade-ul-active";
-                    else
-                        childList.className = "remade-ul";
+                    
                     hyperText.className+=" navigation-text-properties";
                     hyperText.innerHTML = FolderNode;
                     hyperText.onclick = toggleNav;
