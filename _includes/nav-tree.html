@@ -34,14 +34,14 @@
     }
 
     //treeraw是一个没处理的文件树信息文件，是一维数组，包含所有文件的路径
-    //tree是一个二维数组，按'/'切分文件路径,删掉头两个元素
+    //tree是一个二维数组，按'/'切分文件路径,删掉第一个元素（jekeyll collection的根目录）
     {% for note in site.notes %}
         treeRaw.push("{{note.path}}");
     {% endfor %}
     for (var i in treeRaw)
     {
         var fileNodeList = treeRaw[i].split("/"); 
-        fileNodeList.shift();
+        // fileNodeList.shift();
         fileNodeList.shift();
         tree.push(fileNodeList);
     }
