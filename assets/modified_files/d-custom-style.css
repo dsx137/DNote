@@ -13,6 +13,14 @@ body {
 
 .remade-navigation {}
 
+.my-docs-btn {
+    color: #c0c5ff !important;
+}
+
+.reference-docs-btn {
+    color: #c5f0ff !important
+}
+
 .my-docs {
     color: #989dce !important;
 }

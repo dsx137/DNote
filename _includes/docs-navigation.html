@@ -60,18 +60,14 @@
                     var chapters = document.querySelectorAll(".chap");
                     for (var i = 0; i < chapters.length; i++) {
                         if(chapters[i].innerText == "DNote")
-                            chapters[i].className += iconClassName + expandIconClassName + " my-docs";
-                        else
-                            chapters[i].className += iconClassName + shrinkIconClassName;
+                            chapters[i].className += " my-docs-btn";
                     }
                     generateNoteNavTree();
                 }else if(pageURL.includes("/DNote/references/") || pageURL.split("/")[4]=="References"){
                     var chapters = document.querySelectorAll(".chap");
                     for (var i = 0; i < chapters.length; i++) {
                         if(chapters[i].innerText == "References")
-                            chapters[i].className += iconClassName + expandIconClassName + " reference-docs";
-                        else
-                            chapters[i].className += iconClassName + shrinkIconClassName;
+                            chapters[i].className += " reference-docs-btn";
                     }
                     generateReferenceNavTree();
                 }
