@@ -7,7 +7,7 @@
             <a href="{{site.baseurl}}/assets/search.html">Click to Search</a>
         </div>
         <ul class="summary" id="summary">
-            {% if page.url == "/index.html" or page.url == "/" %}
+            <!-- {% if page.url == "/index.html" or page.url == "/" %}
             <li class="chapter active" data-level="1.1" data-path="{{site.baseurl}}">
             {% else %}
             <li class="chapter" data-level="1.1" data-path="{{site.baseurl}}">
@@ -15,12 +15,22 @@
                 <a href="{{site.baseurl}}/">
                     {{ site.title | escape }}
                 </a>
+            </li> -->
+
+            {% if page.url == "/index.html" or page.url == "/" %}
+            <li data-level="1.1" data-path="{{site.baseurl}}">
+            {% else %}
+            <li data-level="1.1" data-path="{{site.baseurl}}">
+            {% endif %}
+                <a href="{{site.baseurl}}/">
+                    {{ site.title | escape }}
+                </a>
             </li>
 
             {% if page.url == "/References" %}
-            <li class="chapter active" data-level="1.1" data-path="{{site.baseurl}}/References">
+            <li data-level="1.1" data-path="{{site.baseurl}}/References">
             {% else %}
-            <li class="chapter" data-level="1.1" data-path="{{site.baseurl}}/References">
+            <li data-level="1.1" data-path="{{site.baseurl}}/References">
             {% endif %}
                 <a href="{{site.baseurl}}/References">
                     References
