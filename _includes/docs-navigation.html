@@ -22,7 +22,7 @@
             {% else %}
             <li data-level="1.1" data-path="{{site.baseurl}}">
             {% endif %}
-                <a href="{{site.baseurl}}/">
+                <a class="chap" href="{{site.baseurl}}/">
                     {{ site.title | escape }}
                 </a>
             </li>
@@ -32,7 +32,7 @@
             {% else %}
             <li data-level="1.1" data-path="{{site.baseurl}}/References">
             {% endif %}
-                <a href="{{site.baseurl}}/References">
+                <a class="chap" href="{{site.baseurl}}/References">
                     References
                 </a>
             </li>
@@ -56,11 +56,26 @@
                 
                 var pageURL = decodeURIComponent(window.location.href);
 
-                if (pageURL.includes("/DNote/notes/") || pageURL.split("/")[4]=="")
+                if (pageURL.includes("/DNote/notes/") || pageURL.split("/")[4]==""){
+                    var chapters = document.querySelectorAll(".chap");
+                    for (var i = 0; i < chapters.length; i++) {
+                        if(chapters[i].innerText == "DNote")
+                            chapters[i].className += iconClassName + expandIconClassName + " my-docs";
+                        else
+                            chapters[i].className += iconClassName + shrinkIconClassName;
+                    }
                     generateNoteNavTree();
-                else if(pageURL.includes("/DNote/references/") || pageURL.split("/")[4]=="References")
+                }else if(pageURL.includes("/DNote/references/") || pageURL.split("/")[4]=="References"){
+                    var chapters = document.querySelectorAll(".chap");
+                    for (var i = 0; i < chapters.length; i++) {
+                        if(chapters[i].innerText == "References")
+                            chapters[i].className += iconClassName + expandIconClassName + " reference-docs";
+                        else
+                            chapters[i].className += iconClassName + shrinkIconClassName;
+                    }
                     generateReferenceNavTree();
-                // else{
+                }
+                    // else{
                 //     navSelectWorker.port.onmessage = function (e) {
                 //     var nav = e.data;
                 //     if(nav == "DNote")
