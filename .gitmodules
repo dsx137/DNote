@@ -1,6 +1,3 @@
 [submodule "_notes"]
 	path = _notes
 	url = https://github.com/dsx137/_notes
-[submodule "_references/C20C21"]
-	path = _references/C20C21
-	url = https://github.com/C20C01/C20C01.github.io
