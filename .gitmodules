@@ -1,3 +1,4 @@
 [submodule "_notes"]
 	path = _notes
 	url = https://github.com/dsx137/_notes
+	update = merge
