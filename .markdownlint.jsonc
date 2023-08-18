@@ -18,6 +18,6 @@
     },
     "MD013": {
         "tables": false,
-        "line_length": 300
+        "line_length": 3000
     }
 }
