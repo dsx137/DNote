@@ -62,14 +62,26 @@
                         if(chapters[i].innerText == "DNote")
                             chapters[i].className += " my-docs";
                     }
-                    generateNoteNavTree();
+                    var treeRaw = new Array();
+
+                    {% for note in site.notes %}
+                        treeRaw.push("{{note.path}}");
+                    {% endfor %}
+
+                    generateNavTree("my-docs",treeRaw);
                 }else if(pageURL.includes("/DNote/references/") || pageURL.split("/")[4]=="References"){
                     var chapters = document.querySelectorAll(".chap");
                     for (var i = 0; i < chapters.length; i++) {
                         if(chapters[i].innerText == "References")
                             chapters[i].className += " reference-docs";
                     }
-                    generateReferenceNavTree();
+                    var treeRaw = new Array();
+
+                    {% for reference in site.references %}
+                        treeRaw.push("{{reference.path}}");
+                    {% endfor %}
+                    
+                    generateNavTree("reference-docs",treeRaw);
                 }
                     // else{
                 //     navSelectWorker.port.onmessage = function (e) {

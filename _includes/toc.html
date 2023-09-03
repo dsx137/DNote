@@ -113,6 +113,9 @@
         {% capture _hAttrToStrip %}{{ _workspace[0] | split: '>' | first }}>{% endcapture %}
         {% assign header = _workspace[0] | replace: _hAttrToStrip, '' %}
 
+        <!-- 去掉<a>标签的渲染，正则，modified -->
+        {% assign header = header | regex_replace: '<a.*?>', '' | replace: '</a>', '' %}
+
         {% if include.item_class and include.item_class != blank %}
             {% capture listItemClass %} class="{{ include.item_class | replace: '%level%', currLevel | split: '.' | join: ' ' }}"{% endcapture %}
         {% endif %}
@@ -130,7 +133,8 @@
             {% if include.anchor_class %}
                 {% capture anchorAttributes %}{{ anchorAttributes }} class="{{ include.anchor_class | split: '.' | join: ' ' }}"{% endcapture %}
             {% endif %}
-        <!-- 下一行添加了一个>箭头，作为toc的样式，modified -->
+        
+            <!-- 下一行添加了一个>箭头，作为toc的样式，modified -->
             {% capture listItem %}<a{{ anchorAttributes }}>> {{ anchorBody }}</a>{% endcapture %}
         {% elsif skipNoIDs == true %}
             {% continue %}
