@@ -39,48 +39,64 @@
         }
     }
 
-    function generateNoteNavTree(){
-       
-        var doctype = "my-docs";
-        var hrefPrev = "/DNote/notes/";
-        var treeRaw = new Array();
-        var tree = new Array();
+    function sortTreeRaw(treeRaw){
+        treeRaw.sort((a, b) => {
+            var re = /(\D+|\d+)/g;
+            var partsA = a.match(re);
+            var partsB = b.match(re);
+            //"abc123def456" -> ["abc", "123", "def", "456"]
 
-        //treeraw是一个没处理的文件树信息文件，是一维数组，包含所有文件的路径
-        //tree是一个二维数组，按'/'切分文件路径,删掉第一个元素（jekeyll collection的根目录）
-        {% for note in site.notes %}
-            treeRaw.push("{{note.path}}");
-        {% endfor %}
-        for (var i in treeRaw)
-        {
-            var fileNodeList = treeRaw[i].split("/"); 
-            // fileNodeList.shift();
-            fileNodeList.shift();
-            tree.push(fileNodeList);
-        }
-        
-        buildTree(tree, hrefPrev, doctype);
+            for (var i = 0; i < Math.min(partsA.length, partsB.length); i++) {
+                var partA = partsA[i];
+                var partB = partsB[i];
+
+                if (partA !== partB) {
+                    if (!isNaN(partA) && !isNaN(partB)) {
+                        return parseInt(partA) - parseInt(partB);
+                    } else {
+                        return partA.localeCompare(partB);
+                    }
+                }
+            }
+
+            return partsA.length - partsB.length;
+        });
     }
 
-    function generateReferenceNavTree(){
-        
-        var doctype = "reference-docs";
-        var hrefPrev = "/DNote/references/";
-        var treeRaw = new Array();
+    /**
+     * treeRaw是没处理的文件树信息，是一维数组，包含所有文件的路径
+     * 使用这种方法获得
+     * {% for note in site.notes %}
+     *     treeRaw.push("{{note.path}}");
+     * {% endfor %}
+     * 
+     * 样式类名称
+     * doctype = "my-docs";
+     * 
+     * hrefPrev是超链接URL的前缀
+     * hrefPrev = "/DNote/notes/";
+     * */
+    function generateNavTree(doctype,treeRaw){
+
+        //tree是一个二维数组，按'/'切分文件路径,删掉第一个元素（jekeyll collection的根目录）
         var tree = new Array();
 
-        //treeraw是一个没处理的文件树信息文件，是一维数组，包含所有文件的路径
-        //tree是一个二维数组，按'/'切分文件路径,删掉第一个元素（jekeyll collection的根目录）
-        {% for reference in site.references %}
-            treeRaw.push("{{reference.path}}");
-        {% endfor %}
+        var hrefPrev = "{{site.baseurl}}" + "/";
+
+        var rootDir = "";
+
+        sortTreeRaw(treeRaw);
+        
         for (var i in treeRaw)
         {
             var fileNodeList = treeRaw[i].split("/"); 
-            // fileNodeList.shift();
-            fileNodeList.shift();
+            // fileNodeList.shift();.
+            rootDir= fileNodeList.shift();
             tree.push(fileNodeList);
         }
+
+        rootDir = rootDir.replace("_","");
+        hrefPrev += rootDir + "/";
         
         buildTree(tree, hrefPrev, doctype);
     }
@@ -184,5 +200,51 @@
                 }
             }
         }
+    }
+
+        //弃用
+    function generateNoteNavTree(){
+       
+        var doctype = "my-docs";
+        var hrefPrev = "/DNote/notes/";
+        var treeRaw = new Array();
+        var tree = new Array();
+
+        //treeRaw是没处理的文件树信息，是一维数组，包含所有文件的路径
+        //tree是一个二维数组，按'/'切分文件路径,删掉第一个元素（jekeyll collection的根目录）
+        {% for note in site.notes %}
+            treeRaw.push("{{note.path}}");
+        {% endfor %}
+        for (var i in treeRaw)
+        {
+            var fileNodeList = treeRaw[i].split("/"); 
+            // fileNodeList.shift();
+            fileNodeList.shift();
+            tree.push(fileNodeList);
+        }
+        
+        buildTree(tree, hrefPrev, doctype);
+    }
+
+    //弃用
+    function generateReferenceNavTree(){
+        
+        var doctype = "reference-docs";
+        var hrefPrev = "/DNote/references/";
+        var treeRaw = new Array();
+        var tree = new Array();
+
+        {% for reference in site.references %}
+            treeRaw.push("{{reference.path}}");
+        {% endfor %}
+        for (var i in treeRaw)
+        {
+            var fileNodeList = treeRaw[i].split("/"); 
+            // fileNodeList.shift();
+            fileNodeList.shift();
+            tree.push(fileNodeList);
+        }
+        
+        buildTree(tree, hrefPrev, doctype);
     }
 </script>

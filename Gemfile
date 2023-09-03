@@ -9,4 +9,5 @@ gem 'jemoji'
 gem 'webrick'
 group :jekyll_plugins do
   gem "jekyll-last-modified-at"
+  gem "jekyll-regex-replace", "~> 1.1.0"
 end

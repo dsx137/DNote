@@ -80,6 +80,7 @@ plugins:
   - jekyll-feed
   - jemoji
   - jekyll-last-modified-at
+  - jekyll-regex-replace
 
 last-modified-at:
     date-format: '%d-%b-%y'
