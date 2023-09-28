@@ -47,10 +47,17 @@ jobs:
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
+      - name: Copy main content
+        run: |
+          git fetch origin gh-pages
+          git checkout gh-pages
+          rsync -av --exclude='old_jekyll' . ${{ github.workspace }}/build/
+          git checkout old_jekyll
+          cp -r ${{ github.workspace }}/_site/* ${{ github.workspace }}/build/old_jekyll/
       - name: Deploy to Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.TOKEN }}
-          publish_dir: _site
+          publish_dir: build
           publish_branch: gh-pages
-          destination_dir: old_jekyll
+          destination_dir: .
