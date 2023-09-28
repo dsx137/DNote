@@ -56,7 +56,7 @@
                 
                 var pageURL = decodeURIComponent(window.location.href);
 
-                if (pageURL.includes("/DNote/notes/") || pageURL.split("/")[4]==""){
+                if (pageURL.includes("{{site.baseurl}}/notes/") || pageURL.split("/")[pageURL.split("/").length-1]==""){
                     var chapters = document.querySelectorAll(".chap");
                     for (var i = 0; i < chapters.length; i++) {
                         if(chapters[i].innerText == "DNote")
@@ -69,7 +69,7 @@
                     {% endfor %}
 
                     generateNavTree("my-docs",treeRaw);
-                }else if(pageURL.includes("/DNote/references/") || pageURL.split("/")[4]=="References"){
+                }else if(pageURL.includes("{{site.baseurl}}/references/") || pageURL.split("/")[pageURL.split("/").length-1]=="References"){
                     var chapters = document.querySelectorAll(".chap");
                     for (var i = 0; i < chapters.length; i++) {
                         if(chapters[i].innerText == "References")
