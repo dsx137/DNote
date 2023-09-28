@@ -55,7 +55,9 @@ jobs:
           git fetch origin gh-pages
           git checkout gh-pages
           mkdir -p ${{ github.workspace }}/build
-          cp -r $(ls -A | grep -v "old_jekyll|build") ${{ github.workspace }}/build/
+          for item in $(ls -A | grep -vE "old_jekyll|build"); do
+              cp -r $item ${{ github.workspace }}/build/
+          done
           git checkout old_jekyll
           mkdir -p ${{ github.workspace }}/build/old_jekyll
           cp -r ${{ github.workspace }}/_site/* ${{ github.workspace }}/build/old_jekyll/
