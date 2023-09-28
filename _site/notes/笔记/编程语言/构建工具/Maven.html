@@ -1,0 +1,1896 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    <head><meta charset="UTF-8">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<meta name="referrer" content="no-referrer" /><title>Maven · DNote</title><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="description" content="Build Jekyll site with the GitBook style.
+"><meta name="generator" content="Jekyll (using style of GitBook 3.2.3)"><meta name="author" content="dsx137"><link rel="stylesheet" href="/DNote/old_jekyll/assets/gitbook/style.css">
+<link rel="stylesheet" href="/DNote/old_jekyll/assets/modified_files/d-custom-style.css">
+<link rel="stylesheet" href="/DNote/old_jekyll/assets/gitbook/gitbook-plugin-fontsettings/website.css">
+<link rel="stylesheet" href="/DNote/old_jekyll/assets/gitbook/gitbook-plugin-search-pro/search.css">
+<link rel="stylesheet" href="/DNote/old_jekyll/assets/gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+
+<link rel="stylesheet" href="/DNote/old_jekyll/assets/gitbook/rouge/thankful_eyes.css">
+
+<link rel="stylesheet" href="/DNote/old_jekyll/assets/gitbook/custom.css">
+
+<link rel="stylesheet" href="/DNote/old_jekyll/assets/font_4eklf3gnlz2/iconfont.css">
+
+<meta name="HandheldFriendly" content="true"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="apple-touch-icon-precomposed" sizes="152x152" href="/DNote/old_jekyll/assets/gitbook/images/apple-touch-icon-precomposed-152.png">
+<link rel="shortcut icon" href="/DNote/old_jekyll//assets/gitbook/images/favicon.ico" type="image/x-icon">
+
+
+
+
+
+<script>
+    MathJax = {
+        "HTML-CSS": {
+          availableFonts: ["TeX"],
+        },
+        tex2jax: {
+            inlineMath: [['$','$'],["\\(","\\)"]]},
+            displayMath: [ ['$$','$$'], ['\[','\]'] ],
+        TeX: {
+            extensions: ["AMSmath.js", "AMSsymbols.js", "color.js"],
+            equationNumbers: {
+                autoNumber: "AMS"
+            }
+        },
+        svg: {
+            fontCache: 'global'
+        },
+        showProcessingMessages: false,
+        messageStyle: "none",
+        imageFont: null,
+        "AssistiveMML": { disabled: true }
+        };
+</script>
+            <link rel="prev" href="/DNote/old_jekyll/notes/%E7%AC%94%E8%AE%B0/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/Gradle" />
+        
+
+        
+            <link rel="next" href="/DNote/old_jekyll/notes/%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/0.%E5%AF%BC%E8%88%AA/@%E5%BA%8F%E8%A8%80" />
+        
+
+    </head>
+    <body>
+        <canvas id="canvas" style="position:absolute;z-index: 999;pointer-events: none;" ></canvas>
+        <div class="book"><div class="book-summary">
+    <nav role="navigation">
+        <div id="book-search-input" role="search">
+            <input type="text" placeholder="Type to search" />
+        </div>
+        <div id="book-search-input-link" role="search">
+            <a href="/DNote/old_jekyll/assets/search.html">Click to Search</a>
+        </div>
+        <ul class="summary" id="summary">
+            <!-- 
+            <li class="chapter" data-level="1.1" data-path="/DNote/old_jekyll">
+            
+                <a href="/DNote/old_jekyll/">
+                    DNote
+                </a>
+            </li> -->
+
+            
+            <li data-level="1.1" data-path="/DNote/old_jekyll">
+            
+                <a class="chap" href="/DNote/old_jekyll/">
+                    DNote
+                </a>
+            </li>
+
+            
+            <li data-level="1.1" data-path="/DNote/old_jekyll/References">
+            
+                <a class="chap" href="/DNote/old_jekyll/References">
+                    References
+                </a>
+            </li>
+            
+            <hr></hr>
+            <li class="divider"></li>
+            
+            <!-- 这是一个自定义的文件，功能是在gitbook左侧显示一个按文件分类的导航栏 by dsx137 -->
+<script>
+    var iconClassName = " iconfont";
+    var shrinkIconClassName=" icon-shrink-s";
+    var expandIconClassName=" icon-111111111";
+    var summary = document.getElementById("summary");
+    var pageURL = decodeURIComponent(window.location.href);
+
+    // 通过增减classname后缀的方式来添加收缩的效果
+    function toggleNav(){
+        var ulElements = (Array)(this.parentNode.getElementsByTagName("ul"));
+        for(var i in ulElements){
+            var ul = ulElements[i][0];
+            if(ul){
+                var a = ul.parentNode.getElementsByTagName("a")[0];
+                if(ul.className.includes("-active") || ul.className.includes("-active-animation")){
+                ul.className=ul.className.replace("-active-animation","");
+                ul.className=ul.className.replace("-active","");
+                
+                a.className=a.className.replace(expandIconClassName,"");
+                a.className+=(shrinkIconClassName);
+                }else{
+                    ul.className+=("-active-animation");
+
+                    a.className=a.className.replace(shrinkIconClassName,"");
+                    a.className+=(expandIconClassName);
+                }
+            }
+        }
+    }
+
+    function clearNavTree(){
+        var summaryChildren = summary.getElementsByTagName("li");
+        for(var i in summaryChildren){
+            var li = summaryChildren[i];
+            if(li.className.includes("remade-navigation")){
+                summary.removeChild(li);
+            }
+        }
+    }
+
+    function sortTreeRaw(treeRaw){
+        treeRaw.sort((a, b) => {
+            var re = /(\D+|\d+)/g;
+            var partsA = a.match(re);
+            var partsB = b.match(re);
+            //"abc123def456" -> ["abc", "123", "def", "456"]
+
+            for (var i = 0; i < Math.min(partsA.length, partsB.length); i++) {
+                var partA = partsA[i];
+                var partB = partsB[i];
+
+                if (partA !== partB) {
+                    if (!isNaN(partA) && !isNaN(partB)) {
+                        return parseInt(partA) - parseInt(partB);
+                    } else {
+                        return partA.localeCompare(partB);
+                    }
+                }
+            }
+
+            return partsA.length - partsB.length;
+        });
+    }
+
+    /**
+     * treeRaw是没处理的文件树信息，是一维数组，包含所有文件的路径
+     * 使用这种方法获得
+     * 
+     *     treeRaw.push("_notes/@写作规范/@序言.md");
+     * 
+     *     treeRaw.push("_notes/@写作规范/Markdown.md");
+     * 
+     *     treeRaw.push("_notes/@写作规范/图片.md");
+     * 
+     *     treeRaw.push("_notes/@写作规范/文件开头的符号.md");
+     * 
+     *     treeRaw.push("_notes/@写作规范/零散.md");
+     * 
+     *     treeRaw.push("_notes/笔记/其他/Git.md");
+     * 
+     *     treeRaw.push("_notes/笔记/其他/Github API.md");
+     * 
+     *     treeRaw.push("_notes/笔记/其他/Jekyll.md");
+     * 
+     *     treeRaw.push("_notes/笔记/其他/LaTeX.md");
+     * 
+     *     treeRaw.push("_notes/笔记/其他/Markdown.md");
+     * 
+     *     treeRaw.push("_notes/笔记/其他/gost.md");
+     * 
+     *     treeRaw.push("_notes/笔记/其他/正则表达式.md");
+     * 
+     *     treeRaw.push("_notes/笔记/数学/@导航/@序言.md");
+     * 
+     *     treeRaw.push("_notes/笔记/数学/应用数学/概率论/0.引入.md");
+     * 
+     *     treeRaw.push("_notes/笔记/数学/应用数学/概率论/1.随机事件及其概率.md");
+     * 
+     *     treeRaw.push("_notes/笔记/数学/应用数学/概率论/2.随机变量及其分布.md");
+     * 
+     *     treeRaw.push("_notes/笔记/数学/纯粹数学/结构/代数/抽象代数/@序言.md");
+     * 
+     *     treeRaw.push("_notes/笔记/数学/纯粹数学/结构/代数/抽象代数/群.md");
+     * 
+     *     treeRaw.push("_notes/笔记/数学/纯粹数学/结构/数论/初等数论/最大公因数.md");
+     * 
+     *     treeRaw.push("_notes/笔记/数据结构/1.树.md");
+     * 
+     *     treeRaw.push("_notes/笔记/数据结构/2.图.md");
+     * 
+     *     treeRaw.push("_notes/笔记/数据结构/堆.md");
+     * 
+     *     treeRaw.push("_notes/笔记/框架/Minecraft/Forge/0.0.序言.md");
+     * 
+     *     treeRaw.push("_notes/笔记/框架/Minecraft/Forge/0.1.书签.md");
+     * 
+     *     treeRaw.push("_notes/笔记/框架/Minecraft/Forge/0.2.微小的开始.md");
+     * 
+     *     treeRaw.push("_notes/笔记/框架/Minecraft/Forge/1.方块.md");
+     * 
+     *     treeRaw.push("_notes/笔记/框架/Minecraft/Forge/10.线程.md");
+     * 
+     *     treeRaw.push("_notes/笔记/框架/Minecraft/Forge/11.事件.md");
+     * 
+     *     treeRaw.push("_notes/笔记/框架/Minecraft/Forge/2.物品.md");
+     * 
+     *     treeRaw.push("_notes/笔记/框架/Minecraft/Forge/3.实体.md");
+     * 
+     *     treeRaw.push("_notes/笔记/框架/Minecraft/Forge/4.药水效果.md");
+     * 
+     *     treeRaw.push("_notes/笔记/框架/Minecraft/Forge/5.世界生成.md");
+     * 
+     *     treeRaw.push("_notes/笔记/框架/Minecraft/Forge/6.GUI.md");
+     * 
+     *     treeRaw.push("_notes/笔记/框架/Minecraft/Forge/8.服务端与客户端.md");
+     * 
+     *     treeRaw.push("_notes/笔记/框架/Minecraft/Forge/9.音效.md");
+     * 
+     *     treeRaw.push("_notes/笔记/框架/Minecraft/Forge/99.暂时找不到地方放的东西.md");
+     * 
+     *     treeRaw.push("_notes/笔记/框架/Minecraft/Forge/※进阶技术.md");
+     * 
+     *     treeRaw.push("_notes/笔记/框架/Qt/@序言.md");
+     * 
+     *     treeRaw.push("_notes/笔记/框架/Qt/Qt Installer FrameWork.md");
+     * 
+     *     treeRaw.push("_notes/笔记/算法/排序/@复杂度表.md");
+     * 
+     *     treeRaw.push("_notes/笔记/算法/排序/快速排序.md");
+     * 
+     *     treeRaw.push("_notes/笔记/算法/最短路/@序言.md");
+     * 
+     *     treeRaw.push("_notes/笔记/算法/最短路/Dijkstra.md");
+     * 
+     *     treeRaw.push("_notes/笔记/编程语言/Batch/@序言.md");
+     * 
+     *     treeRaw.push("_notes/笔记/编程语言/Batch/链接.md");
+     * 
+     *     treeRaw.push("_notes/笔记/编程语言/C++/基本/※复杂声明.md");
+     * 
+     *     treeRaw.push("_notes/笔记/编程语言/C++/基本/位域.md");
+     * 
+     *     treeRaw.push("_notes/笔记/编程语言/C++/基本/引用.md");
+     * 
+     *     treeRaw.push("_notes/笔记/编程语言/C++/现代C++/@序言.md");
+     * 
+     *     treeRaw.push("_notes/笔记/编程语言/C++/现代C++/右值引用.md");
+     * 
+     *     treeRaw.push("_notes/笔记/编程语言/C++/现代C++/智能指针.md");
+     * 
+     *     treeRaw.push("_notes/笔记/编程语言/HDL/@序言.md");
+     * 
+     *     treeRaw.push("_notes/笔记/编程语言/HDL/VHDL.md");
+     * 
+     *     treeRaw.push("_notes/笔记/编程语言/JavaScript/Event.md");
+     * 
+     *     treeRaw.push("_notes/笔记/编程语言/JavaScript/Web Worker.md");
+     * 
+     *     treeRaw.push("_notes/笔记/编程语言/Python/@序言.md");
+     * 
+     *     treeRaw.push("_notes/笔记/编程语言/Python/re.md");
+     * 
+     *     treeRaw.push("_notes/笔记/编程语言/构建工具/@序言.md");
+     * 
+     *     treeRaw.push("_notes/笔记/编程语言/构建工具/CMake.md");
+     * 
+     *     treeRaw.push("_notes/笔记/编程语言/构建工具/Gradle.md");
+     * 
+     *     treeRaw.push("_notes/笔记/编程语言/构建工具/Maven.md");
+     * 
+     *     treeRaw.push("_notes/笔记/计算机基础/0.导航/@序言.md");
+     * 
+     *     treeRaw.push("_notes/笔记/计算机基础/1.数字电路/@序言.md");
+     * 
+     *     treeRaw.push("_notes/笔记/计算机基础/1.数字电路/加法器.md");
+     * 
+     *     treeRaw.push("_notes/笔记/计算机基础/1.数字电路/进制计算.md");
+     * 
+     *     treeRaw.push("_notes/笔记/计算机基础/1.数字电路/门电路.md");
+     * 
+     *     treeRaw.push("_notes/笔记/计算机基础/2.计算机组成原理/0.引入.md");
+     * 
+     *     treeRaw.push("_notes/笔记/计算机基础/2.计算机组成原理/1.数据类型.md");
+     * 
+     *     treeRaw.push("_notes/笔记/计算机基础/3.计算机网络/0.引入.md");
+     * 
+     *     treeRaw.push("_notes/笔记/计算机基础/3.计算机网络/电子邮件系统.md");
+     * 
+     * 
+     * 样式类名称
+     * doctype = "my-docs";
+     * 
+     * hrefPrev是超链接URL的前缀
+     * hrefPrev = "/DNote/notes/";
+     * */
+    function generateNavTree(doctype,treeRaw){
+
+        //tree是一个二维数组，按'/'切分文件路径,删掉第一个元素（jekeyll collection的根目录）
+        var tree = new Array();
+
+        var hrefPrev = "/DNote/old_jekyll" + "/";
+
+        var rootDir = "";
+
+        sortTreeRaw(treeRaw);
+        
+        for (var i in treeRaw)
+        {
+            var fileNodeList = treeRaw[i].split("/"); 
+            // fileNodeList.shift();.
+            rootDir= fileNodeList.shift();
+            tree.push(fileNodeList);
+        }
+
+        rootDir = rootDir.replace("_","");
+        hrefPrev += rootDir + "/";
+        
+        buildTree(tree, hrefPrev, doctype);
+    }
+
+    function buildTree(tree, hrefPrev, doctype){
+        //用Liquid捕获了gitbook的toc
+        
+
+        var toc = document.createElement("li");
+        toc.innerHTML = "<ul><li><a href='#maven'>> Maven</a><ul><li><a href='#安装'>> 安装</a></li><li><a href='#项目'>> 项目</a><ul><li><a href='#目录结构'>> 目录结构</a></li><li><a href='#pom'>> POM</a></li></ul></li><li><a href='#概念'>> 概念</a><ul><li><a href='#基本'>> 基本</a></li><li><a href='#约定默认配置'>> 约定(默认配置)</a></li><li><a href='#插件'>> 插件</a></li><li><a href='#生命周期'>> 生命周期</a></li><li><a href='#pomxml完整内容'>> pom.xml完整内容</a></li></ul></li></ul></li></ul>";
+        var tocChildren = toc.getElementsByTagName("a");
+        
+        //给toc添加样式
+        for(var i in tocChildren){
+            var a = tocChildren[i];
+            a.className = "remade-toc";
+        }
+
+        //对文件进行遍历
+        for (var i in tree)
+        {
+            var path = tree[i];
+            //pathLevel用于记录当前遍历到的目录
+            var pathLevel = hrefPrev+"";
+
+            //遍历单文件目录节点
+            for(var j in path)
+            {
+                var FolderNode=path[j];
+                var haveSameParent = false;
+                var haveSameNode = false;
+                var parentNode = summary;
+                var summaryChildren = summary.getElementsByTagName("li");
+
+                //查找有无相同父目录，有的话把新节点添加到此目录下
+                for(var k in summaryChildren)
+                    if(summaryChildren[k].dataset!=null && summaryChildren[k].dataset.path==pathLevel)
+                    {
+                        haveSameParent = true;
+                        parentNode = summaryChildren[k];
+                        break;
+                    }
+                //这个FolderNode后面才加就是为了上面先查父目录
+                pathLevel+=FolderNode+"/";
+
+                //查找有无相同节点（这个是为了防止顶级目录重复）
+                for(var k in summaryChildren)
+                    if(summaryChildren[k].dataset!=null && summaryChildren[k].dataset.path==pathLevel)
+                    {
+                        haveSameNode=true;
+                        break;
+                    }
+                
+                var parentChildren = parentNode.children;
+                
+                if(!haveSameNode)
+                {
+                    //查找父目录li标签下的ul元素（ul元素下才是子目录存储的地方）
+                    for(var i in parentChildren)
+                        if(parentChildren[i].tagName=="UL")
+                        {
+                            parentNode = parentChildren[i];
+                            break;
+                        }
+                    var node = document.createElement("li");
+                    var hyperText = document.createElement("a");
+                    var childList = document.createElement("ul");
+                    
+                    node.className = "remade-navigation";
+                    node.dataset.path=pathLevel;
+                    node.appendChild(hyperText);
+
+                    //如果遍历到最深层（就是遍历到文件），那么在a标签创建超链接跳转，否则创建目录节点
+                    if(FolderNode.includes(".md"))
+                    {
+                        FolderNode = FolderNode.substring(0, FolderNode.lastIndexOf("."));
+                        pathLevel = pathLevel.substring(0, pathLevel.lastIndexOf("."));
+                        hyperText.href = pathLevel;
+                        if(pageURL.includes(pathLevel))
+                            node.appendChild(toc);
+                    }
+                    else{
+                        hyperText.className = doctype + iconClassName;
+
+                        //判断文件是否对应当前URL，是的话展开目录
+                        if(pageURL.includes(pathLevel)){
+                            hyperText.className += expandIconClassName;
+                            childList.className = "remade-ul-active";
+                        }else{
+                            hyperText.className += shrinkIconClassName;
+                            childList.className = "remade-ul";
+                        }
+                        
+                        node.appendChild(childList);
+                    }
+                    
+                    hyperText.className+=" navigation-text-properties";
+                    hyperText.innerHTML = FolderNode;
+                    hyperText.onclick = toggleNav;
+                    parentNode.appendChild(node);
+                }
+            }
+        }
+    }
+
+        //弃用
+    function generateNoteNavTree(){
+       
+        var doctype = "my-docs";
+        var hrefPrev = "/DNote/old_jekyll/notes/";
+        var treeRaw = new Array();
+        var tree = new Array();
+
+        //treeRaw是没处理的文件树信息，是一维数组，包含所有文件的路径
+        //tree是一个二维数组，按'/'切分文件路径,删掉第一个元素（jekeyll collection的根目录）
+        
+            treeRaw.push("_notes/@写作规范/@序言.md");
+        
+            treeRaw.push("_notes/@写作规范/Markdown.md");
+        
+            treeRaw.push("_notes/@写作规范/图片.md");
+        
+            treeRaw.push("_notes/@写作规范/文件开头的符号.md");
+        
+            treeRaw.push("_notes/@写作规范/零散.md");
+        
+            treeRaw.push("_notes/笔记/其他/Git.md");
+        
+            treeRaw.push("_notes/笔记/其他/Github API.md");
+        
+            treeRaw.push("_notes/笔记/其他/Jekyll.md");
+        
+            treeRaw.push("_notes/笔记/其他/LaTeX.md");
+        
+            treeRaw.push("_notes/笔记/其他/Markdown.md");
+        
+            treeRaw.push("_notes/笔记/其他/gost.md");
+        
+            treeRaw.push("_notes/笔记/其他/正则表达式.md");
+        
+            treeRaw.push("_notes/笔记/数学/@导航/@序言.md");
+        
+            treeRaw.push("_notes/笔记/数学/应用数学/概率论/0.引入.md");
+        
+            treeRaw.push("_notes/笔记/数学/应用数学/概率论/1.随机事件及其概率.md");
+        
+            treeRaw.push("_notes/笔记/数学/应用数学/概率论/2.随机变量及其分布.md");
+        
+            treeRaw.push("_notes/笔记/数学/纯粹数学/结构/代数/抽象代数/@序言.md");
+        
+            treeRaw.push("_notes/笔记/数学/纯粹数学/结构/代数/抽象代数/群.md");
+        
+            treeRaw.push("_notes/笔记/数学/纯粹数学/结构/数论/初等数论/最大公因数.md");
+        
+            treeRaw.push("_notes/笔记/数据结构/1.树.md");
+        
+            treeRaw.push("_notes/笔记/数据结构/2.图.md");
+        
+            treeRaw.push("_notes/笔记/数据结构/堆.md");
+        
+            treeRaw.push("_notes/笔记/框架/Minecraft/Forge/0.0.序言.md");
+        
+            treeRaw.push("_notes/笔记/框架/Minecraft/Forge/0.1.书签.md");
+        
+            treeRaw.push("_notes/笔记/框架/Minecraft/Forge/0.2.微小的开始.md");
+        
+            treeRaw.push("_notes/笔记/框架/Minecraft/Forge/1.方块.md");
+        
+            treeRaw.push("_notes/笔记/框架/Minecraft/Forge/10.线程.md");
+        
+            treeRaw.push("_notes/笔记/框架/Minecraft/Forge/11.事件.md");
+        
+            treeRaw.push("_notes/笔记/框架/Minecraft/Forge/2.物品.md");
+        
+            treeRaw.push("_notes/笔记/框架/Minecraft/Forge/3.实体.md");
+        
+            treeRaw.push("_notes/笔记/框架/Minecraft/Forge/4.药水效果.md");
+        
+            treeRaw.push("_notes/笔记/框架/Minecraft/Forge/5.世界生成.md");
+        
+            treeRaw.push("_notes/笔记/框架/Minecraft/Forge/6.GUI.md");
+        
+            treeRaw.push("_notes/笔记/框架/Minecraft/Forge/8.服务端与客户端.md");
+        
+            treeRaw.push("_notes/笔记/框架/Minecraft/Forge/9.音效.md");
+        
+            treeRaw.push("_notes/笔记/框架/Minecraft/Forge/99.暂时找不到地方放的东西.md");
+        
+            treeRaw.push("_notes/笔记/框架/Minecraft/Forge/※进阶技术.md");
+        
+            treeRaw.push("_notes/笔记/框架/Qt/@序言.md");
+        
+            treeRaw.push("_notes/笔记/框架/Qt/Qt Installer FrameWork.md");
+        
+            treeRaw.push("_notes/笔记/算法/排序/@复杂度表.md");
+        
+            treeRaw.push("_notes/笔记/算法/排序/快速排序.md");
+        
+            treeRaw.push("_notes/笔记/算法/最短路/@序言.md");
+        
+            treeRaw.push("_notes/笔记/算法/最短路/Dijkstra.md");
+        
+            treeRaw.push("_notes/笔记/编程语言/Batch/@序言.md");
+        
+            treeRaw.push("_notes/笔记/编程语言/Batch/链接.md");
+        
+            treeRaw.push("_notes/笔记/编程语言/C++/基本/※复杂声明.md");
+        
+            treeRaw.push("_notes/笔记/编程语言/C++/基本/位域.md");
+        
+            treeRaw.push("_notes/笔记/编程语言/C++/基本/引用.md");
+        
+            treeRaw.push("_notes/笔记/编程语言/C++/现代C++/@序言.md");
+        
+            treeRaw.push("_notes/笔记/编程语言/C++/现代C++/右值引用.md");
+        
+            treeRaw.push("_notes/笔记/编程语言/C++/现代C++/智能指针.md");
+        
+            treeRaw.push("_notes/笔记/编程语言/HDL/@序言.md");
+        
+            treeRaw.push("_notes/笔记/编程语言/HDL/VHDL.md");
+        
+            treeRaw.push("_notes/笔记/编程语言/JavaScript/Event.md");
+        
+            treeRaw.push("_notes/笔记/编程语言/JavaScript/Web Worker.md");
+        
+            treeRaw.push("_notes/笔记/编程语言/Python/@序言.md");
+        
+            treeRaw.push("_notes/笔记/编程语言/Python/re.md");
+        
+            treeRaw.push("_notes/笔记/编程语言/构建工具/@序言.md");
+        
+            treeRaw.push("_notes/笔记/编程语言/构建工具/CMake.md");
+        
+            treeRaw.push("_notes/笔记/编程语言/构建工具/Gradle.md");
+        
+            treeRaw.push("_notes/笔记/编程语言/构建工具/Maven.md");
+        
+            treeRaw.push("_notes/笔记/计算机基础/0.导航/@序言.md");
+        
+            treeRaw.push("_notes/笔记/计算机基础/1.数字电路/@序言.md");
+        
+            treeRaw.push("_notes/笔记/计算机基础/1.数字电路/加法器.md");
+        
+            treeRaw.push("_notes/笔记/计算机基础/1.数字电路/进制计算.md");
+        
+            treeRaw.push("_notes/笔记/计算机基础/1.数字电路/门电路.md");
+        
+            treeRaw.push("_notes/笔记/计算机基础/2.计算机组成原理/0.引入.md");
+        
+            treeRaw.push("_notes/笔记/计算机基础/2.计算机组成原理/1.数据类型.md");
+        
+            treeRaw.push("_notes/笔记/计算机基础/3.计算机网络/0.引入.md");
+        
+            treeRaw.push("_notes/笔记/计算机基础/3.计算机网络/电子邮件系统.md");
+        
+        for (var i in treeRaw)
+        {
+            var fileNodeList = treeRaw[i].split("/"); 
+            // fileNodeList.shift();
+            fileNodeList.shift();
+            tree.push(fileNodeList);
+        }
+        
+        buildTree(tree, hrefPrev, doctype);
+    }
+
+    //弃用
+    function generateReferenceNavTree(){
+        
+        var doctype = "reference-docs";
+        var hrefPrev = "/DNote/old_jekyll/references/";
+        var treeRaw = new Array();
+        var tree = new Array();
+
+        
+            treeRaw.push("_references/PhyMark/编程/冒泡排序.md");
+        
+            treeRaw.push("_references/PhyMark/编程/插入排序.md");
+        
+            treeRaw.push("_references/PhyMark/编程/选择排序.md");
+        
+            treeRaw.push("_references/PhyMark/读书/女性主义.md");
+        
+            treeRaw.push("_references/PhyMark/读书/感知 理知 自我认知》读书笔记.md");
+        
+        for (var i in treeRaw)
+        {
+            var fileNodeList = treeRaw[i].split("/"); 
+            // fileNodeList.shift();
+            fileNodeList.shift();
+            tree.push(fileNodeList);
+        }
+        
+        buildTree(tree, hrefPrev, doctype);
+    }
+</script>
+
+            <script>
+                // var navSelectWorker = new SharedWorker("/DNote/old_jekyll/assets/modified_files/navSelectWorker.js");
+                //监听.chapter <a>的点击事件
+                // var chapters = document.querySelectorAll(".chapter");
+                // for (var i = 0; i < chapters.length; i++) 
+                //     chapters[i].addEventListener("click", function (e) {
+                //         if(e.target.innerText== "DNote")
+                //             navSelectWorker.port.postMessage("DNote");
+                //         else if(e.target.innerText == "References")
+                //             navSelectWorker.port.postMessage("References");
+                //     });
+                
+                var pageURL = decodeURIComponent(window.location.href);
+
+                if (pageURL.includes("/DNote/old_jekyll/notes/") || pageURL.split("/")[pageURL.split("/").length-1]==""){
+                    var chapters = document.querySelectorAll(".chap");
+                    for (var i = 0; i < chapters.length; i++) {
+                        if(chapters[i].innerText == "DNote")
+                            chapters[i].className += " my-docs";
+                    }
+                    var treeRaw = new Array();
+
+                    
+                        treeRaw.push("_notes/@写作规范/@序言.md");
+                    
+                        treeRaw.push("_notes/@写作规范/Markdown.md");
+                    
+                        treeRaw.push("_notes/@写作规范/图片.md");
+                    
+                        treeRaw.push("_notes/@写作规范/文件开头的符号.md");
+                    
+                        treeRaw.push("_notes/@写作规范/零散.md");
+                    
+                        treeRaw.push("_notes/笔记/其他/Git.md");
+                    
+                        treeRaw.push("_notes/笔记/其他/Github API.md");
+                    
+                        treeRaw.push("_notes/笔记/其他/Jekyll.md");
+                    
+                        treeRaw.push("_notes/笔记/其他/LaTeX.md");
+                    
+                        treeRaw.push("_notes/笔记/其他/Markdown.md");
+                    
+                        treeRaw.push("_notes/笔记/其他/gost.md");
+                    
+                        treeRaw.push("_notes/笔记/其他/正则表达式.md");
+                    
+                        treeRaw.push("_notes/笔记/数学/@导航/@序言.md");
+                    
+                        treeRaw.push("_notes/笔记/数学/应用数学/概率论/0.引入.md");
+                    
+                        treeRaw.push("_notes/笔记/数学/应用数学/概率论/1.随机事件及其概率.md");
+                    
+                        treeRaw.push("_notes/笔记/数学/应用数学/概率论/2.随机变量及其分布.md");
+                    
+                        treeRaw.push("_notes/笔记/数学/纯粹数学/结构/代数/抽象代数/@序言.md");
+                    
+                        treeRaw.push("_notes/笔记/数学/纯粹数学/结构/代数/抽象代数/群.md");
+                    
+                        treeRaw.push("_notes/笔记/数学/纯粹数学/结构/数论/初等数论/最大公因数.md");
+                    
+                        treeRaw.push("_notes/笔记/数据结构/1.树.md");
+                    
+                        treeRaw.push("_notes/笔记/数据结构/2.图.md");
+                    
+                        treeRaw.push("_notes/笔记/数据结构/堆.md");
+                    
+                        treeRaw.push("_notes/笔记/框架/Minecraft/Forge/0.0.序言.md");
+                    
+                        treeRaw.push("_notes/笔记/框架/Minecraft/Forge/0.1.书签.md");
+                    
+                        treeRaw.push("_notes/笔记/框架/Minecraft/Forge/0.2.微小的开始.md");
+                    
+                        treeRaw.push("_notes/笔记/框架/Minecraft/Forge/1.方块.md");
+                    
+                        treeRaw.push("_notes/笔记/框架/Minecraft/Forge/10.线程.md");
+                    
+                        treeRaw.push("_notes/笔记/框架/Minecraft/Forge/11.事件.md");
+                    
+                        treeRaw.push("_notes/笔记/框架/Minecraft/Forge/2.物品.md");
+                    
+                        treeRaw.push("_notes/笔记/框架/Minecraft/Forge/3.实体.md");
+                    
+                        treeRaw.push("_notes/笔记/框架/Minecraft/Forge/4.药水效果.md");
+                    
+                        treeRaw.push("_notes/笔记/框架/Minecraft/Forge/5.世界生成.md");
+                    
+                        treeRaw.push("_notes/笔记/框架/Minecraft/Forge/6.GUI.md");
+                    
+                        treeRaw.push("_notes/笔记/框架/Minecraft/Forge/8.服务端与客户端.md");
+                    
+                        treeRaw.push("_notes/笔记/框架/Minecraft/Forge/9.音效.md");
+                    
+                        treeRaw.push("_notes/笔记/框架/Minecraft/Forge/99.暂时找不到地方放的东西.md");
+                    
+                        treeRaw.push("_notes/笔记/框架/Minecraft/Forge/※进阶技术.md");
+                    
+                        treeRaw.push("_notes/笔记/框架/Qt/@序言.md");
+                    
+                        treeRaw.push("_notes/笔记/框架/Qt/Qt Installer FrameWork.md");
+                    
+                        treeRaw.push("_notes/笔记/算法/排序/@复杂度表.md");
+                    
+                        treeRaw.push("_notes/笔记/算法/排序/快速排序.md");
+                    
+                        treeRaw.push("_notes/笔记/算法/最短路/@序言.md");
+                    
+                        treeRaw.push("_notes/笔记/算法/最短路/Dijkstra.md");
+                    
+                        treeRaw.push("_notes/笔记/编程语言/Batch/@序言.md");
+                    
+                        treeRaw.push("_notes/笔记/编程语言/Batch/链接.md");
+                    
+                        treeRaw.push("_notes/笔记/编程语言/C++/基本/※复杂声明.md");
+                    
+                        treeRaw.push("_notes/笔记/编程语言/C++/基本/位域.md");
+                    
+                        treeRaw.push("_notes/笔记/编程语言/C++/基本/引用.md");
+                    
+                        treeRaw.push("_notes/笔记/编程语言/C++/现代C++/@序言.md");
+                    
+                        treeRaw.push("_notes/笔记/编程语言/C++/现代C++/右值引用.md");
+                    
+                        treeRaw.push("_notes/笔记/编程语言/C++/现代C++/智能指针.md");
+                    
+                        treeRaw.push("_notes/笔记/编程语言/HDL/@序言.md");
+                    
+                        treeRaw.push("_notes/笔记/编程语言/HDL/VHDL.md");
+                    
+                        treeRaw.push("_notes/笔记/编程语言/JavaScript/Event.md");
+                    
+                        treeRaw.push("_notes/笔记/编程语言/JavaScript/Web Worker.md");
+                    
+                        treeRaw.push("_notes/笔记/编程语言/Python/@序言.md");
+                    
+                        treeRaw.push("_notes/笔记/编程语言/Python/re.md");
+                    
+                        treeRaw.push("_notes/笔记/编程语言/构建工具/@序言.md");
+                    
+                        treeRaw.push("_notes/笔记/编程语言/构建工具/CMake.md");
+                    
+                        treeRaw.push("_notes/笔记/编程语言/构建工具/Gradle.md");
+                    
+                        treeRaw.push("_notes/笔记/编程语言/构建工具/Maven.md");
+                    
+                        treeRaw.push("_notes/笔记/计算机基础/0.导航/@序言.md");
+                    
+                        treeRaw.push("_notes/笔记/计算机基础/1.数字电路/@序言.md");
+                    
+                        treeRaw.push("_notes/笔记/计算机基础/1.数字电路/加法器.md");
+                    
+                        treeRaw.push("_notes/笔记/计算机基础/1.数字电路/进制计算.md");
+                    
+                        treeRaw.push("_notes/笔记/计算机基础/1.数字电路/门电路.md");
+                    
+                        treeRaw.push("_notes/笔记/计算机基础/2.计算机组成原理/0.引入.md");
+                    
+                        treeRaw.push("_notes/笔记/计算机基础/2.计算机组成原理/1.数据类型.md");
+                    
+                        treeRaw.push("_notes/笔记/计算机基础/3.计算机网络/0.引入.md");
+                    
+                        treeRaw.push("_notes/笔记/计算机基础/3.计算机网络/电子邮件系统.md");
+                    
+
+                    generateNavTree("my-docs",treeRaw);
+                }else if(pageURL.includes("/DNote/old_jekyll/references/") || pageURL.split("/")[pageURL.split("/").length-1]=="References"){
+                    var chapters = document.querySelectorAll(".chap");
+                    for (var i = 0; i < chapters.length; i++) {
+                        if(chapters[i].innerText == "References")
+                            chapters[i].className += " reference-docs";
+                    }
+                    var treeRaw = new Array();
+
+                    
+                        treeRaw.push("_references/PhyMark/编程/冒泡排序.md");
+                    
+                        treeRaw.push("_references/PhyMark/编程/插入排序.md");
+                    
+                        treeRaw.push("_references/PhyMark/编程/选择排序.md");
+                    
+                        treeRaw.push("_references/PhyMark/读书/女性主义.md");
+                    
+                        treeRaw.push("_references/PhyMark/读书/感知 理知 自我认知》读书笔记.md");
+                    
+                    
+                    generateNavTree("reference-docs",treeRaw);
+                }
+                    // else{
+                //     navSelectWorker.port.onmessage = function (e) {
+                //     var nav = e.data;
+                //     if(nav == "DNote")
+                //         generateNoteNavTree();
+                //     else if(nav == "References")
+                //         generateReferenceNavTree();
+                // };
+            </script>
+
+        </ul>
+    </nav>
+    
+    <footer style="
+        left: 0;
+        background: #141c2e;
+        display: flex;
+        justify-content: center;
+        bottom: 0;
+        width: 100%;
+        color: #ffff;">made by 
+        <a href="https://sighingnow.github.io/jekyll-gitbook" style="color: #41515c;">&ensp;jekyll-gitbook </a>
+    </footer>
+</div>
+<div class="book-body">
+                <div class="book-header" role="navigation">
+                    <!-- Title -->
+                    <h1>
+                        <i class="fa fa-circle-o-notch fa-spin"></i>
+                        
+                            <a href="" >Maven</a>
+                        
+                    </h1>
+                </div>
+
+                <div class="body-inner"><div class="page-wrapper" tabindex="-1" role="main">
+    
+    
+    
+    
+    <div class="page-inner">
+        <div id="book-search-results">
+            <div class="search-noresults">
+                <section class="normal markdown-section">
+                    <!-- 
+                        <h1 id="/notes/%E7%AC%94%E8%AE%B0/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/Maven">Maven</h1>
+                     -->
+                    <h1 id="maven">Maven</h1>
+
+<blockquote>
+  <p>主要用于Java<br />
+Apache下的一个项目自动构建工具<br />
+服务于Java平台的项目构建</p>
+</blockquote>
+
+<hr />
+
+<h2 id="安装">安装</h2>
+
+<ol>
+  <li>下载<a href="https://www.oracle.com/java/technologies/downloads/">JDK</a>和<a href="https://maven.apache.org/download.cgi">Maven</a></li>
+  <li>解压并配置环境变量<code class="language-plaintext highlighter-rouge">MAVEN_HOME</code>=<code class="language-plaintext highlighter-rouge">.../apache-maven-x.x.x/</code></li>
+  <li>添加环境变量<code class="language-plaintext highlighter-rouge">%MAVEN_HOME%</code>，并在<code class="language-plaintext highlighter-rouge">Path</code>中添加<code class="language-plaintext highlighter-rouge">%MAVEN_HOME%/bin</code></li>
+</ol>
+
+<h2 id="项目">项目</h2>
+
+<h3 id="目录结构">目录结构</h3>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a-maven-project
+├── pom.xml
+│
+├── src
+│   ├── main
+│   │   ├── java //源码
+│   │   └── resources //资源目录
+│   └── test
+│       ├── java //测试源码
+│       └── resources //测试资源目录
+│
+└── target //输出目录
+    ├── classes //编译输出目录
+    ├── test-classes //测试编译输出目录
+    └── ...
+</code></pre></div></div>
+
+<h3 id="pom">POM</h3>
+
+<blockquote>
+  <p>Project Object Model</p>
+</blockquote>
+
+<h4 id="pomxml基本结构">pom.xml基本结构</h4>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;project</span> <span class="na">xmlns =</span> <span class="s">"http://maven.apache.org/POM/4.0.0"</span>
+    <span class="na">xmlns:xsi =</span> <span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+    <span class="na">xsi:schemaLocation =</span> <span class="s">"http://maven.apache.org/POM/4.0.0
+    http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
+ 
+    <span class="c">&lt;!-- 模型版本，固定为4.0.0 --&gt;</span>
+    <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+
+    <span class="c">&lt;!-- 项目组织唯一标识符 --&gt;</span>
+    <span class="c">&lt;!-- 由此生成配置时生成的路径，如com.companyname.project-group --&gt;</span>
+    <span class="c">&lt;!-- maven会将该项目打成的jar包放本地路径：/com/companyname/project-group --&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.companyname.project-group<span class="nt">&lt;/groupId&gt;</span>
+ 
+    <span class="c">&lt;!-- 项目唯一标识符 --&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>project<span class="nt">&lt;/artifactId&gt;</span>
+ 
+    <span class="nt">&lt;version&gt;</span>1.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+
+<h2 id="概念">概念</h2>
+
+<h3 id="基本">基本</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Maven工程</code>：使用Maven进行管理的工程</li>
+  <li><code class="language-plaintext highlighter-rouge">坐标</code>：由<code class="language-plaintext highlighter-rouge">groupId</code>，<code class="language-plaintext highlighter-rouge">artifactId</code>和<code class="language-plaintext highlighter-rouge">version</code>组成的项目唯一标识</li>
+</ul>
+
+<h3 id="约定默认配置">约定(默认配置)</h3>
+
+<p>Maven 提倡使用一个共同的标准目录结构<br />
+使用<a href="../../@通识/构建工具#约定优于配置">约定优于配置</a>的原则<br />
+大家尽可能的遵守这样的目录结构<br />
+如下所示：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>目录</th>
+      <th>目的</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>${basedir}</td>
+      <td>存放pom.xml和所有的子目录</td>
+    </tr>
+    <tr>
+      <td>${basedir}/src/main/java</td>
+      <td>项目的java源代码</td>
+    </tr>
+    <tr>
+      <td>${basedir}/src/main/resources</td>
+      <td>项目的资源，比如说property文件，springmvc.xml</td>
+    </tr>
+    <tr>
+      <td>${basedir}/src/test/java</td>
+      <td>项目的测试类，比如说Junit代码</td>
+    </tr>
+    <tr>
+      <td>${basedir}/src/test/resources</td>
+      <td>测试用的资源</td>
+    </tr>
+    <tr>
+      <td>${basedir}/src/main/webapp/WEB-INF</td>
+      <td>web应用文件目录，web项目的信息，比如存放web.xml、本地图片、jsp视图页面</td>
+    </tr>
+    <tr>
+      <td>${basedir}/target</td>
+      <td>打包输出目录</td>
+    </tr>
+    <tr>
+      <td>${basedir}/target/classes</td>
+      <td>编译输出目录</td>
+    </tr>
+    <tr>
+      <td>${basedir}/target/test-classes</td>
+      <td>测试编译输出目录</td>
+    </tr>
+    <tr>
+      <td>Test.java</td>
+      <td>Maven只会自动运行符合该命名规则的测试类</td>
+    </tr>
+    <tr>
+      <td>~/.m2/repository</td>
+      <td>Maven默认的本地仓库目录位置</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="插件">插件</h3>
+
+<p>Maven只提供了最基本的依赖管理功能<br />
+所有的额外功能都是通过插件来实现的</p>
+
+<h3 id="生命周期">生命周期</h3>
+
+<blockquote>
+  <p>构建的不同阶段</p>
+</blockquote>
+
+<p>Maven定义了项目构建跟发布时需要执行的所有步骤<br />
+并把它们抽象成不同的生命周期<br />
+每个生命周期包含多个阶段(Phase)<br />
+每个阶段会执行一组目标(Goal)</p>
+
+<p>例如,编译和打包一个 Java 项目通常需要以下步骤:</p>
+
+<ol>
+  <li>清理目标文件</li>
+  <li>编译源代码</li>
+  <li>运行单元测试</li>
+  <li>打包成 JAR/WAR 文件</li>
+  <li>部署到服务器</li>
+</ol>
+
+<p>Maven 用两个内置生命周期来描述这一过程:</p>
+
+<ol>
+  <li>clean - 清理生命周期
+    <ul>
+      <li>pre-clean - 执行清理前需要完成的工作</li>
+      <li>clean - 清理上次构建生成的文件</li>
+      <li>post-clean - 执行清理后需要完成的工作</li>
+    </ul>
+  </li>
+  <li>default - 构建生命周期
+    <ul>
+      <li>validate - 验证项目是否正确,所有需要的资源是否可用</li>
+      <li>compile - 编译项目的源代码</li>
+      <li>test - 使用合适的单元测试框架来测试编译的源代码</li>
+      <li>package - 把编译好的代码打包成可分发格式的文件,如 JAR/WAR</li>
+      <li>verify - 对打包好的项目进行验证</li>
+      <li>install - 把打包的项目复制到本地仓库,可用于本地和远程依赖</li>
+      <li>deploy - 在构建环境中完成,把最终的工程包复制到远程仓库中与其他开发者和项目共享</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="pomxml完整内容">pom.xml完整内容</h3>
+
+<p><code class="language-plaintext highlighter-rouge">&lt;tag /&gt;</code>代指<code class="language-plaintext highlighter-rouge">&lt;tag&gt;...&lt;/tag&gt;</code></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;project</span> <span class="na">xmlns =</span> <span class="s">"http://maven.apache.org/POM/4.0.0"</span>
+    <span class="na">xmlns:xsi =</span> <span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+    <span class="na">xsi:schemaLocation =</span> <span class="s">"http://maven.apache.org/POM/4.0.0
+    http://maven.apache.org/xsd/maven-4.0.0.xsd"</span><span class="nt">&gt;</span>
+   
+    <span class="c">&lt;!--父项目的坐标。如果该项目某元素的值没有规定，那么继承父项目该值--&gt;</span>
+    <span class="nt">&lt;parent&gt;</span>
+        <span class="nt">&lt;artifactId</span> <span class="nt">/&gt;</span><span class="c">&lt;!-- 父项目唯一标识符 --&gt;</span>
+        <span class="nt">&lt;groupId</span> <span class="nt">/&gt;</span><span class="c">&lt;!-- 父项目组织唯一标识符 --&gt;</span>
+        <span class="nt">&lt;version</span> <span class="nt">/&gt;</span><span class="c">&lt;!-- 父项目版本 --&gt;</span>
+
+        <span class="c">&lt;!-- 父项目pom.xml文件相对路径，默认值是../pom.xml --&gt;</span>
+        <span class="c">&lt;!-- Maven首先在../pom.xml寻找父项目pom，其次relativePath，然后本地仓库，最后远程仓库 --&gt;</span>
+        <span class="nt">&lt;relativePath&gt;</span>...<span class="nt">&lt;/relativePath&gt;</span>
+    <span class="nt">&lt;/parent&gt;</span>
+   
+    <span class="c">&lt;!--声明项目描述符遵循哪一个POM模型版本。基本固定为4.0.0 --&gt;</span>
+    <span class="nt">&lt;modelVersion&gt;</span>4.0.0<span class="nt">&lt;/modelVersion&gt;</span>
+
+    <span class="nt">&lt;groupId&gt;</span>asia.banseon<span class="nt">&lt;/groupId&gt;</span><span class="c">&lt;!--项目组织唯一标识符，项目的全球唯一标识符，通常使用全限定的包名区分该项目和其他项目。并且构建时生成的路径也是由此生成， 如com.mycompany.app生成的相对路径为：/com/mycompany/app --&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>banseon-maven2<span class="nt">&lt;/artifactId&gt;</span><span class="c">&lt;!-- 构件的标识符，它和group ID一起唯一标识一个构件。换句话说，你不能有两个不同的项目拥有同样的artifact ID和groupID；在某个特定的group ID下，artifact ID也必须是唯一的。构件是项目产生的或使用的一个东西，Maven为项目产生的构件包括：JARs，源 码，二进制发布和WARs等。 --&gt;</span>
+    <span class="nt">&lt;version&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span><span class="c">&lt;!--项目当前版本，格式为:主版本.次版本.增量版本-限定版本号 --&gt;</span>
+
+    <span class="c">&lt;!--项目产生的构件类型，例如jar、war、ear、pom。插件可以创建他们自己的构件类型，所以前面列的不是全部构件类型 --&gt;</span>
+    <span class="nt">&lt;packaging&gt;</span>jar<span class="nt">&lt;/packaging&gt;</span>
+    
+    <span class="nt">&lt;name&gt;</span>banseon-maven<span class="nt">&lt;/name&gt;</span><span class="c">&lt;!--项目的名称, Maven产生的文档用 --&gt;</span>
+    <span class="nt">&lt;url&gt;</span>http://www.baidu.com/banseon<span class="nt">&lt;/url&gt;</span><span class="c">&lt;!--项目主页的URL, Maven产生的文档用 --&gt;</span>
+    <span class="nt">&lt;description&gt;</span>A maven project to study maven.<span class="nt">&lt;/description&gt;</span><span class="c">&lt;!-- 项目的详细描述, Maven 产生的文档用。 当这个元素能够用HTML格式描述时（例如，CDATA中的文本会被解析器忽略，就可以包含HTML标签）， 不鼓励使用纯文本描述。如果你需要修改产生的web站点的索引页面，你应该修改你自己的索引页文件，而不是调整这里的文档。 --&gt;</span>
+
+    <span class="c">&lt;!--描述了这个项目构建环境中的前提条件。 --&gt;</span>
+    <span class="nt">&lt;prerequisites&gt;</span>
+        <span class="c">&lt;!--构建该项目或使用该插件所需要的Maven的最低版本 --&gt;</span>
+        <span class="nt">&lt;maven</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/prerequisites&gt;</span>
+    <span class="c">&lt;!--项目的问题管理系统(Bugzilla, Jira, Scarab,或任何你喜欢的问题管理系统)的名称和URL，本例为 jira --&gt;</span>
+    <span class="nt">&lt;issueManagement&gt;</span>
+        <span class="c">&lt;!--问题管理系统（例如jira）的名字， --&gt;</span>
+        <span class="nt">&lt;system&gt;</span>jira<span class="nt">&lt;/system&gt;</span>
+        <span class="c">&lt;!--该项目使用的问题管理系统的URL --&gt;</span>
+        <span class="nt">&lt;url&gt;</span>http://jira.baidu.com/banseon<span class="nt">&lt;/url&gt;</span>
+    <span class="nt">&lt;/issueManagement&gt;</span>
+    <span class="c">&lt;!--项目持续集成信息 --&gt;</span>
+    <span class="nt">&lt;ciManagement&gt;</span>
+        <span class="c">&lt;!--持续集成系统的名字，例如continuum --&gt;</span>
+        <span class="nt">&lt;system</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!--该项目使用的持续集成系统的URL（如果持续集成系统有web接口的话）。 --&gt;</span>
+        <span class="nt">&lt;url</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!--构建完成时，需要通知的开发者/用户的配置项。包括被通知者信息和通知条件（错误，失败，成功，警告） --&gt;</span>
+        <span class="nt">&lt;notifiers&gt;</span>
+            <span class="c">&lt;!--配置一种方式，当构建中断时，以该方式通知用户/开发者 --&gt;</span>
+            <span class="nt">&lt;notifier&gt;</span>    
+                <span class="nt">&lt;type</span> <span class="nt">/&gt;</span><span class="c">&lt;!--传送通知的途径 --&gt;</span>
+                <span class="nt">&lt;sendOnError</span> <span class="nt">/&gt;</span><span class="c">&lt;!--发生错误时是否通知 --&gt;</span>
+                <span class="nt">&lt;sendOnFailure</span> <span class="nt">/&gt;</span><span class="c">&lt;!--构建失败时是否通知 --&gt;</span>
+                <span class="nt">&lt;sendOnSuccess</span> <span class="nt">/&gt;</span><span class="c">&lt;!--构建成功时是否通知 --&gt;</span>
+                <span class="nt">&lt;sendOnWarning</span> <span class="nt">/&gt;</span><span class="c">&lt;!--发生警告时是否通知 --&gt;</span>
+                <span class="nt">&lt;address</span> <span class="nt">/&gt;</span><span class="c">&lt;!--不赞成使用。通知发送到哪里 --&gt;</span>
+                <span class="nt">&lt;configuration</span> <span class="nt">/&gt;</span><span class="c">&lt;!--扩展配置项 --&gt;</span>
+            <span class="nt">&lt;/notifier&gt;</span>
+        <span class="nt">&lt;/notifiers&gt;</span>
+    <span class="nt">&lt;/ciManagement&gt;</span>
+    <span class="c">&lt;!--项目创建年份，4位数字。当产生版权信息时需要使用这个值。 --&gt;</span>
+    <span class="nt">&lt;inceptionYear</span> <span class="nt">/&gt;</span>
+    <span class="c">&lt;!--项目相关邮件列表信息 --&gt;</span>
+    <span class="nt">&lt;mailingLists&gt;</span>
+        <span class="c">&lt;!--该元素描述了项目相关的所有邮件列表。自动产生的网站引用这些信息。 --&gt;</span>
+        <span class="nt">&lt;mailingList&gt;</span>
+            <span class="c">&lt;!--邮件的名称 --&gt;</span>
+            <span class="nt">&lt;name&gt;</span>Demo<span class="nt">&lt;/name&gt;</span>
+            <span class="c">&lt;!--发送邮件的地址或链接，如果是邮件地址，创建文档时，mailto: 链接会被自动创建 --&gt;</span>
+            <span class="nt">&lt;post&gt;</span>banseon@126.com<span class="nt">&lt;/post&gt;</span>
+            <span class="c">&lt;!--订阅邮件的地址或链接，如果是邮件地址，创建文档时，mailto: 链接会被自动创建 --&gt;</span>
+            <span class="nt">&lt;subscribe&gt;</span>banseon@126.com<span class="nt">&lt;/subscribe&gt;</span>
+            <span class="c">&lt;!--取消订阅邮件的地址或链接，如果是邮件地址，创建文档时，mailto: 链接会被自动创建 --&gt;</span>
+            <span class="nt">&lt;unsubscribe&gt;</span>banseon@126.com<span class="nt">&lt;/unsubscribe&gt;</span>
+            <span class="c">&lt;!--你可以浏览邮件信息的URL --&gt;</span>
+            <span class="nt">&lt;archive&gt;</span>http:/hi.baidu.com/banseon/demo/dev/<span class="nt">&lt;/archive&gt;</span>
+        <span class="nt">&lt;/mailingList&gt;</span>
+    <span class="nt">&lt;/mailingLists&gt;</span>
+    <span class="c">&lt;!--项目开发者列表 --&gt;</span>
+    <span class="nt">&lt;developers&gt;</span>
+        <span class="c">&lt;!--某个项目开发者的信息 --&gt;</span>
+        <span class="nt">&lt;developer&gt;</span>
+            <span class="nt">&lt;id&gt;</span>HELLO WORLD<span class="nt">&lt;/id&gt;</span><span class="c">&lt;!--SCM里项目开发者的唯一标识符 --&gt;</span>
+            <span class="nt">&lt;name&gt;</span>banseon<span class="nt">&lt;/name&gt;</span><span class="c">&lt;!--项目开发者的全名 --&gt;</span>
+            <span class="nt">&lt;email&gt;</span>banseon@126.com<span class="nt">&lt;/email&gt;</span><span class="c">&lt;!--项目开发者的email --&gt;</span>
+            <span class="nt">&lt;url</span> <span class="nt">/&gt;</span><span class="c">&lt;!--项目开发者的主页的URL --&gt;</span>
+            <span class="nt">&lt;roles&gt;</span><span class="c">&lt;!--项目开发者在项目中扮演的角色，角色元素描述了各种角色 --&gt;</span>
+                <span class="nt">&lt;role&gt;</span>Project Manager<span class="nt">&lt;/role&gt;</span>
+                <span class="nt">&lt;role&gt;</span>Architect<span class="nt">&lt;/role&gt;</span>
+            <span class="nt">&lt;/roles&gt;</span>
+            <span class="nt">&lt;organization&gt;</span>demo<span class="nt">&lt;/organization&gt;</span><span class="c">&lt;!--项目开发者所属组织 --&gt;</span>
+            <span class="nt">&lt;organizationUrl&gt;</span>http://hi.baidu.com/banseon<span class="nt">&lt;/organizationUrl&gt;</span><span class="c">&lt;!--项目开发者所属组织的URL --&gt;</span>
+            <span class="nt">&lt;properties&gt;</span><span class="c">&lt;!--项目开发者属性，如即时消息如何处理等 --&gt;</span>
+                <span class="nt">&lt;dept&gt;</span>No<span class="nt">&lt;/dept&gt;</span>
+            <span class="nt">&lt;/properties&gt;</span>
+            <span class="nt">&lt;timezone&gt;</span>-5<span class="nt">&lt;/timezone&gt;</span><span class="c">&lt;!--项目开发者所在时区， -11到12范围内的整数。 --&gt;</span>
+        <span class="nt">&lt;/developer&gt;</span>
+    <span class="nt">&lt;/developers&gt;</span>
+    <span class="c">&lt;!--项目的其他贡献者列表 --&gt;</span>
+    <span class="nt">&lt;contributors&gt;</span>
+        <span class="c">&lt;!--项目的其他贡献者。参见developers/developer元素 --&gt;</span>
+        <span class="nt">&lt;contributor&gt;</span>
+            <span class="nt">&lt;name</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;email</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;url</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;organization</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;organizationUrl</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;roles</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;timezone</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;properties</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/contributor&gt;</span>
+    <span class="nt">&lt;/contributors&gt;</span>
+    <span class="c">&lt;!--该元素描述了项目所有License列表。 应该只列出该项目的license列表，不要列出依赖项目的 license列表。如果列出多个license，用户可以选择它们中的一个而不是接受所有license。 --&gt;</span>
+    <span class="nt">&lt;licenses&gt;</span>
+        <span class="c">&lt;!--描述了项目的license，用于生成项目的web站点的license页面，其他一些报表和validation也会用到该元素。 --&gt;</span>
+        <span class="nt">&lt;license&gt;</span>
+            <span class="nt">&lt;name&gt;</span>Apache 2<span class="nt">&lt;/name&gt;</span><span class="c">&lt;!--license用于法律上的名称 --&gt;</span>
+            <span class="nt">&lt;url&gt;</span>http://www.baidu.com/banseon/LICENSE-2.0.txt<span class="nt">&lt;/url&gt;</span><span class="c">&lt;!--官方的license正文页面的URL --&gt;</span>
+            <span class="nt">&lt;distribution&gt;</span>repo<span class="nt">&lt;/distribution&gt;</span><span class="c">&lt;!--项目分发的主要方式： repo，可以从Maven库下载 manual， 用户必须手动下载和安装依赖 --&gt;</span>
+            <span class="nt">&lt;comments&gt;</span>A business-friendly OSS license<span class="nt">&lt;/comments&gt;</span><span class="c">&lt;!--关于license的补充信息 --&gt;</span>
+        <span class="nt">&lt;/license&gt;</span>
+    <span class="nt">&lt;/licenses&gt;</span>
+    <span class="c">&lt;!--SCM(Source Control Management)标签允许你配置你的代码库，供Maven web站点和其它插件使用。 --&gt;</span>
+    <span class="nt">&lt;scm&gt;</span>
+        <span class="c">&lt;!--SCM的URL,该URL描述了版本库和如何连接到版本库。欲知详情，请看SCMs提供的URL格式和列表。该连接只读。 --&gt;</span>
+        <span class="nt">&lt;connection&gt;</span>
+            scm:svn:http://svn.baidu.com/banseon/maven/banseon/banseon-maven2-trunk(dao-trunk)
+        <span class="nt">&lt;/connection&gt;</span>
+        <span class="c">&lt;!--给开发者使用的，类似connection元素。即该连接不仅仅只读 --&gt;</span>
+        <span class="nt">&lt;developerConnection&gt;</span>
+            scm:svn:http://svn.baidu.com/banseon/maven/banseon/dao-trunk
+        <span class="nt">&lt;/developerConnection&gt;</span>
+        <span class="c">&lt;!--当前代码的标签，在开发阶段默认为HEAD --&gt;</span>
+        <span class="nt">&lt;tag</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!--指向项目的可浏览SCM库（例如ViewVC或者Fisheye）的URL。 --&gt;</span>
+        <span class="nt">&lt;url&gt;</span>http://svn.baidu.com/banseon<span class="nt">&lt;/url&gt;</span>
+    <span class="nt">&lt;/scm&gt;</span>
+    <span class="c">&lt;!--描述项目所属组织的各种属性。Maven产生的文档用 --&gt;</span>
+    <span class="nt">&lt;organization&gt;</span>
+        <span class="nt">&lt;name&gt;</span>demo<span class="nt">&lt;/name&gt;</span><span class="c">&lt;!--组织的全名 --&gt;</span>
+        <span class="nt">&lt;url&gt;</span>http://www.baidu.com/banseon<span class="nt">&lt;/url&gt;</span><span class="c">&lt;!--组织主页的URL --&gt;</span>
+    <span class="nt">&lt;/organization&gt;</span>
+    
+    <span class="c">&lt;!--构建项目需要的信息 --&gt;</span>
+    <span class="nt">&lt;build&gt;</span>
+        <span class="c">&lt;!--该元素设置了项目源码目录，当构建项目的时候，构建系统会编译目录里的源码。该路径是相对于pom.xml的相对路径。 --&gt;</span>
+        <span class="nt">&lt;sourceDirectory</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!--该元素设置了项目脚本源码目录，该目录和源码目录不同：绝大多数情况下，该目录下的内容 会被拷贝到输出目录(因为脚本是被解释的，而不是被编译的)。 --&gt;</span>
+        <span class="nt">&lt;scriptSourceDirectory</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!--该元素设置了项目单元测试使用的源码目录，当测试项目的时候，构建系统会编译目录里的源码。该路径是相对于pom.xml的相对路径。 --&gt;</span>
+        <span class="nt">&lt;testSourceDirectory</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!--被编译过的应用程序class文件存放的目录。 --&gt;</span>
+        <span class="nt">&lt;outputDirectory</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!--被编译过的测试class文件存放的目录。 --&gt;</span>
+        <span class="nt">&lt;testOutputDirectory</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!--使用来自该项目的一系列构建扩展 --&gt;</span>
+        <span class="nt">&lt;extensions&gt;</span>
+            <span class="c">&lt;!--描述使用到的构建扩展。 --&gt;</span>
+            <span class="nt">&lt;extension&gt;</span>
+                <span class="c">&lt;!--构建扩展的groupId --&gt;</span>
+                <span class="nt">&lt;groupId</span> <span class="nt">/&gt;</span>
+                <span class="c">&lt;!--构建扩展的artifactId --&gt;</span>
+                <span class="nt">&lt;artifactId</span> <span class="nt">/&gt;</span>
+                <span class="c">&lt;!--构建扩展的版本 --&gt;</span>
+                <span class="nt">&lt;version</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/extension&gt;</span>
+        <span class="nt">&lt;/extensions&gt;</span>
+        <span class="c">&lt;!--当项目没有规定目标（Maven2 叫做阶段）时的默认值 --&gt;</span>
+        <span class="nt">&lt;defaultGoal</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!--这个元素描述了项目相关的所有资源路径列表，例如和项目相关的属性文件，这些资源被包含在最终的打包文件里。 --&gt;</span>
+        <span class="nt">&lt;resources&gt;</span>
+            <span class="c">&lt;!--这个元素描述了项目相关或测试相关的所有资源路径 --&gt;</span>
+            <span class="nt">&lt;resource&gt;</span>
+                <span class="c">&lt;!-- 描述了资源的目标路径。该路径相对target/classes目录（例如${project.build.outputDirectory}）。举个例 
+                    子，如果你想资源在特定的包里(org.apache.maven.messages)，你就必须该元素设置为org/apache/maven /messages。然而，如果你只是想把资源放到源码目录结构里，就不需要该配置。 --&gt;</span>
+                <span class="nt">&lt;targetPath</span> <span class="nt">/&gt;</span>
+                <span class="c">&lt;!--是否使用参数值代替参数名。参数值取自properties元素或者文件里配置的属性，文件在filters元素里列出。 --&gt;</span>
+                <span class="nt">&lt;filtering</span> <span class="nt">/&gt;</span>
+                <span class="c">&lt;!--描述存放资源的目录，该路径相对POM路径 --&gt;</span>
+                <span class="nt">&lt;directory</span> <span class="nt">/&gt;</span>
+                <span class="c">&lt;!--包含的模式列表，例如**/*.xml. --&gt;</span>
+                <span class="nt">&lt;includes</span> <span class="nt">/&gt;</span>
+                <span class="c">&lt;!--排除的模式列表，例如**/*.xml --&gt;</span>
+                <span class="nt">&lt;excludes</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/resource&gt;</span>
+        <span class="nt">&lt;/resources&gt;</span>
+        <span class="c">&lt;!--这个元素描述了单元测试相关的所有资源路径，例如和单元测试相关的属性文件。 --&gt;</span>
+        <span class="nt">&lt;testResources&gt;</span>
+            <span class="c">&lt;!--这个元素描述了测试相关的所有资源路径，参见build/resources/resource元素的说明 --&gt;</span>
+            <span class="nt">&lt;testResource&gt;</span>
+                <span class="nt">&lt;targetPath</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;filtering</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;directory</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;includes</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;excludes</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/testResource&gt;</span>
+        <span class="nt">&lt;/testResources&gt;</span>
+        <span class="c">&lt;!--构建产生的所有文件存放的目录 --&gt;</span>
+        <span class="nt">&lt;directory</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!--产生的构件的文件名，默认值是${artifactId}-${version}。 --&gt;</span>
+        <span class="nt">&lt;finalName</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!--当filtering开关打开时，使用到的过滤器属性文件列表 --&gt;</span>
+        <span class="nt">&lt;filters</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!--子项目可以引用的默认插件信息。该插件配置项直到被引用时才会被解析或绑定到生命周期。给定插件的任何本地配置都会覆盖这里的配置 --&gt;</span>
+        <span class="nt">&lt;pluginManagement&gt;</span>
+            <span class="c">&lt;!--使用的插件列表 。 --&gt;</span>
+            <span class="nt">&lt;plugins&gt;</span>
+                <span class="c">&lt;!--plugin元素包含描述插件所需要的信息。 --&gt;</span>
+                <span class="nt">&lt;plugin&gt;</span>
+                    <span class="c">&lt;!--插件在仓库里的group ID --&gt;</span>
+                    <span class="nt">&lt;groupId</span> <span class="nt">/&gt;</span>
+                    <span class="c">&lt;!--插件在仓库里的artifact ID --&gt;</span>
+                    <span class="nt">&lt;artifactId</span> <span class="nt">/&gt;</span>
+                    <span class="c">&lt;!--被使用的插件的版本（或版本范围） --&gt;</span>
+                    <span class="nt">&lt;version</span> <span class="nt">/&gt;</span>
+                    <span class="c">&lt;!--是否从该插件下载Maven扩展（例如打包和类型处理器），由于性能原因，只有在真需要下载时，该元素才被设置成enabled。 --&gt;</span>
+                    <span class="nt">&lt;extensions</span> <span class="nt">/&gt;</span>
+                    <span class="c">&lt;!--在构建生命周期中执行一组目标的配置。每个目标可能有不同的配置。 --&gt;</span>
+                    <span class="nt">&lt;executions&gt;</span>
+                        <span class="c">&lt;!--execution元素包含了插件执行需要的信息 --&gt;</span>
+                        <span class="nt">&lt;execution&gt;</span>
+                            <span class="c">&lt;!--执行目标的标识符，用于标识构建过程中的目标，或者匹配继承过程中需要合并的执行目标 --&gt;</span>
+                            <span class="nt">&lt;id</span> <span class="nt">/&gt;</span>
+                            <span class="c">&lt;!--绑定了目标的构建生命周期阶段，如果省略，目标会被绑定到源数据里配置的默认阶段 --&gt;</span>
+                            <span class="nt">&lt;phase</span> <span class="nt">/&gt;</span>
+                            <span class="c">&lt;!--配置的执行目标 --&gt;</span>
+                            <span class="nt">&lt;goals</span> <span class="nt">/&gt;</span>
+                            <span class="c">&lt;!--配置是否被传播到子POM --&gt;</span>
+                            <span class="nt">&lt;inherited</span> <span class="nt">/&gt;</span>
+                            <span class="c">&lt;!--作为DOM对象的配置 --&gt;</span>
+                            <span class="nt">&lt;configuration</span> <span class="nt">/&gt;</span>
+                        <span class="nt">&lt;/execution&gt;</span>
+                    <span class="nt">&lt;/executions&gt;</span>
+                    <span class="c">&lt;!--项目引入插件所需要的额外依赖 --&gt;</span>
+                    <span class="nt">&lt;dependencies&gt;</span>
+                        <span class="c">&lt;!--参见dependencies/dependency元素 --&gt;</span>
+                        <span class="nt">&lt;dependency&gt;</span>
+                            ......
+                        <span class="nt">&lt;/dependency&gt;</span>
+                    <span class="nt">&lt;/dependencies&gt;</span>
+                    <span class="c">&lt;!--任何配置是否被传播到子项目 --&gt;</span>
+                    <span class="nt">&lt;inherited</span> <span class="nt">/&gt;</span>
+                    <span class="c">&lt;!--作为DOM对象的配置 --&gt;</span>
+                    <span class="nt">&lt;configuration</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;/plugin&gt;</span>
+            <span class="nt">&lt;/plugins&gt;</span>
+        <span class="nt">&lt;/pluginManagement&gt;</span>
+        <span class="c">&lt;!--使用的插件列表 --&gt;</span>
+        <span class="nt">&lt;plugins&gt;</span>
+            <span class="c">&lt;!--参见build/pluginManagement/plugins/plugin元素 --&gt;</span>
+            <span class="nt">&lt;plugin&gt;</span>
+                <span class="nt">&lt;groupId</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;artifactId</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;version</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;extensions</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;executions&gt;</span>
+                    <span class="nt">&lt;execution&gt;</span>
+                        <span class="nt">&lt;id</span> <span class="nt">/&gt;</span>
+                        <span class="nt">&lt;phase</span> <span class="nt">/&gt;</span>
+                        <span class="nt">&lt;goals</span> <span class="nt">/&gt;</span>
+                        <span class="nt">&lt;inherited</span> <span class="nt">/&gt;</span>
+                        <span class="nt">&lt;configuration</span> <span class="nt">/&gt;</span>
+                    <span class="nt">&lt;/execution&gt;</span>
+                <span class="nt">&lt;/executions&gt;</span>
+                <span class="nt">&lt;dependencies&gt;</span>
+                    <span class="c">&lt;!--参见dependencies/dependency元素 --&gt;</span>
+                    <span class="nt">&lt;dependency&gt;</span>
+                        ......
+                    <span class="nt">&lt;/dependency&gt;</span>
+                <span class="nt">&lt;/dependencies&gt;</span>
+                <span class="nt">&lt;goals</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;inherited</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;configuration</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/plugin&gt;</span>
+        <span class="nt">&lt;/plugins&gt;</span>
+    <span class="nt">&lt;/build&gt;</span>
+    <span class="c">&lt;!--在列的项目构建profile，如果被激活，会修改构建处理 --&gt;</span>
+    <span class="nt">&lt;profiles&gt;</span>
+        <span class="c">&lt;!--根据环境参数或命令行参数激活某个构建处理 --&gt;</span>
+        <span class="nt">&lt;profile&gt;</span>
+            <span class="c">&lt;!--构建配置的唯一标识符。即用于命令行激活，也用于在继承时合并具有相同标识符的profile。 --&gt;</span>
+            <span class="nt">&lt;id</span> <span class="nt">/&gt;</span>
+            <span class="c">&lt;!--自动触发profile的条件逻辑。Activation是profile的开启钥匙。profile的力量来自于它 能够在某些特定的环境中自动使用某些特定的值；这些环境通过activation元素指定。activation元素并不是激活profile的唯一方式。 --&gt;</span>
+            <span class="nt">&lt;activation&gt;</span>
+                <span class="c">&lt;!--profile默认是否激活的标志 --&gt;</span>
+                <span class="nt">&lt;activeByDefault</span> <span class="nt">/&gt;</span>
+                <span class="c">&lt;!--当匹配的jdk被检测到，profile被激活。例如，1.4激活JDK1.4，1.4.0_2，而!1.4激活所有版本不是以1.4开头的JDK。 --&gt;</span>
+                <span class="nt">&lt;jdk</span> <span class="nt">/&gt;</span>
+                <span class="c">&lt;!--当匹配的操作系统属性被检测到，profile被激活。os元素可以定义一些操作系统相关的属性。 --&gt;</span>
+                <span class="nt">&lt;os&gt;</span>
+                    <span class="c">&lt;!--激活profile的操作系统的名字 --&gt;</span>
+                    <span class="nt">&lt;name&gt;</span>Windows XP<span class="nt">&lt;/name&gt;</span>
+                    <span class="c">&lt;!--激活profile的操作系统所属家族(如 'windows') --&gt;</span>
+                    <span class="nt">&lt;family&gt;</span>Windows<span class="nt">&lt;/family&gt;</span>
+                    <span class="c">&lt;!--激活profile的操作系统体系结构 --&gt;</span>
+                    <span class="nt">&lt;arch&gt;</span>x86<span class="nt">&lt;/arch&gt;</span>
+                    <span class="c">&lt;!--激活profile的操作系统版本 --&gt;</span>
+                    <span class="nt">&lt;version&gt;</span>5.1.2600<span class="nt">&lt;/version&gt;</span>
+                <span class="nt">&lt;/os&gt;</span>
+                <span class="c">&lt;!--如果Maven检测到某一个属性（其值可以在POM中通过${名称}引用），其拥有对应的名称和值，Profile就会被激活。如果值 字段是空的，那么存在属性名称字段就会激活profile，否则按区分大小写方式匹配属性值字段 --&gt;</span>
+                <span class="nt">&lt;property&gt;</span>
+                    <span class="c">&lt;!--激活profile的属性的名称 --&gt;</span>
+                    <span class="nt">&lt;name&gt;</span>mavenVersion<span class="nt">&lt;/name&gt;</span>
+                    <span class="c">&lt;!--激活profile的属性的值 --&gt;</span>
+                    <span class="nt">&lt;value&gt;</span>2.0.3<span class="nt">&lt;/value&gt;</span>
+                <span class="nt">&lt;/property&gt;</span>
+                <span class="c">&lt;!--提供一个文件名，通过检测该文件的存在或不存在来激活profile。missing检查文件是否存在，如果不存在则激活 profile。另一方面，exists则会检查文件是否存在，如果存在则激活profile。 --&gt;</span>
+                <span class="nt">&lt;file&gt;</span>
+                    <span class="c">&lt;!--如果指定的文件存在，则激活profile。 --&gt;</span>
+                    <span class="nt">&lt;exists&gt;</span>/usr/local/hudson/hudson-home/jobs/maven-guide-zh-to-production/workspace/
+                    <span class="nt">&lt;/exists&gt;</span>
+                    <span class="c">&lt;!--如果指定的文件不存在，则激活profile。 --&gt;</span>
+                    <span class="nt">&lt;missing&gt;</span>/usr/local/hudson/hudson-home/jobs/maven-guide-zh-to-production/workspace/
+                    <span class="nt">&lt;/missing&gt;</span>
+                <span class="nt">&lt;/file&gt;</span>
+            <span class="nt">&lt;/activation&gt;</span>
+            <span class="c">&lt;!--构建项目所需要的信息。参见build元素 --&gt;</span>
+            <span class="nt">&lt;build&gt;</span>
+                <span class="nt">&lt;defaultGoal</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;resources&gt;</span>
+                    <span class="nt">&lt;resource&gt;</span>
+                        <span class="nt">&lt;targetPath</span> <span class="nt">/&gt;</span>
+                        <span class="nt">&lt;filtering</span> <span class="nt">/&gt;</span>
+                        <span class="nt">&lt;directory</span> <span class="nt">/&gt;</span>
+                        <span class="nt">&lt;includes</span> <span class="nt">/&gt;</span>
+                        <span class="nt">&lt;excludes</span> <span class="nt">/&gt;</span>
+                    <span class="nt">&lt;/resource&gt;</span>
+                <span class="nt">&lt;/resources&gt;</span>
+                <span class="nt">&lt;testResources&gt;</span>
+                    <span class="nt">&lt;testResource&gt;</span>
+                        <span class="nt">&lt;targetPath</span> <span class="nt">/&gt;</span>
+                        <span class="nt">&lt;filtering</span> <span class="nt">/&gt;</span>
+                        <span class="nt">&lt;directory</span> <span class="nt">/&gt;</span>
+                        <span class="nt">&lt;includes</span> <span class="nt">/&gt;</span>
+                        <span class="nt">&lt;excludes</span> <span class="nt">/&gt;</span>
+                    <span class="nt">&lt;/testResource&gt;</span>
+                <span class="nt">&lt;/testResources&gt;</span>
+                <span class="nt">&lt;directory</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;finalName</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;filters</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;pluginManagement&gt;</span>
+                    <span class="nt">&lt;plugins&gt;</span>
+                        <span class="c">&lt;!--参见build/pluginManagement/plugins/plugin元素 --&gt;</span>
+                        <span class="nt">&lt;plugin&gt;</span>
+                            <span class="nt">&lt;groupId</span> <span class="nt">/&gt;</span>
+                            <span class="nt">&lt;artifactId</span> <span class="nt">/&gt;</span>
+                            <span class="nt">&lt;version</span> <span class="nt">/&gt;</span>
+                            <span class="nt">&lt;extensions</span> <span class="nt">/&gt;</span>
+                            <span class="nt">&lt;executions&gt;</span>
+                                <span class="nt">&lt;execution&gt;</span>
+                                    <span class="nt">&lt;id</span> <span class="nt">/&gt;</span>
+                                    <span class="nt">&lt;phase</span> <span class="nt">/&gt;</span>
+                                    <span class="nt">&lt;goals</span> <span class="nt">/&gt;</span>
+                                    <span class="nt">&lt;inherited</span> <span class="nt">/&gt;</span>
+                                    <span class="nt">&lt;configuration</span> <span class="nt">/&gt;</span>
+                                <span class="nt">&lt;/execution&gt;</span>
+                            <span class="nt">&lt;/executions&gt;</span>
+                            <span class="nt">&lt;dependencies&gt;</span>
+                                <span class="c">&lt;!--参见dependencies/dependency元素 --&gt;</span>
+                                <span class="nt">&lt;dependency&gt;</span>
+                                    ......
+                                <span class="nt">&lt;/dependency&gt;</span>
+                            <span class="nt">&lt;/dependencies&gt;</span>
+                            <span class="nt">&lt;goals</span> <span class="nt">/&gt;</span>
+                            <span class="nt">&lt;inherited</span> <span class="nt">/&gt;</span>
+                            <span class="nt">&lt;configuration</span> <span class="nt">/&gt;</span>
+                        <span class="nt">&lt;/plugin&gt;</span>
+                    <span class="nt">&lt;/plugins&gt;</span>
+                <span class="nt">&lt;/pluginManagement&gt;</span>
+                <span class="nt">&lt;plugins&gt;</span>
+                    <span class="c">&lt;!--参见build/pluginManagement/plugins/plugin元素 --&gt;</span>
+                    <span class="nt">&lt;plugin&gt;</span>
+                        <span class="nt">&lt;groupId</span> <span class="nt">/&gt;</span>
+                        <span class="nt">&lt;artifactId</span> <span class="nt">/&gt;</span>
+                        <span class="nt">&lt;version</span> <span class="nt">/&gt;</span>
+                        <span class="nt">&lt;extensions</span> <span class="nt">/&gt;</span>
+                        <span class="nt">&lt;executions&gt;</span>
+                            <span class="nt">&lt;execution&gt;</span>
+                                <span class="nt">&lt;id</span> <span class="nt">/&gt;</span>
+                                <span class="nt">&lt;phase</span> <span class="nt">/&gt;</span>
+                                <span class="nt">&lt;goals</span> <span class="nt">/&gt;</span>
+                                <span class="nt">&lt;inherited</span> <span class="nt">/&gt;</span>
+                                <span class="nt">&lt;configuration</span> <span class="nt">/&gt;</span>
+                            <span class="nt">&lt;/execution&gt;</span>
+                        <span class="nt">&lt;/executions&gt;</span>
+                        <span class="nt">&lt;dependencies&gt;</span>
+                            <span class="c">&lt;!--参见dependencies/dependency元素 --&gt;</span>
+                            <span class="nt">&lt;dependency&gt;</span>
+                                ......
+                            <span class="nt">&lt;/dependency&gt;</span>
+                        <span class="nt">&lt;/dependencies&gt;</span>
+                        <span class="nt">&lt;goals</span> <span class="nt">/&gt;</span>
+                        <span class="nt">&lt;inherited</span> <span class="nt">/&gt;</span>
+                        <span class="nt">&lt;configuration</span> <span class="nt">/&gt;</span>
+                    <span class="nt">&lt;/plugin&gt;</span>
+                <span class="nt">&lt;/plugins&gt;</span>
+            <span class="nt">&lt;/build&gt;</span>
+            <span class="c">&lt;!--模块（有时称作子项目） 被构建成项目的一部分。列出的每个模块元素是指向该模块的目录的相对路径 --&gt;</span>
+            <span class="nt">&lt;modules</span> <span class="nt">/&gt;</span>
+            <span class="c">&lt;!--发现依赖和扩展的远程仓库列表。 --&gt;</span>
+            <span class="nt">&lt;repositories&gt;</span>
+                <span class="c">&lt;!--参见repositories/repository元素 --&gt;</span>
+                <span class="nt">&lt;repository&gt;</span>
+                    <span class="nt">&lt;releases&gt;</span>
+                        <span class="nt">&lt;enabled</span> <span class="nt">/&gt;</span>
+                        <span class="nt">&lt;updatePolicy</span> <span class="nt">/&gt;</span>
+                        <span class="nt">&lt;checksumPolicy</span> <span class="nt">/&gt;</span>
+                    <span class="nt">&lt;/releases&gt;</span>
+                    <span class="nt">&lt;snapshots&gt;</span>
+                        <span class="nt">&lt;enabled</span> <span class="nt">/&gt;</span>
+                        <span class="nt">&lt;updatePolicy</span> <span class="nt">/&gt;</span>
+                        <span class="nt">&lt;checksumPolicy</span> <span class="nt">/&gt;</span>
+                    <span class="nt">&lt;/snapshots&gt;</span>
+                    <span class="nt">&lt;id</span> <span class="nt">/&gt;</span>
+                    <span class="nt">&lt;name</span> <span class="nt">/&gt;</span>
+                    <span class="nt">&lt;url</span> <span class="nt">/&gt;</span>
+                    <span class="nt">&lt;layout</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;/repository&gt;</span>
+            <span class="nt">&lt;/repositories&gt;</span>
+            <span class="c">&lt;!--发现插件的远程仓库列表，这些插件用于构建和报表 --&gt;</span>
+            <span class="nt">&lt;pluginRepositories&gt;</span>
+                <span class="c">&lt;!--包含需要连接到远程插件仓库的信息.参见repositories/repository元素 --&gt;</span>
+                <span class="nt">&lt;pluginRepository&gt;</span>
+                    <span class="nt">&lt;releases&gt;</span>
+                        <span class="nt">&lt;enabled</span> <span class="nt">/&gt;</span>
+                        <span class="nt">&lt;updatePolicy</span> <span class="nt">/&gt;</span>
+                        <span class="nt">&lt;checksumPolicy</span> <span class="nt">/&gt;</span>
+                    <span class="nt">&lt;/releases&gt;</span>
+                    <span class="nt">&lt;snapshots&gt;</span>
+                        <span class="nt">&lt;enabled</span> <span class="nt">/&gt;</span>
+                        <span class="nt">&lt;updatePolicy</span> <span class="nt">/&gt;</span>
+                        <span class="nt">&lt;checksumPolicy</span> <span class="nt">/&gt;</span>
+                    <span class="nt">&lt;/snapshots&gt;</span>
+                    <span class="nt">&lt;id</span> <span class="nt">/&gt;</span>
+                    <span class="nt">&lt;name</span> <span class="nt">/&gt;</span>
+                    <span class="nt">&lt;url</span> <span class="nt">/&gt;</span>
+                    <span class="nt">&lt;layout</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;/pluginRepository&gt;</span>
+            <span class="nt">&lt;/pluginRepositories&gt;</span>
+            <span class="c">&lt;!--该元素描述了项目相关的所有依赖。 这些依赖组成了项目构建过程中的一个个环节。它们自动从项目定义的仓库中下载。要获取更多信息，请看项目依赖机制。 --&gt;</span>
+            <span class="nt">&lt;dependencies&gt;</span>
+                <span class="c">&lt;!--参见dependencies/dependency元素 --&gt;</span>
+                <span class="nt">&lt;dependency&gt;</span>
+                    ......
+                <span class="nt">&lt;/dependency&gt;</span>
+            <span class="nt">&lt;/dependencies&gt;</span>
+            <span class="c">&lt;!--不赞成使用. 现在Maven忽略该元素. --&gt;</span>
+            <span class="nt">&lt;reports</span> <span class="nt">/&gt;</span>
+            <span class="c">&lt;!--该元素包括使用报表插件产生报表的规范。当用户执行"mvn site"，这些报表就会运行。 在页面导航栏能看到所有报表的链接。参见reporting元素 --&gt;</span>
+            <span class="nt">&lt;reporting&gt;</span>
+                ......
+            <span class="nt">&lt;/reporting&gt;</span>
+            <span class="c">&lt;!--参见dependencyManagement元素 --&gt;</span>
+            <span class="nt">&lt;dependencyManagement&gt;</span>
+                <span class="nt">&lt;dependencies&gt;</span>
+                    <span class="c">&lt;!--参见dependencies/dependency元素 --&gt;</span>
+                    <span class="nt">&lt;dependency&gt;</span>
+                        ......
+                    <span class="nt">&lt;/dependency&gt;</span>
+                <span class="nt">&lt;/dependencies&gt;</span>
+            <span class="nt">&lt;/dependencyManagement&gt;</span>
+            <span class="c">&lt;!--参见distributionManagement元素 --&gt;</span>
+            <span class="nt">&lt;distributionManagement&gt;</span>
+                ......
+            <span class="nt">&lt;/distributionManagement&gt;</span>
+            <span class="c">&lt;!--参见properties元素 --&gt;</span>
+            <span class="nt">&lt;properties</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/profile&gt;</span>
+    <span class="nt">&lt;/profiles&gt;</span>
+    <span class="c">&lt;!--模块（有时称作子项目） 被构建成项目的一部分。列出的每个模块元素是指向该模块的目录的相对路径 --&gt;</span>
+    <span class="nt">&lt;modules</span> <span class="nt">/&gt;</span>
+    <span class="c">&lt;!--发现依赖和扩展的远程仓库列表。 --&gt;</span>
+    <span class="nt">&lt;repositories&gt;</span>
+        <span class="c">&lt;!--包含需要连接到远程仓库的信息 --&gt;</span>
+        <span class="nt">&lt;repository&gt;</span>
+            <span class="c">&lt;!--如何处理远程仓库里发布版本的下载 --&gt;</span>
+            <span class="nt">&lt;releases&gt;</span>
+                <span class="c">&lt;!--true或者false表示该仓库是否为下载某种类型构件（发布版，快照版）开启。 --&gt;</span>
+                <span class="nt">&lt;enabled</span> <span class="nt">/&gt;</span>
+                <span class="c">&lt;!--该元素指定更新发生的频率。Maven会比较本地POM和远程POM的时间戳。这里的选项是：always（一直），daily（默认，每日），interval：X（这里X是以分钟为单位的时间间隔），或者never（从不）。 --&gt;</span>
+                <span class="nt">&lt;updatePolicy</span> <span class="nt">/&gt;</span>
+                <span class="c">&lt;!--当Maven验证构件校验文件失败时该怎么做：ignore（忽略），fail（失败），或者warn（警告）。 --&gt;</span>
+                <span class="nt">&lt;checksumPolicy</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/releases&gt;</span>
+            <span class="c">&lt;!-- 如何处理远程仓库里快照版本的下载。有了releases和snapshots这两组配置，POM就可以在每个单独的仓库中，为每种类型的构件采取不同的 
+                策略。例如，可能有人会决定只为开发目的开启对快照版本下载的支持。参见repositories/repository/releases元素 --&gt;</span>
+            <span class="nt">&lt;snapshots&gt;</span>
+                <span class="nt">&lt;enabled</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;updatePolicy</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;checksumPolicy</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/snapshots&gt;</span>
+            <span class="c">&lt;!--远程仓库唯一标识符。可以用来匹配在settings.xml文件里配置的远程仓库 --&gt;</span>
+            <span class="nt">&lt;id&gt;</span>banseon-repository-proxy<span class="nt">&lt;/id&gt;</span>
+            <span class="c">&lt;!--远程仓库名称 --&gt;</span>
+            <span class="nt">&lt;name&gt;</span>banseon-repository-proxy<span class="nt">&lt;/name&gt;</span>
+            <span class="c">&lt;!--远程仓库URL，按protocol://hostname/path形式 --&gt;</span>
+            <span class="nt">&lt;url&gt;</span>http://192.168.1.169:9999/repository/<span class="nt">&lt;/url&gt;</span>
+            <span class="c">&lt;!-- 用于定位和排序构件的仓库布局类型-可以是default（默认）或者legacy（遗留）。Maven 2为其仓库提供了一个默认的布局；然 
+                而，Maven 1.x有一种不同的布局。我们可以使用该元素指定布局是default（默认）还是legacy（遗留）。 --&gt;</span>
+            <span class="nt">&lt;layout&gt;</span>default<span class="nt">&lt;/layout&gt;</span>
+        <span class="nt">&lt;/repository&gt;</span>
+    <span class="nt">&lt;/repositories&gt;</span>
+    <span class="c">&lt;!--发现插件的远程仓库列表，这些插件用于构建和报表 --&gt;</span>
+    <span class="nt">&lt;pluginRepositories&gt;</span>
+        <span class="c">&lt;!--包含需要连接到远程插件仓库的信息.参见repositories/repository元素 --&gt;</span>
+        <span class="nt">&lt;pluginRepository&gt;</span>
+            ......
+        <span class="nt">&lt;/pluginRepository&gt;</span>
+    <span class="nt">&lt;/pluginRepositories&gt;</span>
+ 
+ 
+    <span class="c">&lt;!--该元素描述了项目相关的所有依赖。 这些依赖组成了项目构建过程中的一个个环节。它们自动从项目定义的仓库中下载。要获取更多信息，请看项目依赖机制。 --&gt;</span>
+    <span class="nt">&lt;dependencies&gt;</span>
+        <span class="nt">&lt;dependency&gt;</span>
+            <span class="c">&lt;!--依赖的group ID --&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.apache.maven<span class="nt">&lt;/groupId&gt;</span>
+            <span class="c">&lt;!--依赖的artifact ID --&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>maven-artifact<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="c">&lt;!--依赖的版本号。 在Maven 2里, 也可以配置成版本号的范围。 --&gt;</span>
+            <span class="nt">&lt;version&gt;</span>3.8.1<span class="nt">&lt;/version&gt;</span>
+            <span class="c">&lt;!-- 依赖类型，默认类型是jar。它通常表示依赖的文件的扩展名，但也有例外。一个类型可以被映射成另外一个扩展名或分类器。类型经常和使用的打包方式对应， 
+                尽管这也有例外。一些类型的例子：jar，war，ejb-client和test-jar。如果设置extensions为 true，就可以在 plugin里定义新的类型。所以前面的类型的例子不完整。 --&gt;</span>
+            <span class="nt">&lt;type&gt;</span>jar<span class="nt">&lt;/type&gt;</span>
+            <span class="c">&lt;!-- 依赖的分类器。分类器可以区分属于同一个POM，但不同构建方式的构件。分类器名被附加到文件名的版本号后面。例如，如果你想要构建两个单独的构件成 
+                JAR，一个使用Java 1.4编译器，另一个使用Java 6编译器，你就可以使用分类器来生成两个单独的JAR构件。 --&gt;</span>
+            <span class="nt">&lt;classifier&gt;&lt;/classifier&gt;</span>
+            <span class="c">&lt;!--依赖范围。在项目发布过程中，帮助决定哪些构件被包括进来。欲知详情请参考依赖机制。 - compile ：默认范围，用于编译 - provided：类似于编译，但支持你期待jdk或者容器提供，类似于classpath 
+                - runtime: 在执行时需要使用 - test: 用于test任务时使用 - system: 需要外在提供相应的元素。通过systemPath来取得 
+                - systemPath: 仅用于范围为system。提供相应的路径 - optional: 当项目自身被依赖时，标注依赖是否传递。用于连续依赖时使用 --&gt;</span>
+            <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+            <span class="c">&lt;!--仅供system范围使用。注意，不鼓励使用这个元素，并且在新的版本中该元素可能被覆盖掉。该元素为依赖规定了文件系统上的路径。需要绝对路径而不是相对路径。推荐使用属性匹配绝对路径，例如${java.home}。 --&gt;</span>
+            <span class="nt">&lt;systemPath&gt;&lt;/systemPath&gt;</span>
+            <span class="c">&lt;!--当计算传递依赖时， 从依赖构件列表里，列出被排除的依赖构件集。即告诉maven你只依赖指定的项目，不依赖项目的依赖。此元素主要用于解决版本冲突问题 --&gt;</span>
+            <span class="nt">&lt;exclusions&gt;</span>
+                <span class="nt">&lt;exclusion&gt;</span>
+                    <span class="nt">&lt;artifactId&gt;</span>spring-core<span class="nt">&lt;/artifactId&gt;</span>
+                    <span class="nt">&lt;groupId&gt;</span>org.springframework<span class="nt">&lt;/groupId&gt;</span>
+                <span class="nt">&lt;/exclusion&gt;</span>
+            <span class="nt">&lt;/exclusions&gt;</span>
+            <span class="c">&lt;!--可选依赖，如果你在项目B中把C依赖声明为可选，你就需要在依赖于B的项目（例如项目A）中显式的引用对C的依赖。可选依赖阻断依赖的传递性。 --&gt;</span>
+            <span class="nt">&lt;optional&gt;</span>true<span class="nt">&lt;/optional&gt;</span>
+        <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;/dependencies&gt;</span>
+    <span class="c">&lt;!--不赞成使用. 现在Maven忽略该元素. --&gt;</span>
+    <span class="nt">&lt;reports&gt;&lt;/reports&gt;</span>
+    <span class="c">&lt;!--该元素描述使用报表插件产生报表的规范。当用户执行"mvn site"，这些报表就会运行。 在页面导航栏能看到所有报表的链接。 --&gt;</span>
+    <span class="nt">&lt;reporting&gt;</span>
+        <span class="c">&lt;!--true，则，网站不包括默认的报表。这包括"项目信息"菜单中的报表。 --&gt;</span>
+        <span class="nt">&lt;excludeDefaults</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!--所有产生的报表存放到哪里。默认值是${project.build.directory}/site。 --&gt;</span>
+        <span class="nt">&lt;outputDirectory</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!--使用的报表插件和他们的配置。 --&gt;</span>
+        <span class="nt">&lt;plugins&gt;</span>
+            <span class="c">&lt;!--plugin元素包含描述报表插件需要的信息 --&gt;</span>
+            <span class="nt">&lt;plugin&gt;</span>
+                <span class="c">&lt;!--报表插件在仓库里的group ID --&gt;</span>
+                <span class="nt">&lt;groupId</span> <span class="nt">/&gt;</span>
+                <span class="c">&lt;!--报表插件在仓库里的artifact ID --&gt;</span>
+                <span class="nt">&lt;artifactId</span> <span class="nt">/&gt;</span>
+                <span class="c">&lt;!--被使用的报表插件的版本（或版本范围） --&gt;</span>
+                <span class="nt">&lt;version</span> <span class="nt">/&gt;</span>
+                <span class="c">&lt;!--任何配置是否被传播到子项目 --&gt;</span>
+                <span class="nt">&lt;inherited</span> <span class="nt">/&gt;</span>
+                <span class="c">&lt;!--报表插件的配置 --&gt;</span>
+                <span class="nt">&lt;configuration</span> <span class="nt">/&gt;</span>
+                <span class="c">&lt;!--一组报表的多重规范，每个规范可能有不同的配置。一个规范（报表集）对应一个执行目标 。例如，有1，2，3，4，5，6，7，8，9个报表。1，2，5构成A报表集，对应一个执行目标。2，5，8构成B报表集，对应另一个执行目标 --&gt;</span>
+                <span class="nt">&lt;reportSets&gt;</span>
+                    <span class="c">&lt;!--表示报表的一个集合，以及产生该集合的配置 --&gt;</span>
+                    <span class="nt">&lt;reportSet&gt;</span>
+                        <span class="c">&lt;!--报表集合的唯一标识符，POM继承时用到 --&gt;</span>
+                        <span class="nt">&lt;id</span> <span class="nt">/&gt;</span>
+                        <span class="c">&lt;!--产生报表集合时，被使用的报表的配置 --&gt;</span>
+                        <span class="nt">&lt;configuration</span> <span class="nt">/&gt;</span>
+                        <span class="c">&lt;!--配置是否被继承到子POMs --&gt;</span>
+                        <span class="nt">&lt;inherited</span> <span class="nt">/&gt;</span>
+                        <span class="c">&lt;!--这个集合里使用到哪些报表 --&gt;</span>
+                        <span class="nt">&lt;reports</span> <span class="nt">/&gt;</span>
+                    <span class="nt">&lt;/reportSet&gt;</span>
+                <span class="nt">&lt;/reportSets&gt;</span>
+            <span class="nt">&lt;/plugin&gt;</span>
+        <span class="nt">&lt;/plugins&gt;</span>
+    <span class="nt">&lt;/reporting&gt;</span>
+    <span class="c">&lt;!-- 继承自该项目的所有子项目的默认依赖信息。这部分的依赖信息不会被立即解析,而是当子项目声明一个依赖（必须描述group ID和 artifact 
+        ID信息），如果group ID和artifact ID以外的一些信息没有描述，则通过group ID和artifact ID 匹配到这里的依赖，并使用这里的依赖信息。 --&gt;</span>
+    <span class="nt">&lt;dependencyManagement&gt;</span>
+        <span class="nt">&lt;dependencies&gt;</span>
+            <span class="c">&lt;!--参见dependencies/dependency元素 --&gt;</span>
+            <span class="nt">&lt;dependency&gt;</span>
+                ......
+            <span class="nt">&lt;/dependency&gt;</span>
+        <span class="nt">&lt;/dependencies&gt;</span>
+    <span class="nt">&lt;/dependencyManagement&gt;</span>
+    <span class="c">&lt;!--项目分发信息，在执行mvn deploy后表示要发布的位置。有了这些信息就可以把网站部署到远程服务器或者把构件部署到远程仓库。 --&gt;</span>
+    <span class="nt">&lt;distributionManagement&gt;</span>
+        <span class="c">&lt;!--部署项目产生的构件到远程仓库需要的信息 --&gt;</span>
+        <span class="nt">&lt;repository&gt;</span>
+            <span class="c">&lt;!--是分配给快照一个唯一的版本号（由时间戳和构建流水号）？还是每次都使用相同的版本号？参见repositories/repository元素 --&gt;</span>
+            <span class="nt">&lt;uniqueVersion</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;id&gt;</span>banseon-maven2<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;name&gt;</span>banseon maven2<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;url&gt;</span>file://${basedir}/target/deploy<span class="nt">&lt;/url&gt;</span>
+            <span class="nt">&lt;layout</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/repository&gt;</span>
+        <span class="c">&lt;!--构件的快照部署到哪里？如果没有配置该元素，默认部署到repository元素配置的仓库，参见distributionManagement/repository元素 --&gt;</span>
+        <span class="nt">&lt;snapshotRepository&gt;</span>
+            <span class="nt">&lt;uniqueVersion</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;id&gt;</span>banseon-maven2<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;name&gt;</span>Banseon-maven2 Snapshot Repository<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;url&gt;</span>scp://svn.baidu.com/banseon:/usr/local/maven-snapshot<span class="nt">&lt;/url&gt;</span>
+            <span class="nt">&lt;layout</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/snapshotRepository&gt;</span>
+        <span class="c">&lt;!--部署项目的网站需要的信息 --&gt;</span>
+        <span class="nt">&lt;site&gt;</span>
+            <span class="c">&lt;!--部署位置的唯一标识符，用来匹配站点和settings.xml文件里的配置 --&gt;</span>
+            <span class="nt">&lt;id&gt;</span>banseon-site<span class="nt">&lt;/id&gt;</span>
+            <span class="c">&lt;!--部署位置的名称 --&gt;</span>
+            <span class="nt">&lt;name&gt;</span>business api website<span class="nt">&lt;/name&gt;</span>
+            <span class="c">&lt;!--部署位置的URL，按protocol://hostname/path形式 --&gt;</span>
+            <span class="nt">&lt;url&gt;</span>
+                scp://svn.baidu.com/banseon:/var/www/localhost/banseon-web
+            <span class="nt">&lt;/url&gt;</span>
+        <span class="nt">&lt;/site&gt;</span>
+        <span class="c">&lt;!--项目下载页面的URL。如果没有该元素，用户应该参考主页。使用该元素的原因是：帮助定位那些不在仓库里的构件（由于license限制）。 --&gt;</span>
+        <span class="nt">&lt;downloadUrl</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!--如果构件有了新的group ID和artifact ID（构件移到了新的位置），这里列出构件的重定位信息。 --&gt;</span>
+        <span class="nt">&lt;relocation&gt;</span>
+            <span class="c">&lt;!--构件新的group ID --&gt;</span>
+            <span class="nt">&lt;groupId</span> <span class="nt">/&gt;</span>
+            <span class="c">&lt;!--构件新的artifact ID --&gt;</span>
+            <span class="nt">&lt;artifactId</span> <span class="nt">/&gt;</span>
+            <span class="c">&lt;!--构件新的版本号 --&gt;</span>
+            <span class="nt">&lt;version</span> <span class="nt">/&gt;</span>
+            <span class="c">&lt;!--显示给用户的，关于移动的额外信息，例如原因。 --&gt;</span>
+            <span class="nt">&lt;message</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/relocation&gt;</span>
+        <span class="c">&lt;!-- 给出该构件在远程仓库的状态。不得在本地项目中设置该元素，因为这是工具自动更新的。有效的值有：none（默认），converted（仓库管理员从 
+            Maven 1 POM转换过来），partner（直接从伙伴Maven 2仓库同步过来），deployed（从Maven 2实例部 署），verified（被核实时正确的和最终的）。 --&gt;</span>
+        <span class="nt">&lt;status</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/distributionManagement&gt;</span>
+    <span class="c">&lt;!--以值替代名称，Properties可以在整个POM中使用，也可以作为触发条件（见settings.xml配置文件里activation元素的说明）。格式是&lt;name&gt;value&lt;/name&gt;。 --&gt;</span>
+    <span class="nt">&lt;properties</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div></div>
+
+
+                    <!-- 一个用于添加作者和提交时间的文件 -->
+<span style="
+color: #b5d3ca;
+font-style: italic;
+font-family: YouYuan;
+top:100px;
+display: none;"
+id="modified-data-footer">
+    <hr></hr>
+    <center>
+        最后编辑时间：2023-09-28T22:31:04Z
+    </center>
+</span>
+
+<script>
+    var git_url="https://api.github.com/repos/dsx137/DNote/";
+    var pageURL = decodeURIComponent(window.location.href);
+    var footer_time = document.getElementById("modified-data-footer");
+    pageURL = ("_"+pageURL.substring(pageURL.indexOf("notes/"),pageURL.length)).replace(new RegExp("#.*"),"")+".md";
+    function enableElement(element){
+        element.getAttributeNode("style").value=element.getAttributeNode("style").value.replace("display: none","display: block");
+    }
+    function footer_enable_func(curCommit){
+        if(curCommit){
+            var commitDate=curCommit.commit.author.date;
+            var commitAuthor=curCommit.commit.author.name
+            if(commitDate)
+                {
+                    enableElement(footer_time);
+                    footer_time.innerHTML="<hr></hr><center>作者："+commitAuthor+"<br>"+"最后提交时间："+commitDate+"</center>";
+                }
+        }
+    }
+
+
+        enableElement(footer_time);
+        window.addEventListener('pageChangeEvent',function(e){
+            var math = document.getElementsByClassName("hidden_panel");
+            if(MathJax.Hub) MathJax.Hub.Queue(["Typeset",MathJax.Hub,math]);
+        });
+
+</script>
+
+                    
+                </section>
+            </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div></div>
+    </div>
+</div>
+
+
+<script src="/DNote/old_jekyll/assets/modified_files/mobileFingerMenu.js"></script>
+<script src="/DNote/old_jekyll/assets/modified_files/tableDiv.js"></script>
+                        <a href="/DNote/old_jekyll/notes/%E7%AC%94%E8%AE%B0/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7/Gradle" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Gradle">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                    
+
+                    
+                        <a href="/DNote/old_jekyll/notes/%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/0.%E5%AF%BC%E8%88%AA/@%E5%BA%8F%E8%A8%80" class="navigation navigation-next navigation-unique" aria-label="Next page: @序言">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    
+
+                </div>
+            </div>
+
+            <script>
+            var gitbook = gitbook || [];
+            gitbook.push(function() {
+                gitbook.page.hasChanged({
+    "page": {
+        "title": "Introduction",
+        "level": "1.1",
+        "depth": 1,
+        
+        "next": {
+            "title": "@序言",
+            "level": "1.2",
+            "depth": 1,
+            "path": "_notes/笔记/计算机基础/0.导航/@序言.md",
+            "ref": "_notes/笔记/计算机基础/0.导航/@序言.md",
+            "articles": []
+        },
+        
+        "dir": "ltr"
+    },    "config": {
+        "plugins": ["fontsettings", "highlight", "livereload", "lunr", "search", "sharing", "theme-default", "livereload"],
+        "styles": {
+            "ebook": "styles/ebook.css",
+            "epub": "styles/epub.css",
+            "mobi": "styles/mobi.css",
+            "pdf": "styles/pdf.css",
+            "print": "styles/print.css",
+            "website": "styles/website.css"
+        },
+        "pluginsConfig": {
+            "fontsettings": {
+                "family": "sans",
+                "size": 2,
+                "theme": "night"
+            },
+            "highlight": {},
+            "livereload": {},
+            "lunr": {
+                "ignoreSpecialCharacters": false,
+                "maxIndexSize": 1000000
+            },
+            "search": {},            "sharing": {
+                
+            },
+"theme-default": {
+                "showLevel": false,
+                "styles": {
+                    "ebook": "styles/ebook.css",
+                    "epub": "styles/epub.css",
+                    "mobi": "styles/mobi.css",
+                    "pdf": "styles/pdf.css",
+                    "print": "styles/print.css",
+                    "website": "styles/website.css"
+                }
+            }
+        },
+        "theme": "default",
+        "author": "Tao He",
+        "pdf": {
+            "pageNumbers": true,
+            "fontSize": 12,
+            "fontFamily": "Arial",
+            "paperSize": "a4",
+            "chapterMark": "pagebreak",
+            "pageBreaksBefore": "/",
+            "margin": {
+                "right": 62,
+                "left": 62,
+                "top": 56,
+                "bottom": 56
+            }
+        },
+        "structure": {
+            "langs": "LANGS.md",
+            "readme": "README.md",
+        },
+        "variables": {},
+        "title": "DNote",
+        "language": "en",
+        "gitbook": "*"
+    },
+    "file": {
+        "path": "_notes/笔记/编程语言/构建工具/Maven.md",
+        "mtime": "2023-09-28 22:31:10 +0000",
+        "type": "markdown"
+    },
+    "gitbook": {
+        "version": "3.2.3",
+        "time": "2023-09-28 22:31:10 +0000"
+    },
+    "basePath": "/DNote/old_jekyll",
+    "book": {
+        "language": ""
+    }
+});
+            });
+            </script>
+        </div><script src="/DNote/old_jekyll/assets/gitbook/gitbook.js"></script>
+<script src="/DNote/old_jekyll/assets/gitbook/theme.js"></script>
+
+<script src="/DNote/old_jekyll/assets/gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+<script src="/DNote/old_jekyll/assets/gitbook/gitbook-plugin-sharing/buttons.js"></script>
+
+<!-- <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+<script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+<script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+<script src="../gitbook/gitbook-plugin-search/search.js"></script> -->
+
+<script src="/DNote/old_jekyll/assets/gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+<script src="/DNote/old_jekyll/assets/gitbook/gitbook-plugin-search-pro/search.js"></script>
+<script src="/DNote/old_jekyll/assets/gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+
+<script type="text/javascript" id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+
+</body>
+    
+</html>
