@@ -53,6 +53,7 @@ jobs:
           git checkout gh-pages
           rsync -av --exclude='old_jekyll' . ${{ github.workspace }}/build/
           git checkout old_jekyll
+          mkdir -p ${{ github.workspace }}/build/old_jekyll
           cp -r ${{ github.workspace }}/_site/* ${{ github.workspace }}/build/old_jekyll/
       - name: Deploy to Pages
         uses: peaceiris/actions-gh-pages@v3
