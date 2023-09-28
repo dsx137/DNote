@@ -1,0 +1,23 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "21561",
+      "name": "展开",
+      "font_class": "111111111",
+      "unicode": "f0021",
+      "unicode_decimal": 983073
+    },
+    {
+      "icon_id": "2986186",
+      "name": "收缩",
+      "font_class": "shrink-s",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    }
+  ]
+}
