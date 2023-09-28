@@ -11,4 +11,4 @@ permalink: /
 
 已弃用
 
-新系统采用Docusaurus
+新系统采用[Docusaurus](https://docusaurus.io/zh-CN/)
