@@ -59,13 +59,13 @@ jobs:
           git checkout gh-pages
           
           for item in $(ls -A | grep -vE "old_jekyll|build"); do
-              cp -r $item ${{ github.workspace }}/build/
+              cp -r $item ${{ runner.temp }}/build/
           done
           git checkout old_jekyll
       - name: Deploy to Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.TOKEN }}
-          publish_dir: build
+          publish_dir: ${{ runner.temp }}/build
           publish_branch: gh-pages
           destination_dir: .
