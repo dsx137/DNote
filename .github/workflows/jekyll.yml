@@ -33,6 +33,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Checkout submodules
+        run: |
+          git submodule update --init --recursive
       - name: Setup Ruby
         uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
         with:
@@ -44,14 +47,17 @@ jobs:
         uses: actions/configure-pages@v3
       - name: Build with Jekyll
         # Outputs to the './_site' directory by default
-        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
       - name: Copy main content
         run: |
           git fetch origin gh-pages
           git checkout gh-pages
-          rsync -av --exclude='old_jekyll' . ${{ github.workspace }}/build/
+          mkdir -p ${{ github.workspace }}/build
+          for item in $(ls -A | grep -vE "old_jekyll|build"); do
+              cp -r $item ${{ github.workspace }}/build/
+          done
           git checkout old_jekyll
           mkdir -p ${{ github.workspace }}/build/old_jekyll
           cp -r ${{ github.workspace }}/_site/* ${{ github.workspace }}/build/old_jekyll/
