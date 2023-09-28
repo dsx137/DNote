@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkd_note=self.webpackChunkd_note||[]).push([[5605],{4578:e=>{e.exports=JSON.parse('{"label":"hola","permalink":"/DNote/blog/tags/hola","allTagsPath":"/DNote/blog/tags","count":1}')}}]);
