@@ -52,15 +52,16 @@ jobs:
           JEKYLL_ENV: production
       - name: Copy main content
         run: |
+          mkdir -p ${{ runner.temp }}/build/old_jekyll
+          cp -r ${{ github.workspace }}/_site/* ${{ runner.temp }}/build/old_jekyll/
+
           git fetch origin gh-pages
           git checkout gh-pages
-          mkdir -p ${{ github.workspace }}/build
+          
           for item in $(ls -A | grep -vE "old_jekyll|build"); do
               cp -r $item ${{ github.workspace }}/build/
           done
           git checkout old_jekyll
-          mkdir -p ${{ github.workspace }}/build/old_jekyll
-          cp -r ${{ github.workspace }}/_site/* ${{ github.workspace }}/build/old_jekyll/
       - name: Deploy to Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
