@@ -10,7 +10,7 @@ version:          1.0
 gitbook_version:  3.2.3
 
 url:              'https://dsx137.github.io'
-baseurl:          '/DNote/old'
+baseurl:          '/DNote/old_jekyll'
 rss:              RSS
 
 # bootstrap: use the remote theme for the site itself
