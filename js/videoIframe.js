@@ -1,15 +1,26 @@
-window.onload = function () {
+function handleIframe() {
     const iframes = document.querySelectorAll('iframe.videoIframe');
 
-    iframes.forEach((iframe) => {
+    function resizeIframe(iframe) {
         const width = iframe.offsetWidth;
-        iframe.style.height = (width * 9 / 16) + 'px';
-    });
-
-    window.onresize = function () {
-        iframes.forEach((iframe) => {
-            const width = iframe.offsetWidth;
+        if (width != 0) {
             iframe.style.height = (width * 9 / 16) + 'px';
-        });
-    };
+        }
+    }
+
+    iframes.forEach(resizeIframe);
 };
+
+let lastPathname = window.location.pathname;
+
+// 检查 URL 是否发生变化
+function checkForURLChange() {
+    if (window.location.pathname !== lastPathname) {
+        lastPathname = window.location.pathname;
+        handleIframe();
+    }
+}
+
+window.onresize = handleIframe;
+
+setInterval(handleIframe, 100);
