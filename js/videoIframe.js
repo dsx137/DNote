@@ -21,6 +21,7 @@ function checkForURLChange() {
     }
 }
 
+window.onload = handleIframe;
 window.onresize = handleIframe;
 
 setInterval(handleIframe, 100);
