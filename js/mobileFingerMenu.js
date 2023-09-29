@@ -1,11 +1,9 @@
 // 获取canvas元素和绘图上下文
 var canvas = document.createElement("canvas");
 canvas.id = "canvas";
-canvas.style.position = "absolute";
+canvas.style.position = "fixed";
 canvas.style.zIndex = 999;
 canvas.style.pointerEvents = "none";
-canvas.style.top = 0;
-canvas.style.left = 0;
 document.body.appendChild(canvas);
 
 var ctx = canvas.getContext("2d");
@@ -130,6 +128,7 @@ document.addEventListener("touchend", function (e) {
     if (tEnd - tStart > validSwipeTime) {
         if (isValidSwipe(e)) {
             menuButton.classList.toggle("navbar-sidebar--show");
+            document.body.style.overflow = menuButton.classList.contains("navbar-sidebar--show") ? "hidden" : "visible";
         }
     }
     clearGraph();
