@@ -7,14 +7,12 @@ canvas.style.pointerEvents = "none";
 document.body.appendChild(canvas);
 
 var ctx = canvas.getContext("2d");
-canvas.style.width = '100%';
-canvas.style.height = '100%';
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width = window.outerWidth;
+canvas.height = window.outerHeight;
 
 window.onresize = function () {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.width = window.outerWidth;
+    canvas.height = window.outerHeight;
 }
 
 var validSwipeLength = 100;
