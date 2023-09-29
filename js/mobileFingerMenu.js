@@ -4,15 +4,17 @@ canvas.id = "canvas";
 canvas.style.position = "absolute";
 canvas.style.zIndex = 999;
 canvas.style.pointerEvents = "none";
+canvas.style.top = 0;
+canvas.style.left = 0;
 document.body.appendChild(canvas);
 
 var ctx = canvas.getContext("2d");
-canvas.width = window.outerWidth;
-canvas.height = window.outerHeight;
+canvas.width = document.body.offsetWidth;
+canvas.height = document.body.offsetHeight;
 
 window.onresize = function () {
-    canvas.width = window.outerWidth;
-    canvas.height = window.outerHeight;
+    canvas.width = document.body.offsetWidth;
+    canvas.height = document.body.offsetHeight;
 }
 
 var validSwipeLength = 100;
