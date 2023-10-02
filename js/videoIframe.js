@@ -11,17 +11,10 @@ function handleIframe() {
     iframes.forEach(resizeIframe);
 };
 
-let lastPathname = window.location.pathname;
-
-// 检查 URL 是否发生变化
-function checkForURLChange() {
-    if (window.location.pathname !== lastPathname) {
-        lastPathname = window.location.pathname;
+window.addEventListener('resize', handleIframe);
+window.addEventListener('load', event => {
+    handleIframe();
+    new MutationObserver(function (mutations) {
         handleIframe();
-    }
-}
-
-window.onload = handleIframe;
-window.onresize = handleIframe;
-
-setInterval(handleIframe, 100);
+    }).observe(document.body, { childList: true, subtree: true });
+});
