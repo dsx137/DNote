@@ -1,5 +1,5 @@
-const favicon_dark = '/img/favicon-dark.svg';
-const favicon_light = '/img/favicon-light.svg';
+const favicon_dark = '/DNote/img/favicon-dark.svg';
+const favicon_light = '/DNote/img/favicon-light.svg';
 
 function setFavicon() {
     const faviconLink = document.querySelector('link[rel="icon"]');
