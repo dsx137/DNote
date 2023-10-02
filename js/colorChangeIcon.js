@@ -10,14 +10,16 @@ function setFavicon() {
 }
 
 function setLogo() {
-    const logo = document.querySelector('.navbar__logo img');
+    const logos = document.querySelectorAll('.navbar__logo img');
     const html = document.querySelector('html');
-    if (logo && html) {
-        if (html.dataset.theme === 'dark') {
-            logo.src = favicon_dark;
-        } else {
-            logo.src = favicon_light;
-        }
+    if (logos.length != 0 && html) {
+        logos.forEach(logo => {
+            if (html.dataset.theme === 'dark') {
+                logo.src = favicon_dark;
+            } else {
+                logo.src = favicon_light;
+            }
+        });
     }
 }
 
