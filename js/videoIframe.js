@@ -16,5 +16,5 @@ window.addEventListener('load', event => {
     handleIframe();
     new MutationObserver(function (mutations) {
         handleIframe();
-    }).observe(document.body, { childList: true, subtree: true });
+    }).observe(document.body, {attributes:true, childList: true, subtree: true });
 });
