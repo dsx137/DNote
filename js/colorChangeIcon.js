@@ -17,7 +17,7 @@ function setFavicon() {
 
 function setLogo() {
     const logos = document.querySelectorAll('.navbar__logo img');
-    if (logos.length != 0 && html) {
+    if (logos.length != 0) {
         logos.forEach(logo => {
             if (getTheme() === 'dark') {
                 logo.src = favicon_dark;
