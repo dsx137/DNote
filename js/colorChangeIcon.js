@@ -1,20 +1,25 @@
 const favicon_dark = '/DNote/img/favicon-dark.svg';
 const favicon_light = '/DNote/img/favicon-light.svg';
 
+function getTheme() { 
+    const html = document.querySelector('html');
+    if (html) return html.dataset.theme;
+    else return 'dark';
+}
+
 function setFavicon() {
     const faviconLink = document.querySelector('link[rel="icon"]');
     if (faviconLink) {
-        const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        faviconLink.href = isDarkMode ? favicon_dark : favicon_light;
+        const isBrowserDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        faviconLink.href = isBrowserDarkMode ? favicon_dark : favicon_light;
     }
 }
 
 function setLogo() {
     const logos = document.querySelectorAll('.navbar__logo img');
-    const html = document.querySelector('html');
     if (logos.length != 0 && html) {
         logos.forEach(logo => {
-            if (html.dataset.theme === 'dark') {
+            if (getTheme() === 'dark') {
                 logo.src = favicon_dark;
             } else {
                 logo.src = favicon_light;
@@ -28,11 +33,10 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', set
 
 window.addEventListener('load', event => {
     setFavicon();
-    new MutationObserver(setFavicon).observe(document.head, { childList: true });
+    setInterval(setFavicon, 100);
 
     // setLogo();
     // new MutationObserver(setLogo).observe(document.querySelector('html'), { attributes: true });
 });
 
-//即时更新（残疾
-setInterval(setFavicon, 100);
+
