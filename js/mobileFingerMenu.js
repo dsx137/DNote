@@ -129,8 +129,8 @@ document.addEventListener("touchend", function (e) {
     tEnd = Date.now();
     if (tEnd - tStart > validSwipeTime) {
         if (isValidSwipe(e)) {
-            menuButton.classList.toggle("navbar-sidebar--show");
-            document.body.style.overflow = menuButton.classList.contains("navbar-sidebar--show") ? "hidden" : "visible";
+            var btn = document.querySelector("button.navbar__toggle");
+            if (btn) btn.click();
         }
     }
     clearGraph();
