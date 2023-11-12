@@ -3,3 +3,4 @@ _draft/
 .jekyll-cache/
 .docusaurus/*
 node_modules/
+docs/
