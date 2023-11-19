@@ -1,0 +1,107 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+/* 伪选择器，:root选择根元素 */
+:root {
+  --ifm-color-primary: #00c030;
+  /* --ifm-color-primary-dark: #29784c;
+  --ifm-color-primary-darker: #277148;
+  --ifm-color-primary-darkest: #205d3b;
+  --ifm-color-primary-light: #33925d;
+  --ifm-color-primary-lighter: #359962;
+  --ifm-color-primary-lightest: #3cad6e; */
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  --menu-sublist-color: #4996e4;
+  --blockquote-color: #787a8a;
+  --theme-svg-invert: 0%;
+  --theme-svg-brightness: 3.2;
+}
+
+/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* 属性选择器，选择具有dark-theme属性的元素（在这里是html元素） */
+[data-theme='dark'] {
+  --ifm-color-primary: #25c2a0;
+  /* --ifm-color-primary-dark: #21af90;
+  --ifm-color-primary-darker: #1fa588;
+  --ifm-color-primary-darkest: #1a8870;
+  --ifm-color-primary-light: #29d5b0;
+  --ifm-color-primary-lighter: #32d8b4;
+  --ifm-color-primary-lightest: #4fddbf; */
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+
+  --menu-sublist-color: #9ed0ff;
+  --blockquote-color: #9f9faa;
+  --theme-svg-invert: 100%;
+  --theme-svg-brightness: 0.7;
+}
+
+/* 导航不同状态的颜色 */
+.menu__link--sublist {
+  color: var(--menu-sublist-color);
+}
+
+.menu__link--sublist.menu__link--active {
+  color: var(--ifm-menu-color-active);
+}
+
+/* 页脚样式 */
+.footer {
+  background-color: #2b3238;
+  color: #b2cee9;
+}
+
+.footer.footer--dark {
+  background-color: #2b3238;
+  color: #b2cee9;
+}
+
+/* 引用样式 */
+blockquote {
+  color: var(--blockquote-color);
+}
+
+/* 水平线样式 */
+hr {
+  color: var(--blockquote-color);
+  border: var(--blockquote-color);
+  background-color: var(--blockquote-color);
+}
+
+/* logo */
+.navbar__logo img {
+  filter: invert(var(--theme-svg-invert));
+}
+
+/* iframe */
+/* iframe {
+  width: 100%;
+  height: 400px;
+}
+
+iframe.longPage {
+  width: 100%;
+  height: 800px;
+} */
+
+
+/* 带链接的分类 */
+a.menu__link--sublist:not(.menu__link--sublist-caret)::after {
+  /* margin-left: auto; */
+  content: url("/img/link-category.svg");
+  filter: invert(var(--theme-svg-invert)) brightness(var(--theme-svg-brightness));
+  font-size: small;
+  transition: none;
+  animation: none;
+  transform: none;
+}
+
+div.menu__list-item-collapsible--active a.menu__link--sublist:not(.menu__link--sublist-caret).menu__link--active::after {
+  color: var(--ifm-menu-color-active);
+  filter: invert(var(--theme-svg-invert));
+}
