@@ -3,8 +3,7 @@
 
 const docusaurus = 'https://www.docusaurus.io/zh-CN/'
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+import {themes as prismThemes} from 'prism-react-renderer';
 
 const projectName = 'DNote'
 const github = 'https://github.com/dsx137'
@@ -133,8 +132,8 @@ const config = {
         copyright: `Copyright © ${new Date().getFullYear()} DNote, Inc. Built with <a href="${docusaurus}">Docusaurus</a>.`,
       },
       prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
+        theme: prismThemes.github,
+        darkTheme: prismThemes.dracula,
         additionalLanguages: ['haskell'],
       },
       colorMode: {

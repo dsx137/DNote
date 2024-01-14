@@ -105,3 +105,8 @@ div.menu__list-item-collapsible--active a.menu__link--sublist:not(.menu__link--s
   color: var(--ifm-menu-color-active);
   filter: invert(var(--theme-svg-invert));
 }
+
+/* 升级到3.1.0后的暂时性补丁，返回顶部按钮 */
+.backToTopButton_node_modules-\@docusaurus-theme-classic-lib-theme-BackToTopButton-styles-module::after {
+  -webkit-mask: var(--ifm-menu-link-sublist-icon) 50%/2rem 2rem no-repeat !important;
+}
