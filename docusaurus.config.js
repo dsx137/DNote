@@ -3,7 +3,7 @@
 
 const docusaurus = 'https://www.docusaurus.io/zh-CN/'
 
-import {themes as prismThemes} from 'prism-react-renderer';
+import { themes as prismThemes } from 'prism-react-renderer';
 
 const projectName = 'DNote'
 const github = 'https://github.com/dsx137'
@@ -76,7 +76,7 @@ const config = {
       navbar: {
         title: projectName,
         logo: {
-          alt: 'My Site Logo',
+          alt: 'DNote Logo',
           src: icon,
         },
         items: [
@@ -85,13 +85,30 @@ const config = {
             sidebarId: 'ruleSidebar',
             position: 'left',
             label: '写作规范',
-          },
-          {
-            type: 'docSidebar',
-            sidebarId: 'noteSidebar',
-            position: 'left',
+          }, {
+            type: 'dropdown',
             label: '笔记',
-          },
+            position: 'left',
+            items: [
+              {
+                type: 'docSidebar',
+                sidebarId: 'computerBasicSidebar',
+                label: '计算机基础'
+              }, {
+                type: 'docSidebar',
+                sidebarId: 'frameworkSidebar',
+                label: '框架'
+              }, {
+                type: 'docSidebar',
+                sidebarId: 'miscSidebar',
+                label: '其他'
+              }, {
+                type: 'docSidebar',
+                sidebarId: 'mathSidebar',
+                label: '数学'
+              }
+            ]
+          }
         ],
       },
       footer: {
@@ -125,6 +142,9 @@ const config = {
               {
                 label: 'Zhihu',
                 href: "https://www.zhihu.com/people/dsxragon",
+              }, {
+                label: 'Bilibili',
+                href: "https://space.bilibili.com/52702262",
               }
             ]
           },
@@ -134,7 +154,7 @@ const config = {
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
-        additionalLanguages: ['haskell','java'],
+        additionalLanguages: ['haskell', 'java'],
       },
       colorMode: {
         defaultMode: 'dark',
@@ -179,24 +199,18 @@ const config = {
 
   scripts: [
     {
-      src: baseUrl + '/js/videoIframe.js',
+      src: baseUrl + '/js/VideoIframe.js',
       async: true,
       defer: true
     }, {
-      src: baseUrl + '/js/mobileFingerMenu.js',
+      src: baseUrl + '/js/ThemeStrategy.js',
+      defer: true
+    }, {
+      src: baseUrl + '/js/SidebarLinkCategoryCollapsible.js',
       async: true,
       defer: true
     }, {
-      src: baseUrl + '/js/colorChangeIcon.js',
-      async: true,
-      defer: true
-    }, {
-      src: baseUrl + '/js/sidebarLinkCategoryCollapsible.js',
-      async: true,
-      defer: true
-    }, {
-      src: baseUrl + '/js/addLineOnEmptyList.js',
-      async: true,
+      src: baseUrl + '/js/main.js',
       defer: true
     }
   ]

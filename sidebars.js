@@ -115,7 +115,10 @@ function sortItems(items) {
 
 const sidebars = {
   ruleSidebar: parseDir('docs/notes/@写作规范'),
-  noteSidebar: parseDir('docs/notes/笔记'),
+  computerBasicSidebar: parseDir('docs/notes/笔记/计算机基础'),
+  frameworkSidebar: parseDir('docs/notes/笔记/框架'),
+  miscSidebar: parseDir('docs/notes/笔记/其他'),
+  mathSidebar: parseDir('docs/notes/笔记/数学'),
 }
 
 module.exports = sidebars;
