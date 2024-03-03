@@ -1,3 +1,5 @@
+// 向拥有页面的侧边栏目录项添加点击事件，使其可以展开/收起子目录+
+
 function handleClickEvent(element, event) {
     if (element.getAttribute('href').includes(decodeURIComponent(window.location.pathname.split('/').slice(1).join('/').split('?')[0]))) {
         event.stopPropagation();
@@ -34,9 +36,7 @@ window.addEventListener('load', (event) => {
     // 创建一个观察者实例
     const observer = new MutationObserver(function (mutations) {
         mutations.forEach(function (mutation) {
-            console.log(mutation.target);
             handleSidebar(mutation.target);
-            // handleSidebar(targetNode);
         });
     });
 
