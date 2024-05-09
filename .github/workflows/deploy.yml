@@ -3,45 +3,57 @@ on:
   push:
     branches:
       - main
+
 jobs:
-  build-and-deploy:
+  deploy:
+    concurrency:
+      group: deploy
+      cancel-in-progress: true
     runs-on: ubuntu-latest
+
     steps:
+      - name: Checkout
+        uses: actions/checkout@main
+        with:
+          persist-credentials: false
 
-    - name: Checkout
-      uses: actions/checkout@main
-      with:
-        persist-credentials: false
+      - name: Checkout submodules
+        run: |
+          git submodule update --init --recursive
 
-    - name: Checkout submodules
-      run: |
-        git submodule update --init --recursive
+      - name: Cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: "${{ runner.os }}-node-${{ hashFiles('**/package.json') }}"
+          restore-keys: |
+            ${{ runner.os }}-node-
 
-    - name: Install and Build
-      run: |
-        npm install
-        npm run-script build 
+      - name: Install and Build
+        run: |
+          npm install
+          npm run-script build 
 
-    - name: Copy old_jekyll content
-      run: |
-        cp -r ${{ github.workspace }}/build ${{ runner.temp }}
+      - name: Copy old_jekyll content
+        run: |
+          cp -r ${{ github.workspace }}/build ${{ runner.temp }}
 
-        git fetch origin gh-pages
-        git checkout gh-pages
-        
-        if [ -d "${{ github.workspace }}/old_jekyll" ]; then
-            cp -r ${{ github.workspace }}/old_jekyll ${{ runner.temp }}/build/
-        else
-            echo "old_jekyll directory does not exist, skipping copy."
-        fi
+          git fetch origin gh-pages
+          git checkout gh-pages
+          
+          if [ -d "${{ github.workspace }}/old_jekyll" ]; then
+              cp -r ${{ github.workspace }}/old_jekyll ${{ runner.temp }}/build/
+          else
+              echo "old_jekyll directory does not exist, skipping copy."
+          fi
 
-        git checkout main
-        
-    - name: Deploy to Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ${{ runner.temp }}/build
-        publish_branch: gh-pages
-        destination_dir: .
+          git checkout main
+          
+      - name: Deploy to Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ${{ runner.temp }}/build
+          publish_branch: gh-pages
+          destination_dir: .
 
