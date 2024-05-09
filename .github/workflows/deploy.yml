@@ -21,14 +21,6 @@ jobs:
         run: |
           git submodule update --init --recursive
 
-      - name: Cache
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: "${{ runner.os }}-node-${{ hashFiles('**/package.json') }}"
-          restore-keys: |
-            ${{ runner.os }}-node-
-
       - name: Install and Build
         run: |
           npm install
