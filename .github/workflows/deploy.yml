@@ -21,6 +21,14 @@ jobs:
         run: |
           git submodule update --init --recursive
 
+      - name: Cache npm packages
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Install and Build
         run: |
           npm install
