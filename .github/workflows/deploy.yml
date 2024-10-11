@@ -32,7 +32,7 @@ jobs:
       - name: Install and Build
         run: |
           npm install
-          npm run-script build 
+          npm run build
 
       - name: Copy old_jekyll content
         run: |
@@ -40,7 +40,7 @@ jobs:
 
           git fetch origin gh-pages
           git checkout gh-pages
-          
+
           if [ -d "${{ github.workspace }}/old_jekyll" ]; then
               cp -r ${{ github.workspace }}/old_jekyll ${{ runner.temp }}/build/
           else
@@ -48,7 +48,7 @@ jobs:
           fi
 
           git checkout main
-          
+
       - name: Deploy to Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -56,4 +56,3 @@ jobs:
           publish_dir: ${{ runner.temp }}/build
           publish_branch: gh-pages
           destination_dir: .
-
