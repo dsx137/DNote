@@ -1,1 +1,22 @@
-function handleIframe(){document.querySelectorAll("iframe.videoIframe").forEach((function(e){const n=e.offsetWidth;0!=n&&(e.style.height=9*n/16+"px")}))}window.addEventListener("resize",handleIframe),window.addEventListener("load",(e=>{handleIframe(),new MutationObserver((function(e){handleIframe()})).observe(document.body,{childList:!0,subtree:!0})}));
+// 自适应iframe视频大小
+
+function handleIframe() {
+    const iframes = document.querySelectorAll('iframe.videoIframe');
+
+    function resizeIframe(iframe) {
+        const width = iframe.offsetWidth;
+        if (width != 0) {
+            iframe.style.height = (width * 9 / 16) + 'px';
+        }
+    }
+
+    iframes.forEach(resizeIframe);
+};
+
+window.addEventListener('resize', handleIframe);
+window.addEventListener('load', event => {
+    handleIframe();
+    new MutationObserver(function (mutations) {
+        handleIframe();
+    }).observe(document.body, { childList: true, subtree: true });
+});
