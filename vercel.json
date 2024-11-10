@@ -1,8 +1,0 @@
-{
-  "git": {
-    "deploymentEnabled": {
-      "gh-pages": false,
-      "old_jekyll":false
-    }
-  }
-}
