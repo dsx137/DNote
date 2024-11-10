@@ -8,7 +8,7 @@ import { themes as prismThemes } from 'prism-react-renderer';
 const projectName = 'DNote'
 const github = 'https://github.com/dsx137'
 const githubPagesUrl = 'https://dsx137.github.io'
-const baseUrl = '/DNote'
+const baseUrl = process.env.BASE_URL || "/"
 const repo = github + baseUrl
 const icon = 'img/favicon-light.svg'
 
@@ -66,6 +66,16 @@ const config = {
         },
       }),
     ],
+  ],
+
+  headTags: [
+    {
+      tagName: 'script',
+      attributes: { type: 'text/javascript' },
+      innerHTML: `
+        window.globalVar = {baseUrl: '${baseUrl}'};
+      `,
+    },
   ],
 
   themeConfig:
@@ -199,21 +209,22 @@ const config = {
 
   scripts: [
     {
-      src: baseUrl + '/js/VideoIframe.js',
+      src: baseUrl + 'js/VideoIframe.js',
       async: true,
       defer: true
     }, {
-      src: baseUrl + '/js/ThemeStrategy.js',
+      src: baseUrl + 'js/ThemeStrategy.js',
       defer: true
     }, {
-      src: baseUrl + '/js/SidebarLinkCategoryCollapsible.js',
+      src: baseUrl + 'js/SidebarLinkCategoryCollapsible.js',
       async: true,
       defer: true
     }, {
-      src: baseUrl + '/js/main.js',
+      src: baseUrl + 'js/main.js',
       defer: true
     }
   ]
 };
+
 
 module.exports = config;

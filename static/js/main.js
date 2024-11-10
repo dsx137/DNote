@@ -1,5 +1,7 @@
-const favicon_dark = '/DNote/img/favicon-dark.svg';
-const favicon_light = '/DNote/img/favicon-light.svg';
+const baseUrl = window.globalVar.baseUrl;
+
+const favicon_dark = baseUrl + 'img/favicon-dark.svg';
+const favicon_light = baseUrl + 'img/favicon-light.svg';
 
 // favicon 策略
 new ThemeStrategy('link[rel="icon"]',
