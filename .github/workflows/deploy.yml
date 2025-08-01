@@ -38,7 +38,9 @@ jobs:
         run: |
           cp -r ${{ github.workspace }}/build ${{ runner.temp }}
 
-          git checkout origin/gh-pages
+          git fetch origin gh-pages
+          git reset --hard HEAD
+          git checkout gh-pages
 
           if [ -d "${{ github.workspace }}/old_jekyll" ]; then
               cp -r ${{ github.workspace }}/old_jekyll ${{ runner.temp }}/build/
