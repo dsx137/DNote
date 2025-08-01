@@ -31,15 +31,14 @@ jobs:
         env:
           BASE_URL: /DNote/
         run: |
-          pnpm install --frozen-lockfile
+          pnpm install
           pnpm run build
 
       - name: Copy old_jekyll content
         run: |
           cp -r ${{ github.workspace }}/build ${{ runner.temp }}
 
-          git fetch origin gh-pages
-          git checkout gh-pages
+          git checkout origin/gh-pages
 
           if [ -d "${{ github.workspace }}/old_jekyll" ]; then
               cp -r ${{ github.workspace }}/old_jekyll ${{ runner.temp }}/build/
