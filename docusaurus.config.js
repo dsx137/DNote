@@ -14,8 +14,6 @@ const icon = 'img/favicon-light.svg'
 
 const math = require('remark-math');
 const katex = require('rehype-katex');
-const sidebars = require('./sidebars');
-const { languages } = require('prismjs');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -31,7 +29,7 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
+  organizationName: 'dsx137', // Usually your GitHub org/user name.
   projectName: projectName, // Usually your repo name.
 
   onBrokenLinks: 'warn',
