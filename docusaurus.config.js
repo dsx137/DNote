@@ -1,24 +1,24 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const docusaurus = 'https://www.docusaurus.io/zh-CN/'
+const docusaurus = "https://www.docusaurus.io/zh-CN/";
 
-import { themes as prismThemes } from 'prism-react-renderer';
+import { themes as prismThemes } from "prism-react-renderer";
 
-const projectName = 'DNote'
-const github = 'https://github.com/dsx137'
-const githubPagesUrl = 'https://dsx137.github.io'
-const baseUrl = process.env.BASE_URL || "/"
-const repo = github + baseUrl
-const icon = 'img/favicon-light.svg'
+const projectName = "DNote";
+const github = "https://github.com/dsx137";
+const githubPagesUrl = "https://dsx137.github.io";
+const baseUrl = process.env.BASE_URL || "/";
+const repo = github + baseUrl;
+const icon = "img/favicon-light.svg";
 
-const math = require('remark-math');
-const katex = require('rehype-katex');
+const math = require("remark-math");
+const katex = require("rehype-katex");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: projectName,
-  tagline: 'dsx137的个人笔记',
+  tagline: "dsx137的个人笔记",
   favicon: icon,
 
   // Set the production url of your site here
@@ -29,29 +29,32 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'dsx137', // Usually your GitHub org/user name.
+  organizationName: "dsx137", // Usually your GitHub org/user name.
   projectName: projectName, // Usually your repo name.
 
-  onBrokenLinks: 'warn',
-  onBrokenMarkdownLinks: 'warn',
+  markdown: {
+    hooks: {
+      onBrokenLinks: "warn",
+    },
+  },
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
   // to replace "en" with "zh-Hans".
   i18n: {
-    defaultLocale: 'zh-Hans',
-    locales: ['zh-Hans'],
+    defaultLocale: "zh-Hans",
+    locales: ["zh-Hans"],
   },
 
   presets: [
     [
-      'classic',
+      "classic",
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
           remarkPlugins: [math],
           rehypePlugins: [[katex, { strict: false }]],
-          sidebarPath: require.resolve('./sidebars.js'),
+          sidebarPath: require.resolve("./sidebars.js"),
           numberPrefixParser: false,
           // editUrl: repo,
         },
@@ -60,7 +63,7 @@ const config = {
           // editUrl: repo,
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve("./src/css/custom.css"),
         },
       }),
     ],
@@ -68,8 +71,8 @@ const config = {
 
   headTags: [
     {
-      tagName: 'script',
-      attributes: { type: 'text/javascript' },
+      tagName: "script",
+      attributes: { type: "text/javascript" },
       innerHTML: `
         window.globalVar = {baseUrl: '${baseUrl}'};
       `,
@@ -79,81 +82,86 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      image: 'img/docusaurus-social-card.jpg',
+      image: "img/docusaurus-social-card.jpg",
       navbar: {
         title: projectName,
         logo: {
-          alt: 'DNote Logo',
+          alt: "DNote Logo",
           src: icon,
         },
         items: [
           {
-            type: 'docSidebar',
-            sidebarId: 'ruleSidebar',
-            position: 'left',
-            label: '写作规范',
-          }, {
-            type: 'dropdown',
-            label: '笔记',
-            position: 'left',
+            type: "docSidebar",
+            sidebarId: "ruleSidebar",
+            position: "left",
+            label: "写作规范",
+          },
+          {
+            type: "dropdown",
+            label: "笔记",
+            position: "left",
             items: [
               {
-                type: 'docSidebar',
-                sidebarId: 'computerBasicSidebar',
-                label: '计算机基础'
-              }, {
-                type: 'docSidebar',
-                sidebarId: 'frameworkSidebar',
-                label: '框架'
-              }, {
-                type: 'docSidebar',
-                sidebarId: 'miscSidebar',
-                label: '其他'
-              }, {
-                type: 'docSidebar',
-                sidebarId: 'mathSidebar',
-                label: '数学'
-              }
-            ]
-          }
+                type: "docSidebar",
+                sidebarId: "computerBasicSidebar",
+                label: "计算机基础",
+              },
+              {
+                type: "docSidebar",
+                sidebarId: "frameworkSidebar",
+                label: "框架",
+              },
+              {
+                type: "docSidebar",
+                sidebarId: "miscSidebar",
+                label: "其他",
+              },
+              {
+                type: "docSidebar",
+                sidebarId: "mathSidebar",
+                label: "数学",
+              },
+            ],
+          },
         ],
       },
       footer: {
-        style: 'dark',
+        style: "dark",
         links: [
           {
-            title: 'Github',
+            title: "Github",
             items: [
               {
-                label: 'dsx137',
+                label: "dsx137",
                 href: github,
               },
               {
-                label: 'DNote',
+                label: "DNote",
                 href: repo,
-              }
+              },
             ],
           },
           {
-            title: 'Friends',
+            title: "Friends",
             items: [
               {
-                label: 'CC2001',
+                label: "CC2001",
                 href: "https://c20c01.github.io",
-              }
-            ]
+              },
+            ],
           },
           {
-            title: 'Social Media',
+            title: "Social Media",
             items: [
               {
-                label: 'Zhihu',
+                label: "Zhihu",
                 href: "https://www.zhihu.com/people/dsxragon",
-              }, {
-                label: 'Bilibili',
+              },
+              {
+                label: "Bilibili",
                 href: "https://space.bilibili.com/52702262",
-              }
-            ]
+              },
+            ],
           },
         ],
         copyright: `Copyright © ${new Date().getFullYear()} DNote, Inc. Built with <a href="${docusaurus}">Docusaurus</a>.`,
@@ -161,17 +169,16 @@ const config = {
       prism: {
         theme: prismThemes.github,
         darkTheme: prismThemes.dracula,
-        additionalLanguages: ['haskell', 'java'],
+        additionalLanguages: ["haskell", "java"],
       },
       colorMode: {
-        defaultMode: 'dark',
+        defaultMode: "dark",
         respectPrefersColorScheme: true,
       },
       tableOfContents: {
         minHeadingLevel: 2,
         maxHeadingLevel: 5,
       },
-
     }),
 
   markdown: {
@@ -179,49 +186,48 @@ const config = {
   },
 
   themes: [
-    '@docusaurus/theme-mermaid',
+    "@docusaurus/theme-mermaid",
     [
-      '@easyops-cn/docusaurus-search-local',
-      ({
+      "@easyops-cn/docusaurus-search-local",
+      {
         hashed: true,
         language: ["en", "zh"],
-      }),
-    ]
-
+      },
+    ],
   ],
 
   stylesheets: [
     {
-      href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
-      type: 'text/css',
+      href: "https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css",
+      type: "text/css",
       integrity:
-        'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
-      crossorigin: 'anonymous',
+        "sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM",
+      crossorigin: "anonymous",
     },
   ],
 
-  plugins: [
-
-  ],
+  plugins: [],
 
   scripts: [
     {
-      src: baseUrl + 'js/VideoIframe.js',
+      src: baseUrl + "js/VideoIframe.js",
       async: true,
-      defer: true
-    }, {
-      src: baseUrl + 'js/ThemeStrategy.js',
-      defer: true
-    }, {
-      src: baseUrl + 'js/SidebarLinkCategoryCollapsible.js',
+      defer: true,
+    },
+    {
+      src: baseUrl + "js/ThemeStrategy.js",
+      defer: true,
+    },
+    {
+      src: baseUrl + "js/SidebarLinkCategoryCollapsible.js",
       async: true,
-      defer: true
-    }, {
-      src: baseUrl + 'js/main.js',
-      defer: true
-    }
-  ]
+      defer: true,
+    },
+    {
+      src: baseUrl + "js/main.js",
+      defer: true,
+    },
+  ],
 };
-
 
 module.exports = config;
